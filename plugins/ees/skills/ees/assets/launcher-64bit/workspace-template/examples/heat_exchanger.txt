@@ -1,0 +1,12 @@
+{Minimal, self-describing EES model for the command-line harness}
+$UnitSystem SI K kPa kJ Mass
+$CheckUnits AutoOn
+
+T_hot = 400 [K]
+T_cold = 300 [K]
+UA = 2 [kW/K]
+Q_dot = UA * (T_hot - T_cold)
+$VarInfo Q_dot Units=kW
+
+{One result per line: variable name, value, and units}
+$Export /H /V /U /N '{{OUTPUT_FILE}}' T_hot, T_cold, UA, Q_dot

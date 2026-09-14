@@ -1,0 +1,7 @@
+$UnitSystem SI K kPa kJ molar
+
+T=298.15 [K]
+cp_carbon=cp('C(GR)',T=T)
+
+{No $Load directive: the launcher passes /AI to make all five application libraries available.}
+$Export /H /V /U /N '{{OUTPUT_FILE}}' T, cp_carbon

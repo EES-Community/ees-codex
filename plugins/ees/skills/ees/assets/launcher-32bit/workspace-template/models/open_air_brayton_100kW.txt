@@ -1,0 +1,98 @@
+{Open air-standard Brayton-cycle design for 100 kW net power}
+{Variable-specific-heat ideal-gas air using the built-in EES fluid Air}
+{Combustion is represented only as heat addition}
+$UnitSystem SI K kPa kJ Mass
+$CheckUnits AutoOn
+
+{Design requirements and assumptions}
+Wdot_net = 100 [kW]
+eta_c = 0.88
+eta_t = 0.88
+T_1 = ConvertTemp(C, K, 25)
+P_1 = 101.325 [kPa]
+T_3 = ConvertTemp(C, K, 1000)
+P_3 = P_2
+P_4 = P_1
+
+{State 1: ambient compressor inlet}
+h_1 = Enthalpy(Air, T=T_1)
+s_1 = Entropy(Air, T=T_1, P=P_1)
+
+{Pressure ratio selected by a one-dimensional variable-property optimization}
+PR = 9.31704
+P_2 = PR * P_1
+
+{State 2: compressor discharge using isentropic efficiency}
+h_2s = Enthalpy(Air, s=s_1, P=P_2)
+T_2s = Temperature(Air, h=h_2s)
+h_2 = h_1 + (h_2s - h_1) / eta_c
+T_2 = Temperature(Air, h=h_2)
+wc_spec = h_2 - h_1
+
+{Heat addition without an explicit combustion model}
+h_3 = Enthalpy(Air, T=T_3)
+s_3 = Entropy(Air, T=T_3, P=P_3)
+qin_spec = h_3 - h_2
+
+{State 4: turbine exhaust using isentropic efficiency}
+h_4s = Enthalpy(Air, s=s_3, P=P_4)
+T_4s = Temperature(Air, h=h_4s)
+h_4 = h_3 - eta_t * (h_3 - h_4s)
+T_4 = Temperature(Air, h=h_4)
+wt_spec = h_3 - h_4
+
+{Variable-cp maximum-specific-work derivative; zero indicates the optimum}
+{d(w_net)/d(ln(PR)) is proportional to this residual}
+opt_residual = eta_t * T_4s - T_2s / eta_c
+
+{Cycle performance and 100 kW sizing}
+wnet_spec = wt_spec - wc_spec
+m_dot = Wdot_net / wnet_spec
+Wdot_c = m_dot * wc_spec
+Wdot_t = m_dot * wt_spec
+Qdot_in = m_dot * qin_spec
+eta_th = Wdot_net / Qdot_in
+BWR = Wdot_c / Wdot_t
+energy_residual = Qdot_in - Wdot_net - m_dot * (h_4 - h_1)
+
+{Local EES Air specific heats, reported to demonstrate their variation}
+cp_1 = SpecHeat(Air, T=T_1)
+cp_2 = SpecHeat(Air, T=T_2)
+cp_3 = SpecHeat(Air, T=T_3)
+cp_4 = SpecHeat(Air, T=T_4)
+
+{Convenient Celsius state temperatures for reporting}
+T_1_C = ConvertTemp(K, C, T_1)
+T_2_C = ConvertTemp(K, C, T_2)
+T_3_C = ConvertTemp(K, C, T_3)
+T_4_C = ConvertTemp(K, C, T_4)
+T_max_C = max(T_1_C, T_2_C, T_3_C, T_4_C)
+
+$VarInfo PR Units=-
+$VarInfo P_1 Units=kPa
+$VarInfo P_2 Units=kPa
+$VarInfo P_3 Units=kPa
+$VarInfo P_4 Units=kPa
+$VarInfo m_dot Units=kg/s
+$VarInfo T_1_C Units=C
+$VarInfo T_2_C Units=C
+$VarInfo T_3_C Units=C
+$VarInfo T_4_C Units=C
+$VarInfo T_max_C Units=C
+$VarInfo opt_residual Units=K
+$VarInfo cp_1 Units=kJ/kg-K
+$VarInfo cp_2 Units=kJ/kg-K
+$VarInfo cp_3 Units=kJ/kg-K
+$VarInfo cp_4 Units=kJ/kg-K
+$VarInfo wc_spec Units=kJ/kg
+$VarInfo wt_spec Units=kJ/kg
+$VarInfo wnet_spec Units=kJ/kg
+$VarInfo Wdot_c Units=kW
+$VarInfo Wdot_t Units=kW
+$VarInfo Wdot_net Units=kW
+$VarInfo Qdot_in Units=kW
+$VarInfo eta_th Units=-
+$VarInfo BWR Units=-
+$VarInfo energy_residual Units=kW
+
+$Export /H /V /U /N '{{OUTPUT_FILE}}' PR, opt_residual, P_1, P_2, P_3, P_4, T_1_C, T_2_C, T_3_C, T_4_C, T_max_C, cp_1, cp_2, cp_3, cp_4, eta_c, eta_t, m_dot, wc_spec, wt_spec, wnet_spec, Wdot_c, Wdot_t, Wdot_net, Qdot_in, eta_th, BWR, energy_residual

@@ -1,0 +1,17 @@
+{
+  "launcher_version": "0.4.0-beta",
+  "packages": [
+    {
+      "archive": "EES-Codex-Launcher-32bit-0.4.0-beta.zip",
+      "sha256": "8d375c509f29c1c8d57d60868f8a2fb09ca92a0f14e1322be7565fdb3787b7ee",
+      "destination": "plugins/ees/skills/ees/assets/launcher-32bit",
+      "modifications": "None; extracted files preserved byte-for-byte."
+    },
+    {
+      "archive": "EES-Codex-Launcher-64bit-0.4.0-beta.zip",
+      "sha256": "f960980b20a296e56e9be3f9500eb485fd36dcce4c2715de1aef5fbea5c68930",
+      "destination": "plugins/ees/skills/ees/assets/launcher-64bit",
+      "modifications": "None; extracted files preserved byte-for-byte."
+    }
+  ]
+}

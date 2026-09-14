@@ -1,0 +1,41 @@
+$UnitSystem SI K kPa kJ Mass
+$CheckUnits AutoOn
+
+{Intentionally no $Load directives. This model tests the EES /AI command-line switch.}
+
+{Component Library}
+T_in=298.15 [K]
+P_in=100 [kPa]
+P_out=200 [kPa]
+m_dot=0.1 [kg/s]
+eta=0.88
+F$='Air'
+h_in=Enthalpy(Air,T=T_in)
+CALL Compressor2_CL(h_in,P_in,P_out,m_dot,F$,eta:h_out,W_dot,eta_s)
+
+{Mechanical Design library}
+b=0.1 [m]
+h=0.2 [m]
+CALL MOI_rectangle(b,h:A_section,I_section,Z_section,rho_section,y_bar)
+
+{NASA library}
+T_NASA=1000 [K]
+CALL NASA('OH',T_NASA:cp_NASA,h_NASA,s_NASA)
+
+{Incompressible library}
+T_mercury=350 [K]
+k_mercury=Conductivity('mercury_liquid',T=T_mercury)
+
+{Heat Transfer library}
+T_blackbody=1000 [K]
+lambda_1=1 [micron]
+lambda_2=10 [micron]
+f_blackbody=Blackbody(T_blackbody,lambda_1,lambda_2)
+
+$VarInfo h_in,h_out Units=kJ/kg
+$VarInfo W_dot Units=kW
+$VarInfo A_section Units=m^2
+$VarInfo I_section Units=m^4
+$VarInfo Z_section Units=m^3
+$VarInfo rho_section,y_bar Units=m
+$Export /H /V /U /N '{{OUTPUT_FILE}}' W_dot,A_section,I_section,Z_section,rho_section,y_bar,cp_NASA,h_NASA,s_NASA,k_mercury,f_blackbody

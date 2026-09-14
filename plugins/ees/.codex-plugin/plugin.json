@@ -1,0 +1,18 @@
+{
+  "name": "ees",
+  "version": "0.1.0-beta",
+  "description": "Write, solve, and inspect Engineering Equation Solver models using local EES Professional.",
+  "author": {
+    "name": "EES-Community"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Engineering Equation Solver",
+    "shortDescription": "Model and solve with local EES Professional.",
+    "longDescription": "Search EES routines, write equation models, run the Windows EES launcher, and inspect exported results. Includes setup guidance and both launcher editions. EES Professional is required separately.",
+    "developerName": "EES-Community",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": "Use EES to help me build and solve an engineering model."
+  }
+}

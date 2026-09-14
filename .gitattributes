@@ -1,0 +1,4 @@
+*.md text eol=lf
+*.json text eol=lf
+# Preserve supplied distributions byte-for-byte across Windows and Linux.
+plugins/ees/skills/ees/assets/** -text

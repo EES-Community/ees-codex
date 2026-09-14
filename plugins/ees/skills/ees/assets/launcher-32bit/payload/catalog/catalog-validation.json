@@ -1,0 +1,486 @@
+{
+  "status": "pass",
+  "generated_utc": "2026-08-10T18:06:24.345Z",
+  "source": {
+    "filename": "Database22.xlsm",
+    "sha256": "d90da3a28fa44bb19bfd2e4df86c2b5b3aa6fa403e21d5459461387b7c1537fe",
+    "bytes": 569057,
+    "last_modified_utc": "2026-07-28T20:33:53.205Z",
+    "authority": "Confirmed by the catalog owner for redistribution as derived metadata"
+  },
+  "raw_row_counts": {
+    "Routines": 812,
+    "Categories": 353,
+    "RoutineCategories": 1670,
+    "Keywords": 1586,
+    "Signatures": 1178,
+    "Parameters": 7435,
+    "UnitTypes": 50
+  },
+  "row_counts": {
+    "Routines": 813,
+    "Categories": 353,
+    "RoutineCategories": 1670,
+    "Keywords": 1586,
+    "Signatures": 1178,
+    "Parameters": 7448,
+    "UnitTypes": 50
+  },
+  "normalization": {
+    "synthetic_routines": [
+      "FoulingFactor('Ammonia liquid oil bearing')"
+    ],
+    "routine_aliases": [
+      {
+        "table": "Signatures",
+        "from": "Call Impinging_Jet_SRN_ND",
+        "to": "Impinging_Jet_SRN_ND"
+      }
+    ],
+    "signature_id_repairs": [
+      {
+        "from": "Call Impinging_Jet_SRN_ND",
+        "to": "Impinging_Jet_SRN_ND"
+      },
+      {
+        "from": "HX_11TEMAG_1",
+        "to": "HX_11TEMAG_2"
+      }
+    ],
+    "swapped_parameter_foreign_keys": 120,
+    "canonicalized_routine_references": 170,
+    "canonicalized_signature_references": 125,
+    "canonicalized_category_references": 0,
+    "expanded_shared_parameter_rows": [
+      {
+        "routine_id": "Notch_Sensitivity",
+        "parameter_order": 1,
+        "expanded_to_signature_ids": [
+          "Notch_Sensitivity_1",
+          "Notch_Sensitivity_2",
+          "Notch_Sensitivity_3"
+        ]
+      },
+      {
+        "routine_id": "Notch_Sensitivity",
+        "parameter_order": 2,
+        "expanded_to_signature_ids": [
+          "Notch_Sensitivity_1",
+          "Notch_Sensitivity_2",
+          "Notch_Sensitivity_3"
+        ]
+      },
+      {
+        "routine_id": "Notch_Sensitivity",
+        "parameter_order": 3,
+        "expanded_to_signature_ids": [
+          "Notch_Sensitivity_1",
+          "Notch_Sensitivity_2",
+          "Notch_Sensitivity_3"
+        ]
+      },
+      {
+        "routine_id": "Notch_Sensitivity",
+        "parameter_order": 4,
+        "expanded_to_signature_ids": [
+          "Notch_Sensitivity_1",
+          "Notch_Sensitivity_2",
+          "Notch_Sensitivity_3"
+        ]
+      },
+      {
+        "routine_id": "Notch_Sensitivity",
+        "parameter_order": 5,
+        "expanded_to_signature_ids": [
+          "Notch_Sensitivity_1",
+          "Notch_Sensitivity_2",
+          "Notch_Sensitivity_3"
+        ]
+      },
+      {
+        "routine_id": "gear_Lewis_factor",
+        "parameter_order": 1,
+        "expanded_to_signature_ids": [
+          "gear_Lewis_factor_1",
+          "gear_Lewis_factor_2"
+        ]
+      },
+      {
+        "routine_id": "gear_Lewis_factor",
+        "parameter_order": 2,
+        "expanded_to_signature_ids": [
+          "gear_Lewis_factor_1",
+          "gear_Lewis_factor_2"
+        ]
+      },
+      {
+        "routine_id": "gear_Lewis_factor",
+        "parameter_order": 3,
+        "expanded_to_signature_ids": [
+          "gear_Lewis_factor_1",
+          "gear_Lewis_factor_2"
+        ]
+      }
+    ]
+  },
+  "fatal_check_names": [
+    "duplicate_routine_ids",
+    "duplicate_signature_ids",
+    "duplicate_unit_type_ids",
+    "orphan_signatures",
+    "orphan_keywords",
+    "orphan_routine_categories",
+    "orphan_parameters",
+    "parameter_signature_routine_mismatches",
+    "unknown_parameter_unit_types"
+  ],
+  "fatal_failures": [],
+  "checks": {
+    "duplicate_routine_ids": [],
+    "duplicate_signature_ids": [],
+    "duplicate_category_ids": [
+      {
+        "value": "Drag Force",
+        "count": 2
+      },
+      {
+        "value": "Condenser Design",
+        "count": 2
+      },
+      {
+        "value": "Quiescent Condensation",
+        "count": 2
+      },
+      {
+        "value": "Pressure Drop",
+        "count": 2
+      },
+      {
+        "value": "Compact Heat Exchanger",
+        "count": 2
+      },
+      {
+        "value": "Compact HX",
+        "count": 2
+      },
+      {
+        "value": "Single Phase Internal Flow",
+        "count": 3
+      },
+      {
+        "value": "Flow Resistance",
+        "count": 2
+      },
+      {
+        "value": "Pipe Dimensions",
+        "count": 3
+      },
+      {
+        "value": "Regenerator Design",
+        "count": 2
+      },
+      {
+        "value": "Impinging Jets",
+        "count": 2
+      },
+      {
+        "value": "Fin Efficiency Functions",
+        "count": 2
+      },
+      {
+        "value": "Fin Efficiency",
+        "count": 3
+      },
+      {
+        "value": "Flow Maps",
+        "count": 5
+      },
+      {
+        "value": "Fouling Factors",
+        "count": 4
+      },
+      {
+        "value": "Heat Exchanger Solutions",
+        "count": 5
+      },
+      {
+        "value": "Minor Loss Coefficients",
+        "count": 6
+      },
+      {
+        "value": "Bends",
+        "count": 2
+      },
+      {
+        "value": "Supply Branches",
+        "count": 2
+      },
+      {
+        "value": "Extract Branches",
+        "count": 2
+      },
+      {
+        "value": "Combustors",
+        "count": 2
+      },
+      {
+        "value": "Compressors",
+        "count": 5
+      },
+      {
+        "value": "Duct Systems",
+        "count": 3
+      },
+      {
+        "value": "Fans & Blowers",
+        "count": 4
+      },
+      {
+        "value": "Flow Control",
+        "count": 2
+      },
+      {
+        "value": "Valves",
+        "count": 5
+      },
+      {
+        "value": "Capillary Tubes",
+        "count": 2
+      },
+      {
+        "value": "Short-Tube Restrictors",
+        "count": 2
+      },
+      {
+        "value": "Valve Coefficients - Incompressible",
+        "count": 4
+      },
+      {
+        "value": "Valve Coefficients - Compressible",
+        "count": 4
+      },
+      {
+        "value": "Valve Sizing Tools",
+        "count": 5
+      },
+      {
+        "value": "Heat & Mass Exchangers",
+        "count": 5
+      },
+      {
+        "value": "Heat Exchanger Components",
+        "count": 8
+      },
+      {
+        "value": "Pumps",
+        "count": 2
+      },
+      {
+        "value": "Centrifugal Pumps",
+        "count": 4
+      },
+      {
+        "value": "Ejector Pumps",
+        "count": 4
+      },
+      {
+        "value": "Turbines",
+        "count": 2
+      },
+      {
+        "value": "Nozzles & Diffusers",
+        "count": 2
+      },
+      {
+        "value": "Nozzles",
+        "count": 3
+      },
+      {
+        "value": "Diffusers",
+        "count": 3
+      },
+      {
+        "value": "Shock Waves",
+        "count": 3
+      },
+      {
+        "value": "Thermal Stress and Deflection",
+        "count": 2
+      },
+      {
+        "value": "Diffusion Coefficients",
+        "count": 2
+      },
+      {
+        "value": "Life-Cycle Costing",
+        "count": 3
+      }
+    ],
+    "duplicate_unit_type_ids": [],
+    "orphan_signatures": [],
+    "orphan_keywords": [],
+    "orphan_routine_categories": [],
+    "orphan_parameters": [],
+    "parameter_signature_routine_mismatches": [],
+    "unknown_parameter_unit_types": [],
+    "routines_without_signatures": [
+      "PF_louvered-fin_34b_111",
+      "DragCoef_HalfCylinder_d",
+      "verticalupward1",
+      "verticalupward2",
+      "horizontal1",
+      "horizontal2",
+      "horizontal3",
+      "verticaljet1",
+      "rodbundle1"
+    ],
+    "signatures_without_parameters": [
+      "PF_louvered-fin_316_111_g",
+      "PF_louvered-fin_316_111_p",
+      "PF_louvered-fin_316_111_h",
+      "PF_louvered-fin_316_111_n",
+      "verticalupward3",
+      "K_Damper_Opposed",
+      "CapTube1_CL",
+      "ValveSizing_ISA75_Tab"
+    ]
+  },
+  "auxiliary_sheet_preview": [
+    [
+      "Thermodynamics",
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "Power Cycles",
+      null,
+      null,
+      null,
+      null,
+      "External_Flow_Sphere calculates the average heat transfer coefficient and drag force and coefficient for external flow past a sphere.  The correlation is from White (1991) and Nellis and Klein.  This procedure passes the Reynold and Prandtl numbers to the non-dimensional procedure External_Flow_Sphere_ND. The non-dimensional procedure returns the values for C_d and Nusselt.   External_Flow_Sphere calculates the drag force and the heat transfer coefficient for convection from the drag coefficient and the Nusselt number, "
+    ],
+    [
+      "Refrigeration & HVAC",
+      null,
+      null,
+      null,
+      null,
+      "External_Flow_Cylinder calculates the average heat transfer coefficient, drag force per unit length of cylinder and the drag coefficient for external flow past an infinite cylinder.  The procedure uses the correlation presented in White (1991) and Section 4.9.3 of Nellis and Klein. "
+    ],
+    [
+      "Psychrometrics",
+      null,
+      null,
+      null,
+      null,
+      "External_Flow_Cuboid calculates the average heat transfer coefficient and drag force for external flow past a cuboid.  The drag coefficient correlation is obtained from Haider and Levenspiel (1989) while the Nusselt number correlation is obtained from Yovanovich (1988). "
+    ],
+    [
+      "Heat Transfer",
+      null,
+      null,
+      null,
+      null,
+      "External_Flow_Plate calculates the average heat transfer coefficient and the average shear stress for external flow over a flat plate. This procedure determines the property data of the specified fluid and calculatesthe Reynolds and Prandtl numbers. The Prandtl, Reynolds and Nusselt numbers are based on the film temperature, which is the average of the free stream and the surface temperatures.  This procedure then passes the Reynolds and Prandtl numbers to the non-dimensional procedure External_Flow_Plate_ND. The non-dimensional procedure then returns the values for C_f and Nusselt and External_Flow_Plate calculates the average shear stress and the convection heat transfer coefficient.  Note that the procedure External_Flow_Plate_L provides the same functionality but uses the more accurate correlations described by Lienhard (2020) that include the impact of the transition region."
+    ],
+    [
+      "Heat Exchangers",
+      null,
+      null,
+      null,
+      null,
+      "External_Flow_Plate_local calculates the local heat transfer coefficient and the local shear stress for external flow over a flat plate.  This procedure determines the property data of the specified fluid and calculates the Reynolds and Prandtl numbers. The Prandtl, Reynolds and Nusselt numbers are based on the film temperature, which is the average of the free stream and the surface temperatures.  This procedure then passes the Reynolds and Prandtl numbers to the non-dimensional procedure External_Flow_Plate_ND_local. The non-dimensional procedure then returns the values for C_f and Nusselt and External_Flow_Plate_local calculates the local shear stress and the convection heat transfer coefficient.  Note that the procedure External_Flow_Plate_L_local provides the same functionality but uses the more accurate correlations described by Lienhard (2020) that include the impact of the transition region."
+    ],
+    [
+      "Fluid Flow",
+      null,
+      null,
+      null,
+      null,
+      "External_Flow_Plate_L calculates the average heat transfer coefficient and the average shear stress for external flow over a flat plate.  The results returned use the Lienhard (2020) correlation which accounts for the transition region.  This procedure uses the non-dimensional procedure External_Flow_Plate_L_ND with an assumed transition Reynolds number of Re_l 1e5. The non-dimensional procedure then returns the values for C_f and Nusselt and External_Flow_Plate calculates the average shear stress and the convection heat transfer coefficient. "
+    ],
+    [
+      "Pipe & Duct Systems",
+      null,
+      null,
+      null,
+      null,
+      "External_Flow_Plate_L_local calculates the local heat transfer coefficient and the local shear stress for external flow over a flat plate.   The correlation provided by Lienhard (2020) is used which accounts for the presence of the transition region; a transition Reynolds number of Re_l = 1e5 is assumed.  This procedure uses the non-dimensional procedure External_Flow_Plate_L_ND_local with an assumed value of Re_l = 1e5. The non-dimensional procedure then returns the values for C_f and Nusselt and External_Flow_Plate_L_local calculates the local shear stress and the convection heat transfer coefficient.  "
+    ],
+    [
+      "Pumps, Fans & Compressors",
+      null,
+      null,
+      null,
+      null,
+      "External_Flow_Inline_Bank calculates the average heat transfer coefficient and total pressure drop over an inline bank of tubes. The procedure uses correlations and correction factors provided by Zukauskas (1972). These correlations apply for values of Reynolds numbers from 30<Re<1e8 and Prandtl numbers from 0.7<Pr<500.  At Reynolds numbers 100<Re<1000, the heat transfer coefficient can be calculated assuming a single cylinder in crossflow. Under those conditions the Churchill and Bernstein correlation(1977) is used.  Experimental data verifying the correlations are limited in geometric layout to relative longitudinal pitches (S_L/D) between 1.25 and 2.5.  The accuracy of values outside this range is uncertain."
+    ],
+    [
+      "Combustion",
+      null,
+      null,
+      null,
+      null,
+      "External_Flow_Staggered_Bank calculates the average heat transfer coefficient, and total pressure drop over a staggered bank of tubes.  The procedure uses correlations and correction factors provided by Zukauskas (1972). These correlations apply for values of Reynolds numbers from 30<Re<1e8 and Prandtl numbers from 0.7<Pr<500. At Reynolds numbers 100<Re<1000, the coefficient of heat transfer can be calculated assuming a single cylinder in crossflow. Under those conditions the Churchill and Bernstein correlation(1977) is used. Experimental data verifying the correlations are limited in geometric layout to relative transverse pitches (S_T/D) between 1.25 and 2.5. The accuracy of values outside this range is uncertain."
+    ],
+    [
+      "Solar Energy",
+      null,
+      null,
+      null,
+      null,
+      "External_Flow_Finned_Bank1 calculates the average heat transfer coefficient and total pressure drop over an inline bank of finned tubes.  The procedure uses correlations and correction factors for pressure drop provided by Yudin and Tokhtarova (1974) as presented in the Heat Exchanger Design Handbook (2008).  The correlation for heat transfer is from PFR (2008).  The correlations for pressure drop apply from 4e3< Re< 1.6e5."
+    ],
+    [
+      "Mechanical Design",
+      null,
+      null,
+      null,
+      null,
+      "External_Flow_Finned_Bank2 calculates the average heat transfer coefficient, and total pressure drop over a staggered bank of finned tubes.  The procedure uses correlations and correction factors for pressure drop provided by Yudin and Tokhtarova (1974) as presented in the Heat Exchanger Design Handbook (2008).  The correlation for heat transfer is from PFR (2008).  The correlations for pressure drop apply from Re> 2.2e3."
+    ],
+    [
+      "Stress & Structures",
+      null,
+      null,
+      null,
+      null,
+      "External_Flow_Diamond calculates the average heat transfer coefficient and drag force per unit length of a diamond-shaped extrusion.  Uses correlation from  Jakob (1949), White (2003) and Nellis and Klein (2009)."
+    ],
+    [
+      "Components & Equipment",
+      null,
+      null,
+      null,
+      null,
+      "External_Flow_Square calculates the average heat transfer coefficient and drag force per unit length of a square-shaped extrusion. Uses correlation from  Jakob (1949), White (2003) and Nellis and Klein (2009)."
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      "External_Flow_Hexagon1 calculates the average heat transfer coefficient and drag force per unit length of a hexagonal-shaped rod (with the flat face perpendicular to the flow).  Uses correlation from Jakob (1949) and White (2003)."
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      "External_Flow_Hexagon2 calculates the average heat transfer coefficient, drag force per unit length of a hexagonal-shaped extrusion (with the flat face parallel to the flow). Uses correlation from Jakob (1949) and White (2003)."
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      "External_Flow_VerticalPlate calculates the average heat transfer coefficient and drag force per unit length of vertical plate.  Uses correlation from Jakob (1949) and White (2003)."
+    ]
+  ]
+}

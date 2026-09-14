@@ -1,0 +1,15 @@
+$UnitSystem SI C kPa kJ mass
+
+T_in=25 [C]
+P_in=100 [kPa]
+P_out=200 [kPa]
+m_dot=0.1 [kg/s]
+F$='Air'
+eta=0.88
+h_in=enthalpy(Air,T=T_in)
+
+{No $Load directive: the launcher passes /AI to make all five application libraries available.}
+Call Compressor2_CL(h_in, P_in, P_out, m_dot, F$, eta : h_out, W_dot, eta_s)
+T_out=temperature(Air,h=h_out)
+
+$Export /H /V /U /N '{{OUTPUT_FILE}}' T_in, P_in, P_out, m_dot, eta, h_in, h_out, T_out, W_dot, eta_s

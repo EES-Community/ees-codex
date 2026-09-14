@@ -1,0 +1,19 @@
+{Thermal-fluid example using EES water property functions}
+$UnitSystem SI C kPa kJ Mass
+$CheckUnits AutoOn
+
+P = 300 [kPa]
+T_in = 20 [C]
+T_out = 80 [C]
+m_dot = 0.5 [kg/s]
+
+h_in = Enthalpy(Water, T=T_in, P=P)
+h_out = Enthalpy(Water, T=T_out, P=P)
+Q_dot = m_dot * (h_out - h_in)
+
+$VarInfo h_in Units=kJ/kg
+$VarInfo h_out Units=kJ/kg
+$VarInfo Q_dot Units=kW
+
+$Export /H /V /U /N '{{OUTPUT_FILE}}' P, T_in, T_out, m_dot, h_in, h_out, Q_dot
+

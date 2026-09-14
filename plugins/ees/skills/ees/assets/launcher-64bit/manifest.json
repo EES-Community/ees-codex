@@ -1,0 +1,27 @@
+{
+  "product": "EES-Codex-Launcher",
+  "version": "0.4.0-beta",
+  "platform": "Windows",
+  "edition": "64-bit-only",
+  "required_ees_architecture": "64-bit",
+  "install_folder_name": "EES-Codex-Launcher-64bit",
+  "workspace_folder_name": "EES-Codex-Workspace-64bit",
+  "workspace_parent": "UserProfile",
+  "runtime_dependencies": [
+    "Windows PowerShell 5.1 or PowerShell 7",
+    "EES Professional with /AI command-line support"
+  ],
+  "optional_dependencies": [
+    "ChatGPT desktop app with Codex"
+  ],
+  "supported_ees_executables": [
+    "C:\\EES64\\ees64.exe"
+  ],
+  "python_required": false,
+  "node_required": false,
+  "catalog": {
+    "name": "Engineering Tool Dialog",
+    "version": "Database22",
+    "derived_metadata_authorized": true
+  }
+}
