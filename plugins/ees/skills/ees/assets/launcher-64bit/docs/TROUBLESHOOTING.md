@@ -12,7 +12,7 @@ This edition accepts only `ees64.exe` and rejects 32-bit `ees.exe`.
 
 ## EES opens an error dialog or times out
 
-EES may wait on a modal compile or solve error. The launcher stops only the process it created, reports accessible dialog text, and preserves the staged program for diagnosis.
+EES may wait on a modal compile or solve error during a command-line run. The launcher automatically hands PowerShell 7 calls to Windows PowerShell 5.1 and starts EES normally because current EES releases may exit without solving under .NET Core or when created as a hidden, non-shell process. On timeout, the launcher stops only the process it created, reports accessible dialog text, and preserves the staged program for diagnosis.
 
 ## The launcher says 64-bit EES is already running
 

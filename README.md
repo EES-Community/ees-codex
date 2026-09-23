@@ -2,7 +2,7 @@
 
 An EES skill packaged as a Codex plugin and repository marketplace. It helps Codex find EES library routines, write equation models, solve them with local EES Professional, and inspect exported results.
 
-The plugin includes the original 32-bit and 64-bit EES Codex Launcher 0.4.0-beta distributions. EES, EES licenses, and Codex are required separately.
+The plugin includes the 32-bit and 64-bit EES Codex Launcher 0.4.1-beta distributions. EES, EES licenses, and Codex are required separately.
 
 ## Requirements
 
@@ -46,14 +46,14 @@ Models and results stay in the selected workspace. The plugin install alone does
 - `plugins/ees/.codex-plugin/plugin.json`: plugin manifest.
 - `plugins/ees/skills/ees/SKILL.md`: reusable EES workflow.
 - `plugins/ees/skills/ees/references/setup.md`: setup and compatibility guidance.
-- `plugins/ees/skills/ees/assets/launcher-{32,64}bit/`: unchanged upstream distributions.
+- `plugins/ees/skills/ees/assets/launcher-{32,64}bit/`: launcher distributions derived from the documented upstream packages; local modifications are recorded in `UPSTREAM.json`.
 - `UPSTREAM.json`: source archive names and SHA-256 checksums.
 
-The original launchers use an exported text-file workflow and include Database22 calling metadata for 813 routines. They provide directive filters, fresh per-run output staging, process serialization, and timeout diagnostics. These checks are not an OS security sandbox or proof of engineering correctness.
+The launchers use an exported text-file workflow and include Database22 calling metadata for 815 routines. They provide directive filters, fresh per-run output staging, process serialization, and timeout diagnostics. Version 0.4.1-beta automatically hands PowerShell 7 calls to Windows PowerShell 5.1 and starts EES as a normal shell process because EES 12.3.3.2 may exit without solving under .NET Core or when started as a hidden, non-shell process. These checks are not an OS security sandbox or proof of engineering correctness.
 
 ## Validation status
 
-Package structure and archive integrity can be checked on Linux. End-to-end installation, marketplace UI behavior, and actual solves must also be verified in the target Windows desktop environment before a customer release. Bundled upstream tests have not been executed as part of this initial packaging.
+Version 0.4.1-beta passed the complete bundled installation test from PowerShell 7 on Windows with 32-bit EES 12.3.3.2 and 64-bit EES 12.3.2.0. Both editions solved and exported the smoke test, verified `/AI` autoload for Component, Mechanical Design, NASA, Incompressible, and Heat Transfer routines, found 815 catalog routines, and left the persistent EES autoload preferences unchanged. Marketplace UI behavior should still be verified before a customer release.
 
 ## Notices
 

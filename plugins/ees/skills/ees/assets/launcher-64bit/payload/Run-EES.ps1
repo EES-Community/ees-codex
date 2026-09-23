@@ -18,6 +18,35 @@ param(
     [switch]$KeepRunFiles
 )
 
+# EES 12.3.3.2 does not reliably process command-line solves when it is
+# started by .NET Core's Process implementation. Codex normally runs PowerShell
+# 7, so hand the unchanged request to Windows PowerShell 5.1 before launching
+# EES. The call operator preserves each path as a separate argument.
+if ($PSVersionTable.PSEdition -eq 'Core') {
+    $windowsPowerShell = Join-Path $env:WINDIR 'System32\WindowsPowerShell\v1.0\powershell.exe'
+    if (-not (Test-Path -LiteralPath $windowsPowerShell -PathType Leaf)) {
+        throw "Windows PowerShell 5.1 was not found: $windowsPowerShell"
+    }
+
+    $handoffArguments = @(
+        '-NoProfile',
+        '-ExecutionPolicy', 'Bypass',
+        '-File', $PSCommandPath,
+        '-ProgramPath', $ProgramPath,
+        '-OutputPath', $OutputPath,
+        '-WorkspaceRoot', $WorkspaceRoot,
+        '-TimeoutSeconds', [string]$TimeoutSeconds
+    )
+    if (-not [string]::IsNullOrWhiteSpace($EesPath)) {
+        $handoffArguments += @('-EesPath', $EesPath)
+    }
+    if ($Force) { $handoffArguments += '-Force' }
+    if ($KeepRunFiles) { $handoffArguments += '-KeepRunFiles' }
+
+    & $windowsPowerShell @handoffArguments
+    exit $LASTEXITCODE
+}
+
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
@@ -313,9 +342,12 @@ try {
     $startInfo = New-Object System.Diagnostics.ProcessStartInfo
     $startInfo.FileName = $resolvedEes
     $startInfo.Arguments = ('"{0}" /solve /nosplash /AI' -f $stagedProgram.Replace('"', '\"'))
-    $startInfo.UseShellExecute = $false
-    $startInfo.CreateNoWindow = $true
-    $startInfo.WindowStyle = [System.Diagnostics.ProcessWindowStyle]::Hidden
+    # EES 12.3.3.2 can exit without solving when started as a hidden,
+    # non-shell process. Match a normal Start-Process launch, which preserves
+    # the command-line solve/export behavior across current EES releases.
+    $startInfo.UseShellExecute = $true
+    $startInfo.CreateNoWindow = $false
+    $startInfo.WindowStyle = [System.Diagnostics.ProcessWindowStyle]::Normal
 
     $process = [System.Diagnostics.Process]::Start($startInfo)
     if (-not $process.WaitForExit($TimeoutSeconds * 1000)) {
