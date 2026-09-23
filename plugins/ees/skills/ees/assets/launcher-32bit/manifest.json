@@ -1,6 +1,6 @@
 {
   "product": "EES-Codex-Launcher",
-  "version": "0.4.0-beta",
+  "version": "0.4.1-beta",
   "platform": "Windows",
   "edition": "32-bit-only",
   "required_ees_architecture": "32-bit",

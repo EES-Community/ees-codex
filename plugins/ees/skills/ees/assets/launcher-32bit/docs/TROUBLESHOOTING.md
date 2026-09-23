@@ -16,7 +16,7 @@ Extract the whole ZIP first. Right-click the downloaded ZIP, select **Properties
 
 ## EES opens an error dialog or the launcher times out
 
-EES may wait on a modal compile or solve error even when started hidden. The launcher stops only the EES process it created, reports accessible dialog text, and preserves the staged `program.txt` for diagnosis. Fix the syntax or model and use a new result name.
+EES may wait on a modal compile or solve error during a command-line run. The launcher automatically hands PowerShell 7 calls to Windows PowerShell 5.1 and starts EES normally because EES 12.3.3.2 may exit without solving under .NET Core or when created as a hidden, non-shell process. On timeout, the launcher stops only the EES process it created, reports accessible dialog text, and preserves the staged `program.txt` for diagnosis. Fix the syntax or model and use a new result name.
 
 ## The output already exists
 
