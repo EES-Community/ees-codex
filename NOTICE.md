@@ -1,6 +1,6 @@
 # Notices
 
-This repository packages the supplied EES Codex Launcher 0.4.0-beta distributions as an EES skill and Codex plugin. Original distribution contents and notices are preserved in each skill asset directory. Archive provenance is recorded in UPSTREAM.json.
+This repository packages EES Codex Launcher 0.4.1-beta distributions as an EES skill and Codex plugin. The launchers are derived from the supplied 0.4.0-beta archives; original archive checksums and the local modifications are recorded in UPSTREAM.json. Bundled upstream notices are preserved in each skill asset directory.
 
 The packages do not contain EES executables, executable EES libraries, an EES license, or OpenAI software. Those products remain subject to their respective terms.
 
@@ -8,4 +8,4 @@ Upstream NOTICE.md states that the Engineering Tool Dialog catalog is derived fr
 
 The engineering examples are demonstrations. Successful execution does not establish design fitness or professional certification.
 
-No license for newly authored packaging files has yet been selected by the publisher.
+The repository's newly authored packaging files are source-available but are not offered under an open-source license. Except for rights supplied by applicable law or platform terms, no permission to copy, modify, or redistribute those files is granted; rights are reserved by their respective copyright holders. This statement does not alter or sublicense the bundled launcher material, catalog metadata, EES, OpenAI software, or any other third-party material.

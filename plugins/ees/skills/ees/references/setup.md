@@ -1,6 +1,6 @@
 # Windows launcher setup
 
-The skill ships the original 0.4.0-beta distributions under `assets/launcher-32bit/` and `assets/launcher-64bit/`, relative to the skill directory. Each contains its installer, scripts, catalog, examples, notices, and documentation. Choose based on EES's edition, not Windows bitness.
+The skill ships the EES Codex Launcher 0.4.1-beta distributions under `assets/launcher-32bit/` and `assets/launcher-64bit/`, relative to the skill directory. They are derived from the original 0.4.0-beta packages with updated process-startup compatibility. Each contains its installer, scripts, catalog, examples, notices, and documentation. Choose based on EES's edition, not Windows bitness.
 
 1. Check the user's supplied executable path, or the standard paths `C:\EES32\ees.exe` and `C:\EES64\ees64.exe`. If both are available and the user has not chosen, ask which EES edition to use. A compatible EES Professional installation must already exist; this plugin does not supply it.
 2. Read `START-HERE.md` in the chosen asset directory. Resolve the skill directory to its actual path; do not assume a particular plugin-cache path.

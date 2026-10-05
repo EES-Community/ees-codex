@@ -57,4 +57,4 @@ Version 0.4.1-beta passed the complete bundled installation test from PowerShell
 
 ## Notices
 
-See [NOTICE.md](NOTICE.md). No new open-source license is assigned by this packaging. Upstream notices state that the derived catalog may be redistributed with its owner's permission; retain those notices. Publisher-selected licensing for the new packaging remains to be decided before public release.
+See [NOTICE.md](NOTICE.md). The newly authored packaging files are source-available but are not offered under an open-source license, and no additional rights are granted by this repository. Upstream notices state that the derived catalog may be redistributed with its owner's permission; retain those notices. The repository notice does not alter or sublicense the bundled launcher material, catalog metadata, EES, OpenAI software, or other third-party material.
