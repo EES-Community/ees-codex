@@ -6,6 +6,6 @@ The packages do not contain EES executables, executable EES libraries, an EES li
 
 Upstream NOTICE.md states that the Engineering Tool Dialog catalog is derived from the owner-confirmed Database22 workbook and redistributed with the owner's permission. It contains metadata and calling information, not executable library files. This repository preserves that statement; it does not grant additional rights.
 
-The engineering examples are demonstrations. Successful execution does not establish design fitness or professional certification.
+The engineering examples are demonstrations. Successful execution does not establish engineering correctness, design fitness, or safety.
 
-The repository's newly authored packaging files are source-available but are not offered under an open-source license. Except for rights supplied by applicable law or platform terms, no permission to copy, modify, or redistribute those files is granted; rights are reserved by their respective copyright holders. This statement does not alter or sublicense the bundled launcher material, catalog metadata, EES, OpenAI software, or any other third-party material.
+The repository-authored packaging and launcher files are source-available under the limited, non-open-source terms in LICENSE.md. Those terms permit the copying, unmodified redistribution, and use needed to install, evaluate, and operate this integration, as well as redistribution of the unmodified installation guide. Other rights are reserved. The license applies only to material for which EES-Community contributors hold copyright; it does not alter or sublicense the catalog metadata, EES, OpenAI software, or any other third-party material.

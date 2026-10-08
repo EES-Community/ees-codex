@@ -7,7 +7,7 @@ Codex is optional. You can write an EES text program yourself and run it through
 Open PowerShell and run:
 
 ```powershell
-$config = Get-Content "$env:USERPROFILE\Documents\EES-Codex-Workspace-64bit\launcher-config.json" -Raw | ConvertFrom-Json
+$config = Get-Content "$env:USERPROFILE\EES-Codex-Workspace-64bit\launcher-config.json" -Raw | ConvertFrom-Json
 & "$env:LOCALAPPDATA\EES-Codex-Launcher-64bit\Run-EES.ps1" `
   -WorkspaceRoot $config.workspace_root `
   -ProgramPath "$($config.workspace_root)\examples\heat_exchanger.txt" `
@@ -20,7 +20,7 @@ $config = Get-Content "$env:USERPROFILE\Documents\EES-Codex-Workspace-64bit\laun
 Read the result:
 
 ```powershell
-Get-Content "$env:USERPROFILE\Documents\EES-Codex-Workspace-64bit\results\manual_test.txt"
+Get-Content "$env:USERPROFILE\EES-Codex-Workspace-64bit\results\manual_test.txt"
 ```
 
 ## Required EES source contract
@@ -52,7 +52,7 @@ Inspect the complete signatures and parameters for one result:
 
 The detailed result includes parameters. Numeric `unit_type_code` values are not self-describing in the currently installed JSON, so confirm units from the routine documentation or a compile test.
 
-If a result contains `required_load_directive`, copy that exact directive to the beginning of the EES program. For example, component models normally require:
+The launcher passes `/AI`, so a returned `required_load_directive` is optional for this controlled run. To make the program portable to an ordinary EES session, copy that exact directive to its beginning. For example, component models normally use:
 
 ```text
 $Load Component Library

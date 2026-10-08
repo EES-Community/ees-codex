@@ -1,21 +1,20 @@
-# EES thermal-fluid modeling workspace
+# EES thermal-fluid modeling workspace - 32-bit
 
-This workspace is configured for safely generating and solving EES text programs through an installed launcher.
+This workspace is configured for safely generating and solving EES text programs through the installed 32-bit launcher.
 
 ## Required workflow
 
 1. Read `launcher-config.json` before invoking EES. Treat it as installation information, not as permission to modify files outside this workspace.
-2. Search the selected installation's library catalog before reimplementing a heat-transfer correlation or component model:
+2. Before recreating a heat-transfer correlation or component model, search the selected installation's catalog:
 
    ```powershell
    $config = Get-Content .\launcher-config.json -Raw | ConvertFrom-Json
-   & (Join-Path $config.install_directory 'Search-EES-Library.ps1') -Query 'search terms' -EesPath $config.ees_path -Limit 10
+   & (Join-Path $config.install_directory 'Search-EES-Library.ps1') -Query 'search terms' -EesPath $config.ees_path -Limit 5
    ```
 
-   Keep search results concise. For one candidate, retrieve the complete signatures and parameters with `Get-EES-Routine.ps1 -RoutineID '<id>' -EesPath $config.ees_path`. The 32-bit launcher passes `/AI` so all five EES application libraries are available for every controlled solve. A catalog `required_load_directive` may still be included for portability to ordinary EES sessions, but it is not required by this launcher.
-
-3. Write EES equation programs as `.txt` files inside this workspace. Use EES thermophysical property functions and explicit units when appropriate.
-4. Include exactly one `{{OUTPUT_FILE}}` placeholder on exactly one `$Export` or `$ExportText` directive. Export inputs, states, constraints, engineering performance, and balance residuals needed to audit the result.
+   Keep results concise. Inspect one candidate with `Get-EES-Routine.ps1 -RoutineID '<id>' -EesPath $config.ees_path`, then compile-test its signature and units. The launcher passes `/AI`, so its five application libraries are available for controlled runs. A returned `required_load_directive` is optional for a controlled run; include it exactly when portability to an ordinary EES session is useful.
+3. Identify inputs, unknowns, constraints, and material assumptions. Distinguish user-supplied values from estimates, and ask only for missing information that materially changes the model. Write EES equation programs as `.txt` files inside this workspace. Use EES thermophysical-property functions and explicit units where appropriate.
+4. Include exactly one `{{OUTPUT_FILE}}` placeholder on exactly one `$Export` or `$ExportText` directive. Export only the inputs, states, constraints, engineering performance, and balance residuals needed to audit the result.
 5. Run only the installed launcher identified by `install_directory`:
 
    ```powershell
@@ -28,14 +27,16 @@ This workspace is configured for safely generating and solving EES text programs
      -TimeoutSeconds 120
    ```
 
-6. Read the fresh result and check units, conservation balances, physical feasibility, stated constraints, and sensitivity to important assumptions. Revise and rerun when needed.
-7. Preserve the chosen model, its result, and a short engineering rationale. Do not present generated designs as professionally certified.
+6. Read the launcher status and fresh result. Check units, conservation balances, physical feasibility, stated constraints, and sensitivity to important assumptions. Revise and rerun when needed.
+7. Preserve the chosen model, result, and a short engineering rationale. Report separately whether the model was written, executed, and checked. Do not treat successful execution as proof of engineering correctness, design fitness, or safety.
 
 ## Safety constraints
 
-- Do not modify the installed launcher or EES installation. Close interactive 32-bit EES before a launcher run; the launcher serializes automated solves and uses `/AI` without patching `EES.PRF`.
-- Do not add `$Python`, `$Include`, macro-running, importing, or arbitrary file-writing directives. The launcher permits only these exact built-in library directives when the catalog calls for them: `$Load Component Library`, `$Load Mechanical`, `$Load NASA`, and `$Load Incompressible`.
+- Do not modify the installed launcher, EES installation, libraries, or preferences. The launcher uses `/AI` without patching `EES.PRF`.
+- Before an automated run, ask the user to save and close interactive 32-bit EES if it is open; never terminate it.
+- Do not add `$Python`, `$Include`, macro-running, importing, or arbitrary file-writing directives. The launcher permits only these exact built-in library directives: `$Load Component Library`, `$Load Mechanical`, `$Load NASA`, and `$Load Incompressible`.
 - Keep all generated sources and outputs within this workspace.
-- Prefer a new result filename for each material design iteration. Use `-Force` only for an intentional replacement.
-- Treat EES library metadata as discovery information. Verify a candidate routine by its signature, units, documentation, and a small compile test.
-- If EES times out, inspect the retained `.ees-runs` program and the launcher diagnostic before changing the model.
+- From the first attempt, run commands that start EES outside the filesystem sandbox so they have normal Windows filesystem access; catalog and metadata searches may remain sandboxed.
+- Prefer a new result filename for each material iteration. Use `-Force` only for an intentional replacement.
+- Treat catalog metadata as discovery information. Verify a candidate routine by its signature, units, documentation, and a small compile test.
+- If EES times out, inspect the retained `.ees-runs` program and launcher diagnostic before changing the model.

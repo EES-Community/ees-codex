@@ -1,59 +1,27 @@
 ---
 name: ees
-description: Write, solve, and debug Engineering Equation Solver (EES) thermal-fluid models, search EES library routines, and inspect exported results using a local Windows EES Professional installation. Use for EES model work or EES launcher setup.
+description: Create, run, debug, or inspect EES equation models; search installed EES routines; or configure the Windows EES launcher. Use only when the task requires EES Professional, not for generic thermal-fluid analysis.
+license: Limited source-available terms in LICENSE.md
 ---
 
 # Engineering Equation Solver
 
-Use the bundled EES Codex Launcher to solve equation text with the user's installed EES Professional. EES performs the calculations; this skill supplies the modeling workflow and library lookup tools.
+Use local EES Professional through the installed EES Codex Launcher. EES performs the calculations; this skill selects the appropriate safe workflow.
 
-## Connect to EES
+## Route by task
 
-Find `launcher-config.json` in the user's selected project, or read the installed launcher's `config.json` under `%LOCALAPPDATA%\EES-Codex-Launcher-32bit` or `%LOCALAPPDATA%\EES-Codex-Launcher-64bit`. Read only those known locations first. Respect the user's chosen project and EES edition. If both editions are configured and no preference is given, ask which to use.
+1. For installation or a user-requested launcher update, read [setup](references/setup.md). Do not load setup for an already configured modeling task.
+2. Determine whether the task needs an installed helper. Write-only work and review of existing results may proceed without launcher configuration or setup; do not claim execution. On non-Windows systems, do not silently install another solver.
+3. Before catalog lookup, execution, or any other operation that invokes an installed helper, first read `launcher-config.json` in the selected project. If it is absent, check only the documented installed configurations under `%LOCALAPPDATA%\EES-Codex-Launcher-32bit` and `%LOCALAPPDATA%\EES-Codex-Launcher-64bit`. If no usable configuration remains, read setup; reading it does not authorize installation. Preserve the selected workspace and EES edition; if both editions are configured and the user has not chosen, ask which to use. Load the selected configuration as `$config` for later commands.
+4. Follow applicable EES workspace instructions already in context. If they do not fully cover the requested operation, or the selected workspace has no EES-specific instructions, read [model workflow](references/model-workflow.md) for the missing guidance. Do not load that fallback when the workspace instructions already cover the task.
+5. Read [failure handling](references/failures.md) only after a launcher error, timeout, or unexpected launcher or export behavior. Do not load failure guidance preemptively.
 
-If setup is missing or the user requests installation, read [references/setup.md](references/setup.md). The launchers require Windows, PowerShell 5.1 or 7, and EES Professional supporting `/solve` and `/AI`. On another OS, help write or inspect models but do not claim to have solved them or silently install Wine or a replacement solver.
+## Invariants
 
-Run the installed helpers identified by `install_directory` in the configuration. The plugin's bundled assets are installation sources. Do not modify the installed launcher or EES preferences to make a model run.
-
-## Find a routine
-
-Before recreating a correlation or component model, search the catalog and inspect a candidate's signature:
-
-```powershell
-$config = Get-Content .\launcher-config.json -Raw | ConvertFrom-Json
-& (Join-Path $config.install_directory 'Search-EES-Library.ps1') `
-  -Query 'compressor constant efficiency' -EesPath $config.ees_path -Limit 5
-& (Join-Path $config.install_directory 'Get-EES-Routine.ps1') `
-  -RoutineID 'Compressor2_CL' -EesPath $config.ees_path
-```
-
-The bundled Database22 catalog contains calling metadata, not executable libraries. An `installed_metadata_match` is not proof that all dependencies are available. Verify a selected signature with a small EES model before building around it. Use the search helpers rather than loading the full catalog JSON into context.
-
-## Write and solve
-
-1. Identify the requested inputs, unknowns, constraints, and assumptions. Use EES property functions and explicit units. Ask for missing inputs when they materially determine the model; distinguish estimates from supplied values.
-2. Write a `.txt` equation program inside the selected workspace. Include exactly one `{{OUTPUT_FILE}}` placeholder on exactly one `$Export` or `$ExportText` directive. See the installed `examples/heat_exchanger.txt` and `examples/water_heater.txt` for working formats.
-3. Export the variables needed to inspect the result: relevant inputs, states, performance quantities, and balance residuals. Choose a new output filename for a material iteration; use `-Force` only for an intentional replacement.
-4. Invoke the installed launcher:
-
-```powershell
-& (Join-Path $config.install_directory 'Run-EES.ps1') `
-  -WorkspaceRoot $config.workspace_root `
-  -ProgramPath (Join-Path $config.workspace_root 'models\model.txt') `
-  -OutputPath (Join-Path $config.workspace_root 'results\model-results.txt') `
-  -EesPath $config.ees_path -TimeoutSeconds 120
-```
-
-5. Read the launcher's status and the fresh exported file. Check units, balances, physical feasibility, requested constraints, and sensitivity where it matters. A successful process or a nonempty export alone does not establish engineering correctness. Preserve the model and result and explain the relevant assumptions and checks.
-
-For another user-selected project, supply that project's absolute path as `-WorkspaceRoot` and keep both model and result under it; the launcher accepts a workspace per invocation. Do not change the installation's global configuration merely to work in another project. The bundled installation test still uses its original configured workspace.
-
-## Execution constraints and failures
-
-- Every helper that starts EES must run with normal Windows filesystem access. EES accesses shared locations outside the selected workspace during ordinary startup, including locations such as `C:\Users\Public\EES_Incompressible`, regardless of its command-line parameters. In a sandboxed Codex environment, invoke `Run-EES.ps1`, `Test-Installation.ps1`, and installer tests outside the filesystem sandbox (for example, with `sandbox_permissions: "require_escalated"`) from the first attempt. This is sandbox authorization for the native EES process, not permission to modify EES, its launcher, preferences, or libraries. Catalog searches and metadata inspection do not start EES and can remain sandboxed.
-- EES is launched with `/solve /nosplash /AI`; `/AI` makes the five application libraries available for that run without editing preferences. It does not determine where EES stores or accesses library data.
-- The matching interactive EES process must be closed before an automated solve. If the launcher reports an existing process, ask the user to save and close it; do not terminate their interactive session.
-- Keep source and result paths inside the selected workspace. The launcher accepts equation `.txt` files, not native binary `.ees` files. Request or produce an EES text export when needed; do not rename a binary file to `.txt`.
-- Do not bypass the launcher's directive checks. It rejects external-code, import, macro, and several extra-output directives. Its exact permitted `$Load` directives are Component Library, Mechanical, NASA, and Incompressible. If a requested model needs an unsupported action, explain the limitation instead of weakening the launcher.
-- On failure, inspect the JSON diagnostic and retained `.ees-runs` program. A timeout may be a hidden compile/solve dialog; inspect its captured text before retrying. An access error for a shared EES location outside the workspace is an execution-sandbox failure, not a model compile failure; rerun the unchanged installed helper with normal Windows filesystem access. Otherwise correct the indicated model issue; do not repeatedly rerun an unchanged failing model or silently increase the timeout.
-- Report separately whether a model was written, executed by EES, and checked. Do not present an unexecuted model as verified or a generated design as professionally certified.
+- Run EES only through installed helpers identified by configuration. Bundled launcher assets are installation sources.
+- Keep models and results inside the selected workspace. Use EES equation `.txt` files; never disguise a binary `.ees` file.
+- Use the catalog helpers rather than loading the complete catalog JSON.
+- Do not manually edit EES, an installed launcher, preferences, or libraries, and never weaken or bypass launcher checks. For a user-requested install or update, use the supplied installer workflow in setup.
+- From the first attempt, run helpers that start EES outside the filesystem sandbox so they have normal Windows filesystem access. Catalog and metadata helpers may remain sandboxed.
+- If matching interactive EES is open, ask the user to save and close it; never terminate it.
+- Preserve the chosen model, any supplied or fresh result, and the engineering rationale. Report separately whether the model was written, executed, and checked. Do not treat successful execution as proof of engineering correctness, design fitness, or safety.
