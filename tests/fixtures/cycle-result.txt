@@ -1,0 +1,83 @@
+PR	9.31704000E+00
+eta_c_input	8.80000000E-01
+eta_c_return	8.80000000E-01
+eta_c_check	8.80000000E-01
+eta_c_resid	-1.73925653E-12
+eta_t_input	8.80000000E-01
+eta_t_return	8.80000000E-01
+eta_t_check	8.80000000E-01
+eta_t_resid	-1.29498734E-12
+P_1	1.01325000E+02 [kPa]
+T_1_C	2.50000000E+01 [C]
+h_1	2.98586089E+02 [kJ/kg]
+s_1	5.69566649E+00 [kJ/kg-K]
+P_2	9.44049078E+02 [kPa]
+T_2_C	3.21585279E+02 [C]
+h_2	6.01815073E+02 [kJ/kg]
+s_2	5.75868111E+00 [kJ/kg-K]
+P_3	9.44049078E+02 [kPa]
+T_3_C	1.00000000E+03 [C]
+h_3	1.36433847E+03 [kJ/kg]
+s_3	6.60730737E+00 [kJ/kg-K]
+P_4	1.01325000E+02 [kPa]
+T_4_C	5.18906946E+02 [C]
+h_4	8.13570823E+02 [kJ/kg]
+s_4	6.70653256E+00 [kJ/kg-K]
+TIT_limit_C	1.00000000E+03 [C]
+TIT_margin	0.00000000E+00 [K]
+m_dot	4.03977301E-01 [kg/s]
+w_c	3.03228984E+02 [kJ/kg]
+w_t	5.50767644E+02 [kJ/kg]
+w_net	2.47538660E+02 [kJ/kg]
+q_in	7.62523395E+02 [kJ/kg]
+Wdot_c	1.22497627E+02 [kW]
+Wdot_t	2.22497627E+02 [kW]
+Wdot_net	1.00000000E+02 [kW]
+Wdot_net_target	1.00000000E+02 [kW]
+Qdot_in	3.08042143E+02 [kW]
+eta_th	3.24630906E-01
+back_work_ratio	5.50557004E-01
+Wdot_c_h_check	1.22497627E+02 [kW]
+Wdot_t_h_check	2.22497627E+02 [kW]
+comp_power_resid	-1.46790913E-12 [kW]
+turb_power_resid	-7.70490102E-10 [kW]
+net_power_resid	5.49368259E-11 [kW]
+cycle_energy_resid	6.26163704E-11 [kW]
+rho_1	1.18412612E+00 [kg/m^3]
+rho_2	5.53611880E+00 [kg/m^3]
+rho_3	2.47731102E+00 [kg/m^3]
+rho_4	4.42421115E-01 [kg/m^3]
+v_1	8.44505090E-01 [m^3/kg]
+v_2	1.80631564E-01 [m^3/kg]
+v_3	4.03663964E-01 [m^3/kg]
+v_4	2.26028271E+00 [m^3/kg]
+cp_1	1.00631622E+00 [kJ/kg-K]
+cp_2	1.05109374E+00 [kJ/kg-K]
+cp_3	1.18524950E+00 [kJ/kg-K]
+cp_4	1.09988531E+00 [kJ/kg-K]
+k_1	2.62465812E-02 [W/m-K]
+k_2	4.60121103E-02 [W/m-K]
+k_3	7.91183210E-02 [W/m-K]
+k_4	5.81844212E-02 [W/m-K]
+mu_1	1.84910233E-05 [kg/m-s]
+mu_2	3.02154423E-05 [kg/m-s]
+mu_3	4.85134881E-05 [kg/m-s]
+mu_4	3.70188214E-05 [kg/m-s]
+exergy_1	0.00000000E+00 [kJ/kg]
+exergy_2	2.81211942E+02 [kJ/kg]
+exergy_3	7.55648112E+02 [kJ/kg]
+exergy_4	3.20818442E+02 [kJ/kg]
+exergy_in	3.05243320E+02 [kW]
+exergy_out	1.29594308E+02 [kW]
+exergy_destroyed	7.56490120E+01 [kW]
+exergy_efficiency	3.27607411E-01
+heat_rate	3.08042143E+00
+specific_fuel_consumption	9.77640000E-05 [kg/kJ]
+air_fuel_ratio	5.92155530E+01
+combustor_efficiency	9.80000000E-01
+pressure_loss_fraction	4.00000000E-02
+ambient_pressure	1.01325000E+02 [kPa]
+ambient_temperature	2.50000000E+01 [C]
+shaft_speed	3.60000000E+03 [rpm]
+generator_efficiency	9.60000000E-01
+electrical_power	9.60000000E+01 [kW]

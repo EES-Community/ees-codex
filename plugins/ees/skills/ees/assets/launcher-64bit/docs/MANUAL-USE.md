@@ -17,11 +17,17 @@ $config = Get-Content "$env:USERPROFILE\EES-Codex-Workspace-64bit\launcher-confi
   -Force
 ```
 
-Read the result:
+Read only the principal result and related residuals:
 
 ```powershell
-Get-Content "$env:USERPROFILE\EES-Codex-Workspace-64bit\results\manual_test.txt"
+& "$env:LOCALAPPDATA\EES-Codex-Launcher-64bit\Get-EES-Result.ps1" `
+  -Path "$env:USERPROFILE\EES-Codex-Workspace-64bit\results\manual_test.txt" `
+  -Variable 'Q_dot' `
+  -Pattern '*_resid' `
+  -Detail Compact
 ```
+
+Use `-Detail Full` without selectors, or `Get-Content`, when you need the complete export.
 
 ## Required EES source contract
 
@@ -42,9 +48,9 @@ Use explicit units and export the inputs, constraints, primary results, and resi
   -Detail Compact
 ```
 
-The compact command returns ranked candidates with only the routine identifier and type, short description, primary syntax, required load directive, installed-metadata match, and deprecation or replacement information.
+The compact command returns ranked candidates with only the routine identifier and type, short description, primary syntax, required load directive, installed-metadata match, and deprecation or replacement information. Use the selected search record directly.
 
-Inspect one candidate compactly first:
+When the routine ID is already known without searching, retrieve it compactly:
 
 ```powershell
 & "$env:LOCALAPPDATA\EES-Codex-Launcher-64bit\Get-EES-Routine.ps1" `
@@ -52,7 +58,7 @@ Inspect one candidate compactly first:
   -Detail Compact
 ```
 
-Add `-Detail Full` for that one routine when alternate signatures, parameter descriptions, keywords, categories, paths, hashes, or help references are needed. Numeric `unit_type_code` values are not self-describing, so confirm units from the routine documentation or a compile test. Both modes use the packaged `EES_Tool_Metadata.json` as their sole catalog source; selected-installation metadata is compared only for `installed_metadata_match` and is never merged.
+Do not make this second compact call after a compact search. Add `-Detail Full` for one selected routine when alternate signatures, parameter descriptions, keywords, categories, paths, hashes, or help references are needed. Numeric `unit_type_code` values are not self-describing, so confirm units from the routine documentation or a compile test. Both modes use the packaged `EES_Tool_Metadata.json` as their sole catalog source; selected-installation metadata is compared only for `installed_metadata_match` and is never merged.
 
 The launcher passes `/AI`, so a returned `required_load_directive` is optional for this controlled run. To make the program portable to an ordinary EES session, copy that exact directive to its beginning. For example, component models normally use:
 
