@@ -1,6 +1,6 @@
 # Notices
 
-This repository packages EES Codex Launcher 0.4.2-beta distributions as an EES skill and Codex plugin. The launchers are derived from the supplied 0.4.0-beta archives; original archive checksums and the local modifications are recorded in UPSTREAM.json. Bundled upstream notices are preserved in each skill asset directory.
+This repository packages the coordinated EES skill and EES Codex Launcher 0.5.0-beta distributions as a Codex plugin. The launchers are derived from the supplied 0.4.0-beta archives; original archive checksums and the local modifications are recorded in UPSTREAM.json. Bundled upstream notices are preserved in each skill asset directory.
 
 The packages do not contain EES executables, executable EES libraries, an EES license, or OpenAI software. Those products remain subject to their respective terms.
 

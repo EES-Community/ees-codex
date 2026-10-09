@@ -1,6 +1,19 @@
 #Requires -Version 5.1
 Set-StrictMode -Version Latest
 
+function Get-FileSha256Hex {
+    param([string]$FilePath)
+
+    $stream = [System.IO.File]::OpenRead($FilePath)
+    try {
+        $sha256 = [System.Security.Cryptography.SHA256]::Create()
+        try { $hashBytes = $sha256.ComputeHash($stream) }
+        finally { $sha256.Dispose() }
+    }
+    finally { $stream.Dispose() }
+    return ([System.BitConverter]::ToString($hashBytes) -replace '-', '')
+}
+
 function Resolve-SelectedEes {
     param([string]$RequestedPath)
 
@@ -140,7 +153,7 @@ function Get-EesCatalogContext {
     }
 
     $catalogFile = Get-Item -LiteralPath $catalogPath
-    $catalogHash = (Get-FileHash -LiteralPath $catalogPath -Algorithm SHA256).Hash
+    $catalogHash = Get-FileSha256Hex -FilePath $catalogPath
     $searchableRoutines = @(Get-EesSearchableRoutines -Catalog $catalog)
 
     $installedMetadataPath = Join-Path $eesRoot 'EES_Tool_Metadata.json'

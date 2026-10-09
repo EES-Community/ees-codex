@@ -20,7 +20,7 @@ The recommended path is the native ChatGPT desktop app for Windows, which includ
    Always use the recorded path. It remains authoritative even if Windows folders have been redirected or you selected a custom location.
 4. In Codex, choose **Open folder** or **Add project**. When the Windows folder picker appears, click its address bar, paste the complete workspace path, press **Enter**, and choose **Select Folder**. The selected folder should contain `AGENTS.md`, `launcher-config.json`, `examples`, `models`, and `results`.
 5. Use the Windows-native/PowerShell environment. EES is a Windows desktop application, so a WSL-only environment cannot launch it directly.
-6. Keep the project sandbox enabled and choose **Ask for approval**. The official OpenAI documentation recommends retaining sandbox boundaries and using targeted approvals rather than full access.
+6. Keep the project sandbox enabled. EES-starting commands require normal Windows filesystem access, but the current Codex permission policy and prior approvals determine whether a separate approval choice or dialog appears; do not assume one will be shown.
 7. Start a task with:
 
    ```text
@@ -28,7 +28,7 @@ The recommended path is the native ChatGPT desktop app for Windows, which includ
    ```
 
 8. Codex should read the project instructions, write models only inside the workspace, and invoke the fixed launcher from `%LOCALAPPDATA%\EES-Codex-Launcher-64bit`.
-9. When approval is requested, verify that the command calls the installed `Run-EES.ps1`, uses this project as `-WorkspaceRoot`, and selects the configured 64-bit `ees64.exe`.
+9. If approval is requested, verify that the command calls the installed `Run-EES.ps1`, uses this project as `-WorkspaceRoot`, and selects the configured 64-bit `ees64.exe`.
 
 ## A first design request
 

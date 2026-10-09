@@ -8,16 +8,16 @@ For write-only work or review of existing files, no launcher configuration or EE
 
 ## Find an installed routine
 
-Before recreating a heat-transfer correlation or component model, search the packaged canonical catalog through the selected launcher and then inspect one candidate:
+Before recreating a heat-transfer correlation or component model, search the packaged canonical catalog through the selected launcher. Use the capability result produced by `scripts/Resolve-EES-LauncherCapabilities.ps1`. It treats a valid declaration as authoritative and otherwise inspects installed helper parameters without comparing version strings. When `use_compact_catalog` is false, omit `-Detail`, continue safely, and mention the available launcher update once; do not update it automatically.
+
+For a current launcher, begin with:
 
 ```powershell
 & (Join-Path $config.install_directory 'Search-EES-Library.ps1') `
   -Query 'compressor constant efficiency' -EesPath $config.ees_path -Limit 3 -Detail Compact
-& (Join-Path $config.install_directory 'Get-EES-Routine.ps1') `
-  -RoutineID 'Compressor2_CL' -EesPath $config.ees_path -Detail Compact
 ```
 
-Start with `-Detail Compact`. It returns only the routine identifier and type, short description, primary syntax, required load directive, installed-metadata match, and deprecation or replacement information. Request `-Detail Full` for one selected routine only when alternate signatures, parameter descriptions, keywords, categories, paths, hashes, or help references are needed. Never load the complete catalog JSON.
+The compact search record already contains the routine identifier and type, short description, primary syntax, required load directive, installed-metadata match, and deprecation or replacement information; use the selected search record directly. Call compact `Get-EES-Routine.ps1` only when the routine ID was already known without searching. Request `-Detail Full` for one selected routine only when alternate signatures, parameter descriptions, keywords, categories, paths, hashes, or help references are needed. Never load the complete catalog JSON.
 
 The packaged `EES_Tool_Metadata.json` is the sole catalog source and contains calling metadata, not executable libraries. `installed_metadata_match` only reports whether the selected EES installation's own metadata lists the routine; it is discovery evidence, not proof that the routine and its dependencies will compile. When executable EES is available, verify the selected signature, parameter meanings, and units with a small EES compile test before building around it.
 
@@ -42,6 +42,18 @@ $workspaceRoot = $config.workspace_root
 
 For another user-selected project, set `$workspaceRoot` to that project's absolute path before the command; the workspace, program, and output arguments must all use it. Keep the model and result beneath that root. Do not change the installed launcher's global configuration merely to work in another project.
 
-5. Read the launcher status and the fresh exported result. Check units, conservation balances, physical feasibility, requested constraints, and sensitivity to important assumptions. Revise and rerun when needed. A successful process or nonempty export alone does not establish correctness.
+5. Read the launcher status. When `capabilities.result_detail_modes` declares Compact support, use `Get-EES-Result.ps1` to request the principal outputs, constraints, and residuals needed for the current decision:
+
+```powershell
+& (Join-Path $config.install_directory 'Get-EES-Result.ps1') `
+  -Path (Join-Path $workspaceRoot 'results\model-results.txt') `
+  -Variable 'COP_system','Qdot_L','Wdot_c' `
+  -Pattern '*_resid' `
+  -Detail Compact
+```
+
+Use this helper only when the capability result has `use_compact_results` set to true; otherwise read the raw result and mention the available launcher update once. Compact extraction is read-only and returns exact raw numeric text and bracketed units. Treat a missing variable, unmatched pattern, duplicate name, malformed line, or unsupported value as an explicit parsing failure. Read `-Detail Full` or the raw export for a comprehensive audit or to diagnose such a failure.
+
+6. Check units, conservation balances, physical feasibility, requested constraints, and sensitivity to important assumptions. Revise and rerun when needed. A successful process or nonempty export alone does not establish correctness.
 
 Do not add `$Python`, `$Include`, macro-running, importing, arbitrary file-writing directives, or other actions rejected by the launcher. If the requested model requires an unsupported action, explain the limitation instead of weakening the launcher.

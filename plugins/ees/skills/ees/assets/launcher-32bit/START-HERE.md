@@ -7,7 +7,7 @@ This edition is deliberately locked to 32-bit EES. Its installer, solver launche
 ## What you need
 
 - Windows 10 or 11.
-- A working 32-bit EES Professional installation that supports the `/AI` command-line option. The `/solve` feature is also required.
+- A working 32-bit EES Professional installation that supports the `/AI` command-line option.
 - Normally, EES at `C:\EES32\ees.exe`. A custom location containing an executable named `ees.exe` can be supplied to the installer.
 - Windows PowerShell 5.1 or PowerShell 7.
 - Codex is optional. See [Install and use Codex](docs/CODEX-SETUP.md) if you do not have it.
@@ -19,7 +19,7 @@ This edition is deliberately locked to 32-bit EES. Its installer, solver launche
 3. Extract the complete ZIP. Do not run the installer while browsing inside the ZIP.
 4. Open the extracted folder and double-click **Install.cmd**.
 5. The installer asks where to install the launcher and where to create the models-and-results workspace. Press **Enter** to accept each recommended path. The recommended workspace is `%USERPROFILE%\EES-Codex-Workspace-32bit`, directly inside your Windows user folder—not inside Documents, Music, or OneDrive. If entering another location, type a complete path beginning with a drive letter, such as `C:\Engineering\EES-Codex-Workspace-32bit`; relative entries are rejected.
-6. It selects `C:\EES32\ees.exe`, runs real 32-bit EES calculations, verifies `Q_dot = 200 kW`, validates the current packaged `EES_Tool_Metadata.json` and its compact/full helpers, and uses `/AI` to test routines from all five application libraries without `$Load`. It also verifies that the persistent library-autoload setting in `EES.PRF` was not changed. A green success message confirms the installation.
+6. It selects `C:\EES32\ees.exe`, runs real 32-bit EES calculations, verifies `Q_dot = 200 kW`, validates compact/full catalog and result helpers, and uses `/AI` to test routines from all five application libraries without `$Load`. It also verifies that the persistent library-autoload setting in `EES.PRF` was not changed. A green success message confirms the installation.
 
 If 32-bit EES is somewhere else, open PowerShell in the extracted folder and run:
 
@@ -67,6 +67,8 @@ The launcher is useful on its own. Follow [Manual PowerShell use](docs/MANUAL-US
 - Safe staging of one EES `.txt` equations file and one result file.
 - Timeout and diagnostic handling for hidden EES error dialogs.
 - Compact or full search of the current packaged `EES_Tool_Metadata.json`, used as the sole catalog source.
+- Compact exact-name or wildcard extraction from launcher-produced text results, with full-file metadata and diagnostics available on request.
+- Generated configuration declaring the coordinated plugin version, launcher API level, and supported catalog/result modes.
 - A non-merging comparison with the selected installation's metadata for the `installed_metadata_match` discovery flag.
 - Heat exchanger, water-property, and open Brayton-cycle examples.
 - A repeatable installation test and a non-destructive uninstaller.

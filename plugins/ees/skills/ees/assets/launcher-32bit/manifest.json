@@ -1,6 +1,8 @@
 {
   "product": "EES-Codex-Launcher",
-  "version": "0.4.2-beta",
+  "version": "0.5.0-beta",
+  "coordinated_plugin_version": "0.5.0-beta",
+  "launcher_api_level": 2,
   "platform": "Windows",
   "edition": "32-bit-only",
   "required_ees_architecture": "32-bit",
@@ -19,6 +21,11 @@
   ],
   "python_required": false,
   "node_required": false,
+  "capabilities": {
+    "catalog_detail_modes": ["Compact", "Full"],
+    "result_detail_modes": ["Compact", "Full"],
+    "result_selectors": ["Variable", "Pattern"]
+  },
   "catalog": {
     "name": "EES_Tool_Metadata.json",
     "schema_version": 1,

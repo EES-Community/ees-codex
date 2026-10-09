@@ -12,7 +12,7 @@ This workspace is configured for safely generating and solving EES text programs
    & (Join-Path $config.install_directory 'Search-EES-Library.ps1') -Query 'search terms' -EesPath $config.ees_path -Limit 3 -Detail Compact
    ```
 
-   Keep results concise. Inspect one candidate with `Get-EES-Routine.ps1 -RoutineID '<id>' -EesPath $config.ees_path -Detail Compact`. Request `-Detail Full` only when its alternate signatures or parameter descriptions are needed, then compile-test the selected signature and units. The packaged `EES_Tool_Metadata.json` is the sole search source; `installed_metadata_match` only reports whether the selected installation metadata lists the routine. The launcher passes `/AI`, so its five application libraries are available for controlled runs. A returned `required_load_directive` is optional for a controlled run; include it exactly when portability to an ordinary EES session is useful.
+   Keep results concise and use the selected compact search record directly. Use compact `Get-EES-Routine.ps1` only when the routine ID was already known without searching. Request `-Detail Full` only when alternate signatures or parameter descriptions are needed, then compile-test the selected signature and units. Prefer `capabilities.catalog_detail_modes` from the configuration; if capability data is absent or malformed, inspect the helper parameters and omit `-Detail` for a legacy launcher. Mention an available update once and never update automatically. The packaged `EES_Tool_Metadata.json` is the sole search source; `installed_metadata_match` only reports whether the selected installation metadata lists the routine. The launcher passes `/AI`, so its five application libraries are available for controlled runs. A returned `required_load_directive` is optional for a controlled run; include it exactly when portability to an ordinary EES session is useful.
 3. Identify inputs, unknowns, constraints, and material assumptions. Distinguish user-supplied values from estimates, and ask only for missing information that materially changes the model. Write EES equation programs as `.txt` files inside this workspace. Use EES thermophysical-property functions and explicit units where appropriate.
 4. Include exactly one `{{OUTPUT_FILE}}` placeholder on exactly one `$Export` or `$ExportText` directive. Export only the inputs, states, constraints, engineering performance, and balance residuals needed to audit the result.
 5. Run only the installed launcher identified by `install_directory`:
@@ -27,7 +27,17 @@ This workspace is configured for safely generating and solving EES text programs
      -TimeoutSeconds 120
    ```
 
-6. Read the launcher status and fresh result. Check units, conservation balances, physical feasibility, stated constraints, and sensitivity to important assumptions. Revise and rerun when needed.
+6. Read the launcher status. When `capabilities.result_detail_modes` includes `Compact`, request only the principal outputs, constraints, and residuals first:
+
+   ```powershell
+   & (Join-Path $config.install_directory 'Get-EES-Result.ps1') `
+     -Path (Join-Path $config.workspace_root 'results\model-name-results.txt') `
+     -Variable 'principal_output','important_constraint' `
+     -Pattern '*_resid' `
+     -Detail Compact
+   ```
+
+   Use full extraction or the raw export for a comprehensive audit or when compact parsing fails. With a legacy launcher, read the raw result and mention the available update once. Check units, conservation balances, physical feasibility, stated constraints, and sensitivity to important assumptions. Revise and rerun when needed.
 7. Preserve the chosen model, result, and a short engineering rationale. Report separately whether the model was written, executed, and checked. Do not treat successful execution as proof of engineering correctness, design fitness, or safety.
 
 ## Safety constraints

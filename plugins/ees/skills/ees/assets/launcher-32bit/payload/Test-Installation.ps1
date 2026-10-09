@@ -45,6 +45,42 @@ try {
     if ($resultText -notmatch '(?m)^Q_dot\s+2\.00000000E\+02\s+\[kW\]') {
         throw "EES ran, but the expected Q_dot = 200 kW result was not found in $output"
     }
+    if ([string]$config.version -ne [string]$config.coordinated_plugin_version -or
+        $config.launcher_api_level -ne 2 -or
+        @($config.capabilities.catalog_detail_modes) -notcontains 'Compact' -or
+        @($config.capabilities.result_detail_modes) -notcontains 'Compact' -or
+        @($config.capabilities.result_selectors) -notcontains 'Pattern') {
+        throw 'The launcher configuration does not advertise the expected API level and compact catalog/result capabilities.'
+    }
+    $resultHelper = Join-Path $config.install_directory 'Get-EES-Result.ps1'
+    $compactResult = & $resultHelper `
+        -Path $output `
+        -Variable 'Q_dot' `
+        -Pattern 'T_*' `
+        -Detail Compact | ConvertFrom-Json
+    if ($compactResult.status -ne 'success' -or
+        $compactResult.result_count -ne 3 -or
+        @($compactResult.results | Where-Object {
+            $_.variable_name -eq 'Q_dot' -and $_.raw_value -eq '2.00000000E+02' -and $_.units -eq '[kW]'
+        }).Count -ne 1) {
+        throw 'Compact result extraction did not preserve the expected water-heating output and units.'
+    }
+    $fullResult = & $resultHelper -Path $output -Detail Full | ConvertFrom-Json
+    if ($fullResult.status -ne 'success' -or
+        $fullResult.result_count -ne 4 -or
+        [string]::IsNullOrWhiteSpace([string]$fullResult.file_sha256)) {
+        throw 'Full result extraction did not return all installation-test values and file diagnostics.'
+    }
+    $missingSelectionRejected = $false
+    try {
+        & $resultHelper -Path $output -Variable 'not_exported' -Detail Compact | Out-Null
+    }
+    catch {
+        $missingSelectionRejected = $_.Exception.Message -match 'selection_incomplete'
+    }
+    if (-not $missingSelectionRejected) {
+        throw 'Compact result extraction did not reject a missing requested variable.'
+    }
     $catalogInfo = & (Join-Path $config.install_directory 'Get-EES-Catalog-Info.ps1') -EesPath $config.ees_path | ConvertFrom-Json
     if ($catalogInfo.catalog_name -ne 'EES_Tool_Metadata.json' -or
         $catalogInfo.catalog_schema_version -ne 1 -or
@@ -152,6 +188,10 @@ try {
         ees_path = $config.ees_path
         workspace_root = $config.workspace_root
         result_path = $output
+        launcher_version = $config.version
+        coordinated_plugin_version = $config.coordinated_plugin_version
+        launcher_api_level = $config.launcher_api_level
+        compact_result_extraction = $true
         catalog_name = $catalogInfo.catalog_name
         catalog_schema_version = $catalogInfo.catalog_schema_version
         catalog_sha256 = $catalogInfo.catalog_sha256

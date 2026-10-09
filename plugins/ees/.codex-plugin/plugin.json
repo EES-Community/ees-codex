@@ -1,6 +1,6 @@
 {
   "name": "ees",
-  "version": "0.1.2-beta",
+  "version": "0.5.0-beta",
   "description": "Write, solve, and inspect Engineering Equation Solver models using local EES Professional.",
   "author": {
     "name": "EES-Community"

@@ -113,15 +113,26 @@ try {
     $payload = Join-Path $packageRoot 'payload'
     $workspaceTemplate = Join-Path $packageRoot 'workspace-template'
     $versionFile = Join-Path $packageRoot 'VERSION.txt'
-    if (-not (Test-Path -LiteralPath (Join-Path $payload 'Run-EES.ps1') -PathType Leaf)) {
-        throw 'The package payload is incomplete. Extract the entire ZIP before running Install.cmd.'
+    $requiredPayloadFiles = @('Run-EES.ps1', 'Search-EES-Library.ps1', 'Get-EES-Routine.ps1', 'Get-EES-Result.ps1', 'Test-Installation.ps1')
+    foreach ($requiredPayloadFile in $requiredPayloadFiles) {
+        if (-not (Test-Path -LiteralPath (Join-Path $payload $requiredPayloadFile) -PathType Leaf)) {
+            throw "The package payload is incomplete ($requiredPayloadFile is missing). Extract the entire ZIP before running Install.cmd."
+        }
     }
 
     $manifestPath = Join-Path $packageRoot 'manifest.json'
     if (-not (Test-Path -LiteralPath $manifestPath -PathType Leaf)) {
         throw 'The package manifest is missing. Extract the entire ZIP before running Install.cmd.'
     }
+    $version = if (Test-Path -LiteralPath $versionFile -PathType Leaf) { (Get-Content -LiteralPath $versionFile -Raw).Trim() } else { 'development' }
     $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
+    if ([string]$manifest.version -ne $version -or
+        [string]$manifest.coordinated_plugin_version -ne [string]$manifest.version -or
+        [int]$manifest.launcher_api_level -lt 2 -or
+        @($manifest.capabilities.catalog_detail_modes) -notcontains 'Compact' -or
+        @($manifest.capabilities.result_detail_modes) -notcontains 'Compact') {
+        throw 'The package manifest does not contain a valid coordinated release and launcher capability declaration.'
+    }
     $requiredArchitecture = if ($manifest.PSObject.Properties.Name -contains 'required_ees_architecture') {
         [string]$manifest.required_ees_architecture
     }
@@ -188,10 +199,16 @@ try {
     }
     Copy-TemplateWithoutOverwrite -Source $workspaceTemplate -Destination $resolvedWorkspace
 
-    $version = if (Test-Path -LiteralPath $versionFile) { (Get-Content -LiteralPath $versionFile -Raw).Trim() } else { 'development' }
     $config = [ordered]@{
         product = 'EES-Codex-Launcher'
         version = $version
+        coordinated_plugin_version = [string]$manifest.coordinated_plugin_version
+        launcher_api_level = [int]$manifest.launcher_api_level
+        capabilities = [ordered]@{
+            catalog_detail_modes = @($manifest.capabilities.catalog_detail_modes)
+            result_detail_modes = @($manifest.capabilities.result_detail_modes)
+            result_selectors = @($manifest.capabilities.result_selectors)
+        }
         install_directory = $resolvedInstall
         workspace_root = $resolvedWorkspace
         ees_path = $installation.EesPath
@@ -207,7 +224,7 @@ try {
         catalog_sha256 = 'A87F0FD43C68E514C824BA57BD69643D78BC10889137F3D21B086A8BCC8C40C4'
         installed_utc = [DateTime]::UtcNow.ToString('o')
     }
-    $configJson = $config | ConvertTo-Json
+    $configJson = $config | ConvertTo-Json -Depth 5
     [System.IO.File]::WriteAllText((Join-Path $resolvedInstall 'config.json'), $configJson, (New-Object System.Text.UTF8Encoding($false)))
     [System.IO.File]::WriteAllText((Join-Path $resolvedWorkspace 'launcher-config.json'), $configJson, (New-Object System.Text.UTF8Encoding($false)))
     [System.IO.File]::WriteAllText((Join-Path $resolvedWorkspace '.ees-codex-workspace'), 'EES-Codex-Launcher workspace', (New-Object System.Text.UTF8Encoding($false)))

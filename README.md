@@ -1,14 +1,15 @@
 # EES for Codex
 
-An EES skill packaged as a Codex plugin and repository marketplace. EES Professional remains the solver. Plugin 0.1.2-beta gives Codex a repeatable workflow for finding EES library routines, writing equation models, invoking a controlled local launcher, and checking fresh exported results.
+An EES skill packaged as a Codex plugin and repository marketplace. EES Professional remains the solver. Coordinated release 0.5.0-beta gives Codex a repeatable workflow for finding EES library routines, writing equation models, invoking a controlled local launcher, and checking fresh exported results.
 
-The plugin includes the 32-bit and 64-bit EES Codex Launcher 0.4.2-beta distributions. EES, an EES license, and Codex are required separately. The beta labels apply to this integration package, not to EES Professional.
+The plugin includes matching 32-bit and 64-bit EES Codex Launcher 0.5.0-beta distributions. EES, an EES license, and Codex are required separately. The beta labels apply to this integration package, not to EES Professional.
 
 ## What the skill adds
 
 - Chooses the launcher that matches the installed EES edition and uses the recorded workspace rather than guessing paths.
 - Searches the current packaged `EES_Tool_Metadata.json` before recreating a routine, using compact output first and full detail only for a selected candidate.
 - Writes auditable EES text models, runs them through the launcher, and requires a fresh exported result.
+- Requests compact structured engineering outputs and residuals after ordinary solves, while retaining full-export and raw-file fallbacks.
 - Checks units, balances, feasibility, assumptions, and launcher diagnostics instead of treating a started process as a verified calculation.
 
 Codex can open `ees.exe` without this skill, and the launcher can also be used manually from PowerShell. A bare request to run EES does not by itself supply the model/output contract, library-search workflow, directive checks, stale-result protection, or result-review steps. The skill packages those decisions so they are applied consistently.
@@ -92,7 +93,7 @@ Then try:
 
 > Use the $ees skill to calculate the rate of heat transfer required to increase the temperature of water flowing at 1 kg/s and 200 kPa from 20 C to 60 C. Save the model and exported result, check units and the energy balance, and explain the assumptions.
 
-Models and results stay in the selected workspace. The plugin install alone does not install or test the Windows launcher. Updates to the plugin do not automatically update an already installed launcher.
+Models and results stay in the selected workspace. The plugin install alone does not install or test the Windows launcher. Plugin and bundled launcher releases now use the same version and are validated together, but a plugin update does not silently overwrite an already installed launcher. On an explicit update request, the skill reuses the recorded installation paths and runs the matching bundled installer and tests.
 
 ## Contents
 
@@ -107,13 +108,13 @@ Models and results stay in the selected workspace. The plugin install alone does
 - [`output/pdf/EES-Codex-Installation-Guide.pdf`](output/pdf/EES-Codex-Installation-Guide.pdf): distributable Windows installation and first-run guide.
 - `UPSTREAM.json`: source archive names and SHA-256 checksums.
 
-The launchers use an exported text-file workflow and include the current owner-maintained `EES_Tool_Metadata.json` snapshot for 813 routines. Search and detail helpers support compact and full modes, and they never merge an older installation catalog into that source. The launchers also provide directive filters, fresh per-run output staging, process serialization, and timeout diagnostics. Version 0.4.2-beta automatically hands PowerShell 7 calls to Windows PowerShell 5.1 and starts EES as a normal shell process because EES 12.3.3.2 may exit without solving under .NET Core or when started as a hidden, non-shell process. These checks are not an OS security sandbox or proof of engineering correctness.
+The launchers use an exported text-file workflow and include the current owner-maintained `EES_Tool_Metadata.json` snapshot for 813 routines. Search and detail helpers support compact and full modes, and they never merge an older installation catalog into that source. `Get-EES-Result.ps1` provides deterministic compact exact-name and wildcard selection while preserving raw numeric text and units; full mode includes every exported value plus file metadata and diagnostics. The launchers also provide explicit capability declarations, directive filters, fresh per-run output staging, process serialization, and timeout diagnostics. Version 0.5.0-beta automatically hands PowerShell 7 calls to Windows PowerShell 5.1 and starts EES as a normal shell process because EES 12.3.3.2 may exit without solving under .NET Core or when started as a hidden, non-shell process. These checks are not an OS security sandbox or proof of engineering correctness.
 
-Plugin 0.1.2-beta bundles launcher 0.4.2-beta with the compact catalog interface and canonical metadata source. `UPSTREAM.json` records the exact upstream provenance, canonical metadata hash, and local packaging changes.
+Plugin and launcher 0.5.0-beta are one coordinated release. Generated configuration records the release, launcher API level, and supported catalog/result modes so the skill can prefer capabilities over version-string comparisons and fall back safely with older launchers. `UPSTREAM.json` records the exact upstream provenance, canonical metadata hash, and local packaging changes.
 
 ## Validation status
 
-Version 0.4.2-beta is validated on Windows against 32-bit EES 12.3.4.0 and 64-bit EES 12.3.2.0. The bundled checks verify the canonical metadata hash and row counts, compact search and routine-detail shapes, full Compressor2_CL signatures and parameters, real EES solving and export, `/AI` access to Component, Mechanical Design, NASA, Incompressible, and Heat Transfer routines, and unchanged persistent autoload preferences. Marketplace UI behavior should still be verified before a customer release.
+Version 0.5.0-beta retains Windows validation against 32-bit EES 12.3.4.0 and 64-bit EES 12.3.2.0. The bundled checks verify coordinated version/capability configuration, compact and full result extraction, the canonical metadata hash and row counts, compact search and routine-detail shapes, full Compressor2_CL signatures and parameters, real EES solving and export, `/AI` access to Component, Mechanical Design, NASA, Incompressible, and Heat Transfer routines, and unchanged persistent autoload preferences. Public directory publication still requires uploading the release ZIP, resolving portal findings, review, and an explicit publish action.
 
 ## Notices
 
