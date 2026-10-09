@@ -199,10 +199,12 @@ try {
         required_architecture = $requiredArchitecture
         ees_version = $installation.Version
         userlib_path = $installation.UserlibPath
-        metadata_path = $installation.MetadataPath
+        metadata_path = Join-Path $resolvedInstall 'catalog\EES_Tool_Metadata.json'
+        installed_metadata_path = $installation.MetadataPath
         profile_path = $installation.ProfilePath
-        catalog_path = Join-Path $resolvedInstall 'catalog\engineering-tool-dialog-catalog.json'
-        catalog_version = 'Database22'
+        catalog_path = Join-Path $resolvedInstall 'catalog\EES_Tool_Metadata.json'
+        catalog_version = 1
+        catalog_sha256 = 'A87F0FD43C68E514C824BA57BD69643D78BC10889137F3D21B086A8BCC8C40C4'
         installed_utc = [DateTime]::UtcNow.ToString('o')
     }
     $configJson = $config | ConvertTo-Json
@@ -215,7 +217,7 @@ try {
     Write-Host "Launcher:  $resolvedInstall"
     Write-Host "Workspace: $resolvedWorkspace"
     Write-Host "EES:       $($installation.EesPath) ($($installation.Architecture), version $($installation.Version))"
-    Write-Host 'Catalog:   Engineering Tool Dialog Database22'
+    Write-Host 'Catalog:   EES_Tool_Metadata.json (schema 1, 813 routines)'
 
     if (-not $SkipTest) {
         Write-Host ''

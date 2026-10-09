@@ -1,257 +1,5309 @@
 %PDF-1.4
-%“Œ‹ž ReportLab Generated PDF document (opensource)
+%âãÏÓ
 1 0 obj
 <<
-/F1 2 0 R /F2 3 0 R /F3 4 0 R /F4 6 0 R /F5 8 0 R
+/Producer (ReportLab PDF Library \055 \050opensource\051)
+/Author (EES\055Community)
+/CreationDate (D\07220261005205437\05505\04700\047)
+/Creator (Codex)
+/Keywords ()
+/ModDate (D\07220261009)
+/Subject (Installing EES for Codex plugin 0\0561\0562\055beta and EES Codex Launcher 0\0564\0562\055beta)
+/Title (EES for Codex \055 Installation and First Run Guide for Windows)
+/Trapped (\057False)
 >>
 endobj
 2 0 obj
 <<
-/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+/Type /Pages
+/Count 8
+/Kids [ 4 0 R 12 0 R 14 0 R 16 0 R 18 0 R 20 0 R 22 0 R 24 0 R ]
 >>
 endobj
 3 0 obj
 <<
-/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+/Type /Catalog
+/Pages 2 0 R
 >>
 endobj
 4 0 obj
 <<
-/BaseFont /Courier /Encoding /WinAnsiEncoding /Name /F3 /Subtype /Type1 /Type /Font
+/Contents 5 0 R
+/MediaBox [ 0 0 612 792 ]
+/Resources <<
+/Font 6 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>>
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
+/Parent 2 0 R
 >>
 endobj
 5 0 obj
 <<
-/Contents 22 0 R /MediaBox [ 0 0 612 792 ] /Parent 21 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 /Trans <<
-
->> 
-  /Type /Page
+/Length 5817
 >>
+stream
+1 0 0 1 0 0 cm
+BT
+/F1 12 Tf
+14.4 TL
+ET
+q
+0.090196 0.196078 0.301961 rg
+n
+0 674 612 118 re
+f*
+0.043137 0.478431 0.458824 rg
+n
+520 674 92 118 re
+f*
+0.909804 0.635294 0.227451 rg
+n
+590 733 m
+590 746.2548 579.2548 757 566 757 c
+552.7452 757 542 746.2548 542 733 c
+542 719.7452 552.7452 709 566 709 c
+579.2548 709 590 719.7452 590 733 c
+f*
+0.062745 0.141176 0.227451 rg
+BT
+/F2 15 Tf
+18 TL
+ET
+BT
+1 0 0 1 550.9925 728 Tm
+(EES) Tj
+T*
+ET
+1 1 1 rg
+BT
+/F2 9 Tf
+10.8 TL
+ET
+BT
+1 0 0 1 44.64 739 Tm
+(EES\055COMMUNITY) Tj
+T*
+ET
+BT
+/F1 8 Tf
+9.6 TL
+ET
+BT
+1 0 0 1 44.64 720 Tm
+(Distribution guide for Windows) Tj
+T*
+ET
+0.839216 0.870588 0.898039 RG
+n
+44.64 31 m
+567.36 31 l
+S
+0.380392 0.443137 0.505882 rg
+BT
+/F1 7.5 Tf
+9 TL
+ET
+BT
+1 0 0 1 44.64 20 Tm
+(github\056com\057EES\055Community\057ees\055codex) Tj
+T*
+ET
+BT
+1 0 0 1 480.7875 20 Tm
+(October 2026 \174 Revision 3) Tj
+T*
+ET
+Q
+q
+1 0 0 1 50.64 670.8 cm
+Q
+q
+1 0 0 1 50.64 640.8 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 3 Tm
+/F2 27 Tf
+30 TL
+(EES for Codex) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 572.8 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 33 Tm
+/F2 27 Tf
+30 TL
+(Installation and First Run Guide for) Tj
+T*
+(Windows) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 530.4 cm
+q
+0.380392 0.443137 0.505882 rg
+BT
+1 0 0 1 0 22.2 Tm
+/F1 12.2 Tf
+17.2 TL
+(What the skill adds\054 how to install it in the current Codex plugin interface\054 how the launcher is) Tj
+T*
+(selected\054 and what a successful EES test looks like\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 65.5488 490.6 cm
+q
+0.866667 0.94902 0.941176 rg
+n
+0 27.8 480.9024 -27.8 re
+f*
+0 0 0 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 6 8 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.4 Tf
+10.8 TL
+(Plugin 0\0561\0562\055beta) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 147.1344 8 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.4 Tf
+10.8 TL
+(Launcher 0\0564\0562\055beta) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 350.9952 8 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.4 Tf
+10.8 TL
+(Windows 10\05711) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.043137 0.478431 0.458824 RG
+0.7 w
+n
+0 27.8 m
+480.9024 27.8 l
+S
+n
+0 0 m
+480.9024 0 l
+S
+n
+0 0 m
+0 27.8 l
+S
+n
+480.9024 0 m
+480.9024 27.8 l
+S
+0.35 w
+n
+141.1344 0 m
+141.1344 27.8 l
+S
+n
+344.9952 0 m
+344.9952 27.8 l
+S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 475.6 cm
+Q
+q
+1 0 0 1 50.64 451.4 cm
+q
+0.043137 0.478431 0.458824 rg
+BT
+1 0 0 1 0 3.2 Tm
+/F2 13 Tf
+16.2 TL
+(What you are installing) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 322.4 cm
+0.866667 0.94902 0.941176 rg
+0.043137 0.478431 0.458824 RG
+n
+8 20 m
+154.24 20 l
+158.6624 20 162.24 23.5776 162.24 28 c
+162.24 92 l
+162.24 96.4224 158.6624 100 154.24 100 c
+8 100 l
+3.5776 100 0 96.4224 0 92 c
+0 28 l
+0 23.5776 3.5776 20 8 20 c
+h
+B*
+BT
+/F2 9 Tf
+10.8 TL
+ET
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 10 79 Tm
+(\044ees skill) Tj
+T*
+ET
+BT
+/F1 7.4 Tf
+8.88 TL
+ET
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 10 60 Tm
+(Instructions\054 routine search\054 modeling) Tj
+T*
+ET
+BT
+1 0 0 1 10 50 Tm
+(checks) Tj
+T*
+ET
+0.380392 0.443137 0.505882 RG
+1.2 w
+n
+165.24 60 m
+176.24 60 l
+S
+n
+173.24 63 m
+176.24 60 l
+S
+n
+173.24 57 m
+176.24 60 l
+S
+0.909804 0.941176 1 rg
+0.184314 0.435294 0.921569 RG
+n
+188.24 20 m
+334.48 20 l
+338.9024 20 342.48 23.5776 342.48 28 c
+342.48 92 l
+342.48 96.4224 338.9024 100 334.48 100 c
+188.24 100 l
+183.8176 100 180.24 96.4224 180.24 92 c
+180.24 28 l
+180.24 23.5776 183.8176 20 188.24 20 c
+h
+B*
+BT
+/F2 9 Tf
+10.8 TL
+ET
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 190.24 79 Tm
+(EES Codex Launcher) Tj
+T*
+ET
+BT
+/F1 7.4 Tf
+8.88 TL
+ET
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 190.24 60 Tm
+(Controlled Windows execution\054 fresh) Tj
+T*
+ET
+BT
+1 0 0 1 190.24 50 Tm
+(export\054 diagnostics) Tj
+T*
+ET
+0.380392 0.443137 0.505882 RG
+1.2 w
+n
+345.48 60 m
+356.48 60 l
+S
+n
+353.48 63 m
+356.48 60 l
+S
+n
+353.48 57 m
+356.48 60 l
+S
+1 0.94902 0.85098 rg
+0.909804 0.635294 0.227451 RG
+n
+368.48 20 m
+514.72 20 l
+519.1424 20 522.72 23.5776 522.72 28 c
+522.72 92 l
+522.72 96.4224 519.1424 100 514.72 100 c
+368.48 100 l
+364.0576 100 360.48 96.4224 360.48 92 c
+360.48 28 l
+360.48 23.5776 364.0576 20 368.48 20 c
+h
+B*
+BT
+/F2 9 Tf
+10.8 TL
+ET
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 370.48 79 Tm
+(EES Professional) Tj
+T*
+ET
+BT
+/F1 7.4 Tf
+8.88 TL
+ET
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 370.48 60 Tm
+(Solver\054 properties\054 and installed libraries) Tj
+T*
+ET
+BT
+/F2 8.2 Tf
+9.84 TL
+ET
+0.043137 0.478431 0.458824 rg
+BT
+1 0 0 1 0 7 Tm
+(The skill guides\056 The launcher executes\056 EES calculates\056) Tj
+T*
+ET
+Q
+q
+1 0 0 1 50.64 315.4 cm
+Q
+q
+1 0 0 1 44.64 266.1 cm
+q
+0.909804 0.941176 1 rg
+n
+0 49.3 522.72 -49.3 re
+f*
+0 0 0 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 11 8 cm
+q
+BT
+1 0 0 1 0 25.2 Tm
+11.1 TL
+/F2 8.1 Tf
+0.129412 0.192157 0.247059 rg
+(Could Codex simply run ees\056exe\077) Tj
+/F1 8.1 Tf
+T*
+(Yes \055 a local task can start the program\056 The ) Tj
+/F3 8.1 Tf
+(\044ees) Tj
+/F1 8.1 Tf
+( skill adds a repeatable model\055and\055result contract\054 routine search\054 workspace rules\054) Tj
+T*
+(directive checks\054 fresh\055export checks\054 and troubleshooting\056 EES still performs every calculation\056) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.184314 0.435294 0.921569 RG
+4 w
+n
+0 0 m
+0 49.3 l
+S
+0.5 w
+n
+0 49.3 m
+522.72 49.3 l
+S
+n
+0 0 m
+522.72 0 l
+S
+n
+0 0 m
+0 49.3 l
+S
+n
+522.72 0 m
+522.72 49.3 l
+S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 259.1 cm
+Q
+q
+1 0 0 1 44.64 209.8 cm
+q
+1 0.94902 0.85098 rg
+n
+0 49.3 522.72 -49.3 re
+f*
+0 0 0 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 11 8 cm
+q
+BT
+1 0 0 1 0 25.2 Tm
+11.1 TL
+/F2 8.1 Tf
+0.129412 0.192157 0.247059 rg
+(What beta means) Tj
+/F1 8.1 Tf
+T*
+(The beta labels apply to this Codex integration and launcher package\054 not to EES Professional\056 Run the complete installation test on each) Tj
+T*
+(computer and review calculated models normally\056) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.909804 0.635294 0.227451 RG
+4 w
+n
+0 0 m
+0 49.3 l
+S
+0.5 w
+n
+0 49.3 m
+522.72 49.3 l
+S
+n
+0 0 m
+522.72 0 l
+S
+n
+0 0 m
+0 49.3 l
+S
+n
+522.72 0 m
+522.72 49.3 l
+S
+Q
+Q
+Q
+
+endstream
 endobj
 6 0 obj
 <<
-/BaseFont /Courier-Bold /Encoding /WinAnsiEncoding /Name /F4 /Subtype /Type1 /Type /Font
+/F1 7 0 R
+/F2 8 0 R
+/F3 9 0 R
+/F4 10 0 R
+/F5 11 0 R
 >>
 endobj
 7 0 obj
 <<
-/Contents 23 0 R /MediaBox [ 0 0 612 792 ] /Parent 21 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 /Trans <<
-
->> 
-  /Type /Page
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+/Name /F1
+/Subtype /Type1
+/Type /Font
 >>
 endobj
 8 0 obj
 <<
-/BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding /Name /F5 /Subtype /Type1 /Type /Font
+/BaseFont /Helvetica-Bold
+/Encoding /WinAnsiEncoding
+/Name /F2
+/Subtype /Type1
+/Type /Font
 >>
 endobj
 9 0 obj
 <<
-/Contents 24 0 R /MediaBox [ 0 0 612 792 ] /Parent 21 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 /Trans <<
-
->> 
-  /Type /Page
+/BaseFont /Courier
+/Encoding /WinAnsiEncoding
+/Name /F3
+/Subtype /Type1
+/Type /Font
 >>
 endobj
 10 0 obj
 <<
-/Contents 25 0 R /MediaBox [ 0 0 612 792 ] /Parent 21 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 /Trans <<
-
->> 
-  /Type /Page
+/BaseFont /Courier-Bold
+/Encoding /WinAnsiEncoding
+/Name /F4
+/Subtype /Type1
+/Type /Font
 >>
 endobj
 11 0 obj
 <<
-/Contents 26 0 R /MediaBox [ 0 0 612 792 ] /Parent 21 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 /Trans <<
-
->> 
-  /Type /Page
+/BaseFont /Helvetica-Oblique
+/Encoding /WinAnsiEncoding
+/Name /F5
+/Subtype /Type1
+/Type /Font
 >>
 endobj
 12 0 obj
 <<
-/Contents 27 0 R /MediaBox [ 0 0 612 792 ] /Parent 21 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 /Trans <<
-
->> 
-  /Type /Page
+/Contents 13 0 R
+/MediaBox [ 0 0 612 792 ]
+/Resources <<
+/Font 6 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>>
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
+/Parent 2 0 R
 >>
 endobj
 13 0 obj
 <<
-/Contents 28 0 R /MediaBox [ 0 0 612 792 ] /Parent 21 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 /Trans <<
-
->> 
-  /Type /Page
+/Length 6988
 >>
+stream
+1 0 0 1 0 0 cm
+BT
+/F1 12 Tf
+14.4 TL
+ET
+q
+0.839216 0.870588 0.898039 RG
+0.5 w
+n
+44.64 758 m
+567.36 758 l
+S
+0.380392 0.443137 0.505882 rg
+BT
+/F1 7.5 Tf
+9 TL
+ET
+BT
+1 0 0 1 44.64 765 Tm
+(EES for Codex \055 Installation Guide) Tj
+T*
+ET
+BT
+1 0 0 1 437.415 765 Tm
+(Plugin 0\0561\0562\055beta \174 Launcher 0\0564\0562\055beta) Tj
+T*
+ET
+n
+44.64 31 m
+567.36 31 l
+S
+BT
+1 0 0 1 44.64 20 Tm
+(github\056com\057EES\055Community\057ees\055codex) Tj
+T*
+ET
+BT
+1 0 0 1 528.9975 20 Tm
+(Page 2 of 8) Tj
+T*
+ET
+Q
+q
+1 0 0 1 50.64 713.04 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 3.5 Tm
+/F2 20.5 Tf
+24 TL
+(Before you begin) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 678.84 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 16.9 Tm
+/F1 9.3 Tf
+13.1 TL
+(Have the EES executable path available and close the matching interactive EES application before installation or an) Tj
+T*
+(automated solve\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 557.74 cm
+q
+0.090196 0.196078 0.301961 rg
+n
+0 115.1 522.72 -22.7 re
+f*
+0.956863 0.968627 0.980392 rg
+n
+0 69.3 522.72 -23.1 re
+f*
+0.956863 0.968627 0.980392 rg
+n
+0 23.1 522.72 -23.1 re
+f*
+1 1 1 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 7 98.4 cm
+q
+1 1 1 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.3 Tf
+10.7 TL
+(You need) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 268.36 98.4 cm
+q
+1 1 1 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.3 Tf
+10.7 TL
+(You do not need) Tj
+T*
+ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 7 75.3 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Windows 10 or 11) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 268.36 75.3 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Python or Node\056js) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 7 52.2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(EES Professional and its full executable path) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 268.36 52.2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Administrator rights) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 7 29.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(ChatGPT desktop with Codex and Plugins access) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 268.36 29.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(A PATH change or background service) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 7 6 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Windows PowerShell 5\0561 \050included with Windows\051) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 268.36 6 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(A separate PowerShell installation in the usual setup) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.839216 0.870588 0.898039 RG
+0.6 w
+n
+0 115.1 m
+522.72 115.1 l
+S
+n
+0 0 m
+522.72 0 l
+S
+n
+0 0 m
+0 115.1 l
+S
+n
+522.72 0 m
+522.72 115.1 l
+S
+0.35 w
+n
+0 92.4 m
+522.72 92.4 l
+S
+n
+0 69.3 m
+522.72 69.3 l
+S
+n
+0 46.2 m
+522.72 46.2 l
+S
+n
+0 23.1 m
+522.72 23.1 l
+S
+n
+261.36 0 m
+261.36 115.1 l
+S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 549.74 cm
+Q
+q
+1 0 0 1 50.64 525.54 cm
+q
+0.043137 0.478431 0.458824 rg
+BT
+1 0 0 1 0 3.2 Tm
+/F2 13 Tf
+16.2 TL
+(PowerShell versions) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 428.54 cm
+q
+0.090196 0.196078 0.301961 rg
+n
+0 92 522.72 -22.7 re
+f*
+0.956863 0.968627 0.980392 rg
+n
+0 46.2 522.72 -23.1 re
+f*
+1 1 1 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 7 75.3 cm
+q
+1 1 1 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.3 Tf
+10.7 TL
+(Version) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 153.3616 75.3 cm
+q
+1 1 1 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.3 Tf
+10.7 TL
+(Status) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 257.9056 75.3 cm
+q
+1 1 1 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.3 Tf
+10.7 TL
+(What happens) Tj
+T*
+ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 7 52.2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Windows PowerShell 5\0561) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 153.3616 52.2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Supported) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 257.9056 52.2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Used to start EES\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 7 29.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(PowerShell 7) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 153.3616 29.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Supported) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 257.9056 29.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Launcher hands EES\055starting commands to 5\0561 automatically\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 7 6 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(PowerShell 6) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 153.3616 6 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Not tested) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 257.9056 6 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Not required\073 do not treat it as a supported target\056) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.839216 0.870588 0.898039 RG
+0.6 w
+n
+0 92 m
+522.72 92 l
+S
+n
+0 0 m
+522.72 0 l
+S
+n
+0 0 m
+0 92 l
+S
+n
+522.72 0 m
+522.72 92 l
+S
+0.35 w
+n
+0 69.3 m
+522.72 69.3 l
+S
+n
+0 46.2 m
+522.72 46.2 l
+S
+n
+0 23.1 m
+522.72 23.1 l
+S
+n
+146.3616 0 m
+146.3616 92 l
+S
+n
+250.9056 0 m
+250.9056 92 l
+S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 421.54 cm
+Q
+q
+1 0 0 1 50.64 397.34 cm
+q
+0.043137 0.478431 0.458824 rg
+BT
+1 0 0 1 0 3.2 Tm
+/F2 13 Tf
+16.2 TL
+(Match the launcher to EES bitness) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 306.34 cm
+0.956863 0.968627 0.980392 rg
+0.839216 0.870588 0.898039 RG
+n
+7 10 m
+246.36 10 l
+250.2296 10 253.36 13.1304 253.36 17 c
+253.36 67 l
+253.36 70.8696 250.2296 74 246.36 74 c
+7 74 l
+3.1304 74 0 70.8696 0 67 c
+0 17 l
+0 13.1304 3.1304 10 7 10 c
+h
+B*
+BT
+/F4 7.5 Tf
+9 TL
+ET
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 10 56 Tm
+(C\072\134EES32\134ees\056exe) Tj
+T*
+ET
+BT
+/F2 8.2 Tf
+9.84 TL
+ET
+0.043137 0.478431 0.458824 rg
+BT
+1 0 0 1 10 38 Tm
+(32\055bit EES  \055\076  launcher\05532bit) Tj
+T*
+ET
+BT
+/F1 7.2 Tf
+8.64 TL
+ET
+0.380392 0.443137 0.505882 rg
+BT
+1 0 0 1 10 22 Tm
+(Match EES\054 not Windows\056) Tj
+T*
+ET
+0.956863 0.968627 0.980392 rg
+0.839216 0.870588 0.898039 RG
+n
+276.36 10 m
+515.72 10 l
+519.5896 10 522.72 13.1304 522.72 17 c
+522.72 67 l
+522.72 70.8696 519.5896 74 515.72 74 c
+276.36 74 l
+272.4904 74 269.36 70.8696 269.36 67 c
+269.36 17 l
+269.36 13.1304 272.4904 10 276.36 10 c
+h
+B*
+BT
+/F4 7.5 Tf
+9 TL
+ET
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 279.36 56 Tm
+(C\072\134EES64\134ees64\056exe) Tj
+T*
+ET
+BT
+/F2 8.2 Tf
+9.84 TL
+ET
+0.043137 0.478431 0.458824 rg
+BT
+1 0 0 1 279.36 38 Tm
+(64\055bit EES  \055\076  launcher\05564bit) Tj
+T*
+ET
+BT
+/F1 7.2 Tf
+8.64 TL
+ET
+0.380392 0.443137 0.505882 rg
+BT
+1 0 0 1 279.36 22 Tm
+(Match EES\054 not Windows\056) Tj
+T*
+ET
+Q
+q
+1 0 0 1 44.64 257.04 cm
+q
+0.956863 0.968627 0.980392 rg
+n
+0 49.3 522.72 -49.3 re
+f*
+0 0 0 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 11 8 cm
+q
+BT
+1 0 0 1 0 25.2 Tm
+11.1 TL
+/F2 8.1 Tf
+0.129412 0.192157 0.247059 rg
+(Compatibility note) Tj
+/F1 8.1 Tf
+T*
+(Launcher 0\0564\0562\055beta has passed its complete test with 32\055bit EES 12\0563\0564\0560 and 64\055bit EES 12\0563\0562\0560\056 The exact minimum compatible EES) Tj
+T*
+(version has not been established\056) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.090196 0.196078 0.301961 RG
+4 w
+n
+0 0 m
+0 49.3 l
+S
+0.5 w
+n
+0 49.3 m
+522.72 49.3 l
+S
+n
+0 0 m
+522.72 0 l
+S
+n
+0 0 m
+0 49.3 l
+S
+n
+522.72 0 m
+522.72 49.3 l
+S
+Q
+Q
+Q
+
+endstream
 endobj
 14 0 obj
 <<
-/A <<
-/S /URI /Type /Action /URI (https://github.com/EES-Community/ees-codex)
->> /Border [ 0 0 0 ] /Rect [ 60.64 275.9275 160.1161 287.0275 ] /Subtype /Link /Type /Annot
+/Contents 15 0 R
+/MediaBox [ 0 0 612 792 ]
+/Resources <<
+/Font 6 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>>
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
+/Parent 2 0 R
 >>
 endobj
 15 0 obj
 <<
-/A <<
-/S /URI /Type /Action /URI (https://learn.chatgpt.com/docs/plugins)
->> /Border [ 0 0 0 ] /Rect [ 60.64 262.8275 119.1706 273.9275 ] /Subtype /Link /Type /Annot
+/Length 10009
 >>
+stream
+1 0 0 1 0 0 cm
+BT
+/F1 12 Tf
+14.4 TL
+ET
+q
+0.839216 0.870588 0.898039 RG
+0.5 w
+n
+44.64 758 m
+567.36 758 l
+S
+0.380392 0.443137 0.505882 rg
+BT
+/F1 7.5 Tf
+9 TL
+ET
+BT
+1 0 0 1 44.64 765 Tm
+(EES for Codex \055 Installation Guide) Tj
+T*
+ET
+BT
+1 0 0 1 437.415 765 Tm
+(Plugin 0\0561\0562\055beta \174 Launcher 0\0564\0562\055beta) Tj
+T*
+ET
+n
+44.64 31 m
+567.36 31 l
+S
+BT
+1 0 0 1 44.64 20 Tm
+(github\056com\057EES\055Community\057ees\055codex) Tj
+T*
+ET
+BT
+1 0 0 1 528.9975 20 Tm
+(Page 3 of 8) Tj
+T*
+ET
+Q
+q
+1 0 0 1 50.64 713.04 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 3.5 Tm
+/F2 20.5 Tf
+24 TL
+(1\056 Add the EES marketplace) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 691.94 cm
+q
+BT
+1 0 0 1 0 3.8 Tm
+13.1 TL
+/F1 9.3 Tf
+0.129412 0.192157 0.247059 rg
+(Open ) Tj
+/F2 9.3 Tf
+(Plugins) Tj
+/F1 9.3 Tf
+( in Codex \055 usually from the left sidebar\056 Select ) Tj
+/F2 9.3 Tf
+(Add) Tj
+/F1 9.3 Tf
+(\054 then ) Tj
+/F2 9.3 Tf
+(Add Marketplace) Tj
+/F1 9.3 Tf
+(\054 then add a repository\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 621.94 cm
+0.866667 0.94902 0.941176 rg
+0.043137 0.478431 0.458824 RG
+n
+7 17 m
+113.18 17 l
+117.0496 17 120.18 20.1304 120.18 24 c
+120.18 48 l
+120.18 51.8696 117.0496 55 113.18 55 c
+7 55 l
+3.1304 55 0 51.8696 0 48 c
+0 24 l
+0 20.1304 3.1304 17 7 17 c
+h
+B*
+0.090196 0.196078 0.301961 rg
+BT
+/F2 7.1 Tf
+8.52 TL
+ET
+BT
+1 0 0 1 24.97695 41 Tm
+(Left sidebar\072 Plugins) Tj
+T*
+ET
+0.380392 0.443137 0.505882 RG
+1.2 w
+n
+122.18 36 m
+131.18 36 l
+S
+n
+128.18 39 m
+131.18 36 l
+S
+n
+128.18 33 m
+131.18 36 l
+S
+0.909804 0.941176 1 rg
+0.184314 0.435294 0.921569 RG
+n
+141.18 17 m
+247.36 17 l
+251.2296 17 254.36 20.1304 254.36 24 c
+254.36 48 l
+254.36 51.8696 251.2296 55 247.36 55 c
+141.18 55 l
+137.3104 55 134.18 51.8696 134.18 48 c
+134.18 24 l
+134.18 20.1304 137.3104 17 141.18 17 c
+h
+B*
+0.090196 0.196078 0.301961 rg
+BT
+/F2 7.1 Tf
+8.52 TL
+ET
+BT
+1 0 0 1 187.3688 41 Tm
+(Add) Tj
+T*
+ET
+0.380392 0.443137 0.505882 RG
+1.2 w
+n
+256.36 36 m
+265.36 36 l
+S
+n
+262.36 39 m
+265.36 36 l
+S
+n
+262.36 33 m
+265.36 36 l
+S
+0.866667 0.94902 0.941176 rg
+0.043137 0.478431 0.458824 RG
+n
+275.36 17 m
+381.54 17 l
+385.4096 17 388.54 20.1304 388.54 24 c
+388.54 48 l
+388.54 51.8696 385.4096 55 381.54 55 c
+275.36 55 l
+271.4904 55 268.36 51.8696 268.36 48 c
+268.36 24 l
+268.36 20.1304 271.4904 17 275.36 17 c
+h
+B*
+0.090196 0.196078 0.301961 rg
+BT
+/F2 7.1 Tf
+8.52 TL
+ET
+BT
+1 0 0 1 300.0429 41 Tm
+(Add Marketplace) Tj
+T*
+ET
+0.380392 0.443137 0.505882 RG
+1.2 w
+n
+390.54 36 m
+399.54 36 l
+S
+n
+396.54 39 m
+399.54 36 l
+S
+n
+396.54 33 m
+399.54 36 l
+S
+0.909804 0.941176 1 rg
+0.184314 0.435294 0.921569 RG
+n
+409.54 17 m
+515.72 17 l
+519.5896 17 522.72 20.1304 522.72 24 c
+522.72 48 l
+522.72 51.8696 519.5896 55 515.72 55 c
+409.54 55 l
+405.6704 55 402.54 51.8696 402.54 48 c
+402.54 24 l
+402.54 20.1304 405.6704 17 409.54 17 c
+h
+B*
+0.090196 0.196078 0.301961 rg
+BT
+/F2 7.1 Tf
+8.52 TL
+ET
+BT
+1 0 0 1 428.5074 41 Tm
+(Add from repository) Tj
+T*
+ET
+Q
+q
+1 0 0 1 50.64 369.94 cm
+q
+1 1 1 rg
+0.839216 0.870588 0.898039 RG
+0.8 w
+n
+9 0 m
+513.72 0 l
+518.6952 0 522.72 4.0248 522.72 9 c
+522.72 243 l
+522.72 247.9752 518.6952 252 513.72 252 c
+9 252 l
+4.0248 252 0 247.9752 0 243 c
+0 9 l
+0 4.0248 4.0248 0 9 0 c
+h
+B*
+0.062745 0.141176 0.227451 rg
+n
+9 228 m
+513.72 228 l
+518.6952 228 522.72 232.0248 522.72 237 c
+522.72 243 l
+522.72 247.9752 518.6952 252 513.72 252 c
+9 252 l
+4.0248 252 0 247.9752 0 243 c
+0 237 l
+0 232.0248 4.0248 228 9 228 c
+h
+f*
+n
+0 228 522.72 12 re
+f*
+1 0.419608 0.4 rg
+n
+15.2 240 m
+15.2 241.7673 13.76731 243.2 12 243.2 c
+10.23269 243.2 8.8 241.7673 8.8 240 c
+8.8 238.2327 10.23269 236.8 12 236.8 c
+13.76731 236.8 15.2 238.2327 15.2 240 c
+f*
+0.964706 0.760784 0.290196 rg
+n
+27.2 240 m
+27.2 241.7673 25.76731 243.2 24 243.2 c
+22.23269 243.2 20.8 241.7673 20.8 240 c
+20.8 238.2327 22.23269 236.8 24 236.8 c
+25.76731 236.8 27.2 238.2327 27.2 240 c
+f*
+0.309804 0.796078 0.443137 rg
+n
+39.2 240 m
+39.2 241.7673 37.76731 243.2 36 243.2 c
+34.23269 243.2 32.8 241.7673 32.8 240 c
+32.8 238.2327 34.23269 236.8 36 236.8 c
+37.76731 236.8 39.2 238.2327 39.2 240 c
+f*
+BT
+/F2 8 Tf
+9.6 TL
+ET
+1 1 1 rg
+BT
+1 0 0 1 52 237 Tm
+(Codex) Tj
+T*
+ET
+0.090196 0.196078 0.301961 rg
+n
+0 0 112 228 re
+f*
+BT
+/F1 8 Tf
+9.6 TL
+ET
+1 1 1 rg
+BT
+1 0 0 1 18 195 Tm
+(Chats) Tj
+T*
+ET
+BT
+/F1 8 Tf
+9.6 TL
+ET
+1 1 1 rg
+BT
+1 0 0 1 18 167 Tm
+(Projects) Tj
+T*
+ET
+0.043137 0.478431 0.458824 rg
+n
+15 131 m
+97 131 l
+99.764 131 102 133.236 102 136 c
+102 148 l
+102 150.764 99.764 153 97 153 c
+15 153 l
+12.236 153 10 150.764 10 148 c
+10 136 l
+10 133.236 12.236 131 15 131 c
+h
+f*
+BT
+/F2 8 Tf
+9.6 TL
+ET
+1 1 1 rg
+BT
+1 0 0 1 18 139 Tm
+(Plugins) Tj
+T*
+ET
+0.956863 0.968627 0.980392 rg
+n
+112 0 410.72 228 re
+f*
+BT
+/F2 13 Tf
+15.6 TL
+ET
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 132 203 Tm
+(Plugins Directory) Tj
+T*
+ET
+0.043137 0.478431 0.458824 rg
+n
+437.72 189 m
+492.72 189 l
+495.484 189 497.72 191.236 497.72 194 c
+497.72 209 l
+497.72 211.764 495.484 214 492.72 214 c
+437.72 214 l
+434.956 214 432.72 211.764 432.72 209 c
+432.72 194 l
+432.72 191.236 434.956 189 437.72 189 c
+h
+f*
+BT
+/F2 8.5 Tf
+10.2 TL
+ET
+1 1 1 rg
+BT
+1 0 0 1 453.72 199 Tm
+(Add) Tj
+T*
+ET
+1 1 1 rg
+0.839216 0.870588 0.898039 RG
+n
+353.72 120 m
+491.72 120 l
+495.0368 120 497.72 122.6832 497.72 126 c
+497.72 172 l
+497.72 175.3168 495.0368 178 491.72 178 c
+353.72 178 l
+350.4032 178 347.72 175.3168 347.72 172 c
+347.72 126 l
+347.72 122.6832 350.4032 120 353.72 120 c
+h
+B*
+BT
+/F2 8.2 Tf
+9.84 TL
+ET
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 357.72 159 Tm
+(Add Marketplace) Tj
+T*
+ET
+BT
+/F1 7.2 Tf
+8.64 TL
+ET
+0.380392 0.443137 0.505882 rg
+BT
+1 0 0 1 357.72 140 Tm
+(Add from a repository) Tj
+T*
+ET
+1 1 1 rg
+0.839216 0.870588 0.898039 RG
+n
+139 18 m
+491.72 18 l
+495.5896 18 498.72 21.1304 498.72 25 c
+498.72 123 l
+498.72 126.8696 495.5896 130 491.72 130 c
+139 130 l
+135.1304 130 132 126.8696 132 123 c
+132 25 l
+132 21.1304 135.1304 18 139 18 c
+h
+B*
+BT
+/F2 9.5 Tf
+11.4 TL
+ET
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 142 112 Tm
+(Add from a repository) Tj
+T*
+ET
+BT
+/F2 6.8 Tf
+8.16 TL
+ET
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 142 91 Tm
+(Source) Tj
+T*
+ET
+0.956863 0.968627 0.980392 rg
+n
+213 81 m
+485.72 81 l
+487.3784 81 488.72 82.3416 488.72 84 c
+488.72 94 l
+488.72 95.6584 487.3784 97 485.72 97 c
+213 97 l
+211.3416 97 210 95.6584 210 94 c
+210 84 l
+210 82.3416 211.3416 81 213 81 c
+h
+f*
+BT
+/F3 5.9 Tf
+7.08 TL
+ET
+0.380392 0.443137 0.505882 rg
+BT
+1 0 0 1 216 86 Tm
+(https\072\057\057github\056com\057EES\055Community\057ees\055codex) Tj
+T*
+ET
+BT
+/F2 6.8 Tf
+8.16 TL
+ET
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 142 68 Tm
+(Git ref) Tj
+T*
+ET
+0.956863 0.968627 0.980392 rg
+n
+213 58 m
+485.72 58 l
+487.3784 58 488.72 59.3416 488.72 61 c
+488.72 71 l
+488.72 72.6584 487.3784 74 485.72 74 c
+213 74 l
+211.3416 74 210 72.6584 210 71 c
+210 61 l
+210 59.3416 211.3416 58 213 58 c
+h
+f*
+BT
+/F1 5.9 Tf
+7.08 TL
+ET
+0.380392 0.443137 0.505882 rg
+BT
+1 0 0 1 216 63 Tm
+(main) Tj
+T*
+ET
+BT
+/F2 6.8 Tf
+8.16 TL
+ET
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 142 45 Tm
+(Sparse paths) Tj
+T*
+ET
+0.956863 0.968627 0.980392 rg
+n
+213 35 m
+485.72 35 l
+487.3784 35 488.72 36.3416 488.72 38 c
+488.72 48 l
+488.72 49.6584 487.3784 51 485.72 51 c
+213 51 l
+211.3416 51 210 49.6584 210 48 c
+210 38 l
+210 36.3416 211.3416 35 213 35 c
+h
+f*
+BT
+/F1 5.9 Tf
+7.08 TL
+ET
+0.380392 0.443137 0.505882 rg
+BT
+1 0 0 1 216 40 Tm
+(Leave blank) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 357.44 cm
+q
+0.380392 0.443137 0.505882 rg
+BT
+1 0 0 1 0 2.3 Tm
+/F5 7.2 Tf
+9.5 TL
+91.0884 0 Td
+(Illustration \055 sidebar placement and labels can vary by Codex version\054 account\054 and organization policy\056) Tj
+T*
+-91.0884 0 Td
+ET
+Q
+Q
+q
+1 0 0 1 50.64 236.34 cm
+q
+0.090196 0.196078 0.301961 rg
+n
+0 115.1 522.72 -22.7 re
+f*
+0.956863 0.968627 0.980392 rg
+n
+0 69.3 522.72 -23.1 re
+f*
+0.956863 0.968627 0.980392 rg
+n
+0 23.1 522.72 -23.1 re
+f*
+1 1 1 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 7 98.4 cm
+q
+1 1 1 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.3 Tf
+10.7 TL
+(Field) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 158.5888 98.4 cm
+q
+1 1 1 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.3 Tf
+10.7 TL
+(Value) Tj
+T*
+ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 7 75.3 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Source) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 158.5888 75.3 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(https\072\057\057github\056com\057EES\055Community\057ees\055codex) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 7 52.2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Git ref) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 158.5888 52.2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(main) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 7 29.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Sparse paths) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 158.5888 29.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Leave blank) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 7 6 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Marketplace shown after sync) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 158.5888 6 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(EES for Codex \050identifier\072 ees\055codex\051) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.839216 0.870588 0.898039 RG
+0.6 w
+n
+0 115.1 m
+522.72 115.1 l
+S
+n
+0 0 m
+522.72 0 l
+S
+n
+0 0 m
+0 115.1 l
+S
+n
+522.72 0 m
+522.72 115.1 l
+S
+0.35 w
+n
+0 92.4 m
+522.72 92.4 l
+S
+n
+0 69.3 m
+522.72 69.3 l
+S
+n
+0 46.2 m
+522.72 46.2 l
+S
+n
+0 23.1 m
+522.72 23.1 l
+S
+n
+151.5888 0 m
+151.5888 115.1 l
+S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 229.34 cm
+Q
+q
+1 0 0 1 44.64 180.04 cm
+q
+0.956863 0.968627 0.980392 rg
+n
+0 49.3 522.72 -49.3 re
+f*
+0 0 0 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 11 8 cm
+q
+BT
+1 0 0 1 0 25.2 Tm
+11.1 TL
+/F2 8.1 Tf
+0.129412 0.192157 0.247059 rg
+(Local checkout\077) Tj
+/F1 8.1 Tf
+T*
+(Most users should use the GitHub source above\056 A local checkout is a maintainer\057testing option\073 if used\054 choose the repository root) Tj
+T*
+(containing ) Tj
+/F3 8.1 Tf
+(\056agents\134plugins\134marketplace\056json) Tj
+/F1 8.1 Tf
+(\054 not ) Tj
+/F3 8.1 Tf
+(plugins\134ees) Tj
+/F1 8.1 Tf
+(\056) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.090196 0.196078 0.301961 RG
+4 w
+n
+0 0 m
+0 49.3 l
+S
+0.5 w
+n
+0 49.3 m
+522.72 49.3 l
+S
+n
+0 0 m
+522.72 0 l
+S
+n
+0 0 m
+0 49.3 l
+S
+n
+522.72 0 m
+522.72 49.3 l
+S
+Q
+Q
+Q
+
+endstream
 endobj
 16 0 obj
 <<
-/A <<
-/S /URI /Type /Action /URI (https://developers.openai.com/plugins/build/plugins)
->> /Border [ 0 0 0 ] /Rect [ 60.64 249.7275 165.9967 260.8275 ] /Subtype /Link /Type /Annot
+/Contents 17 0 R
+/MediaBox [ 0 0 612 792 ]
+/Resources <<
+/Font 6 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>>
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
+/Parent 2 0 R
 >>
 endobj
 17 0 obj
 <<
-/A <<
-/S /URI /Type /Action /URI (https://learn.chatgpt.com/docs/developer-commands)
->> /Border [ 0 0 0 ] /Rect [ 60.64 236.6275 171.3832 247.7275 ] /Subtype /Link /Type /Annot
+/Length 6524
 >>
+stream
+1 0 0 1 0 0 cm
+BT
+/F1 12 Tf
+14.4 TL
+ET
+q
+0.839216 0.870588 0.898039 RG
+0.5 w
+n
+44.64 758 m
+567.36 758 l
+S
+0.380392 0.443137 0.505882 rg
+BT
+/F1 7.5 Tf
+9 TL
+ET
+BT
+1 0 0 1 44.64 765 Tm
+(EES for Codex \055 Installation Guide) Tj
+T*
+ET
+BT
+1 0 0 1 437.415 765 Tm
+(Plugin 0\0561\0562\055beta \174 Launcher 0\0564\0562\055beta) Tj
+T*
+ET
+n
+44.64 31 m
+567.36 31 l
+S
+BT
+1 0 0 1 44.64 20 Tm
+(github\056com\057EES\055Community\057ees\055codex) Tj
+T*
+ET
+BT
+1 0 0 1 528.9975 20 Tm
+(Page 4 of 8) Tj
+T*
+ET
+Q
+q
+1 0 0 1 50.64 713.04 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 3.5 Tm
+/F2 20.5 Tf
+24 TL
+(2\056 Start or install the plugin) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 691.94 cm
+q
+BT
+1 0 0 1 0 3.8 Tm
+13.1 TL
+/F1 9.3 Tf
+0.129412 0.192157 0.247059 rg
+(Open ) Tj
+/F2 9.3 Tf
+(Engineering Equation Solver) Tj
+/F1 9.3 Tf
+( in the EES for Codex marketplace and use the action your app displays\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 457.94 cm
+q
+1 1 1 rg
+0.839216 0.870588 0.898039 RG
+0.8 w
+n
+9 0 m
+513.72 0 l
+518.6952 0 522.72 4.0248 522.72 9 c
+522.72 219 l
+522.72 223.9752 518.6952 228 513.72 228 c
+9 228 l
+4.0248 228 0 223.9752 0 219 c
+0 9 l
+0 4.0248 4.0248 0 9 0 c
+h
+B*
+0.062745 0.141176 0.227451 rg
+n
+9 204 m
+513.72 204 l
+518.6952 204 522.72 208.0248 522.72 213 c
+522.72 219 l
+522.72 223.9752 518.6952 228 513.72 228 c
+9 228 l
+4.0248 228 0 223.9752 0 219 c
+0 213 l
+0 208.0248 4.0248 204 9 204 c
+h
+f*
+n
+0 204 522.72 12 re
+f*
+1 0.419608 0.4 rg
+n
+15.2 216 m
+15.2 217.7673 13.76731 219.2 12 219.2 c
+10.23269 219.2 8.8 217.7673 8.8 216 c
+8.8 214.2327 10.23269 212.8 12 212.8 c
+13.76731 212.8 15.2 214.2327 15.2 216 c
+f*
+0.964706 0.760784 0.290196 rg
+n
+27.2 216 m
+27.2 217.7673 25.76731 219.2 24 219.2 c
+22.23269 219.2 20.8 217.7673 20.8 216 c
+20.8 214.2327 22.23269 212.8 24 212.8 c
+25.76731 212.8 27.2 214.2327 27.2 216 c
+f*
+0.309804 0.796078 0.443137 rg
+n
+39.2 216 m
+39.2 217.7673 37.76731 219.2 36 219.2 c
+34.23269 219.2 32.8 217.7673 32.8 216 c
+32.8 214.2327 34.23269 212.8 36 212.8 c
+37.76731 212.8 39.2 214.2327 39.2 216 c
+f*
+BT
+/F2 8 Tf
+9.6 TL
+ET
+1 1 1 rg
+BT
+1 0 0 1 52 213 Tm
+(Codex) Tj
+T*
+ET
+0.956863 0.968627 0.980392 rg
+n
+0 0 522.72 204 re
+f*
+BT
+/F2 13 Tf
+15.6 TL
+ET
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 20 177 Tm
+(Plugins Directory) Tj
+T*
+ET
+1 1 1 rg
+0.839216 0.870588 0.898039 RG
+n
+28 34 m
+494.72 34 l
+499.1424 34 502.72 37.5776 502.72 42 c
+502.72 151 l
+502.72 155.4224 499.1424 159 494.72 159 c
+28 159 l
+23.5776 159 20 155.4224 20 151 c
+20 42 l
+20 37.5776 23.5776 34 28 34 c
+h
+B*
+0.043137 0.478431 0.458824 rg
+n
+46 72 m
+78 72 l
+83.528 72 88 76.472 88 82 c
+88 114 l
+88 119.528 83.528 124 78 124 c
+46 124 l
+40.472 124 36 119.528 36 114 c
+36 82 l
+36 76.472 40.472 72 46 72 c
+h
+f*
+BT
+/F2 12 Tf
+14.4 TL
+ET
+1 1 1 rg
+BT
+1 0 0 1 49 92 Tm
+(EES) Tj
+T*
+ET
+BT
+/F2 12 Tf
+14.4 TL
+ET
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 105 126 Tm
+(Engineering Equation Solver) Tj
+T*
+ET
+BT
+/F1 7.4 Tf
+8.88 TL
+ET
+0.380392 0.443137 0.505882 rg
+BT
+1 0 0 1 105 107 Tm
+(EES for Codex marketplace) Tj
+T*
+ET
+BT
+/F1 7.4 Tf
+8.88 TL
+ET
+0.380392 0.443137 0.505882 rg
+BT
+1 0 0 1 105 90 Tm
+(Search routines\054 write models\054 run EES\054 inspect results\056) Tj
+T*
+ET
+0.043137 0.478431 0.458824 rg
+n
+399.72 78 m
+475.72 78 l
+479.0368 78 481.72 80.6832 481.72 84 c
+481.72 102 l
+481.72 105.3168 479.0368 108 475.72 108 c
+399.72 108 l
+396.4032 108 393.72 105.3168 393.72 102 c
+393.72 84 l
+393.72 80.6832 396.4032 78 399.72 78 c
+h
+f*
+BT
+/F2 9 Tf
+10.8 TL
+ET
+1 1 1 rg
+BT
+1 0 0 1 413.72 90 Tm
+(Try now) Tj
+T*
+ET
+0.866667 0.94902 0.941176 rg
+n
+110 49 m
+350 49 l
+352.764 49 355 51.236 355 54 c
+355 64 l
+355 66.764 352.764 69 350 69 c
+110 69 l
+107.236 69 105 66.764 105 64 c
+105 54 l
+105 51.236 107.236 49 110 49 c
+h
+f*
+BT
+/F2 7.2 Tf
+8.64 TL
+ET
+0.043137 0.478431 0.458824 rg
+BT
+1 0 0 1 115 57 Tm
+(Your app may instead show Install or a \053 button\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 445.44 cm
+q
+0.380392 0.443137 0.505882 rg
+BT
+1 0 0 1 0 2.3 Tm
+/F5 7.2 Tf
+9.5 TL
+89.7744 0 Td
+(Illustration \055 Try now\054 Install\054 and the \053 button can represent the same next action in different app states\056) Tj
+T*
+-89.7744 0 Td
+ET
+Q
+Q
+q
+1 0 0 1 50.64 394.14 cm
+q
+0.043137 0.478431 0.458824 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 0 32.2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3.8 Tm
+/F1 9.3 Tf
+13.1 TL
+(\055) Tj
+T*
+ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 10 32.2 cm
+q
+BT
+1 0 0 1 0 3.8 Tm
+13.1 TL
+/F1 9.3 Tf
+0.129412 0.192157 0.247059 rg
+(Choose ) Tj
+/F2 9.3 Tf
+(Try now) Tj
+/F1 9.3 Tf
+(\054 ) Tj
+/F2 9.3 Tf
+(Install) Tj
+/F1 9.3 Tf
+(\054 or the ) Tj
+/F2 9.3 Tf
+(\053) Tj
+/F1 9.3 Tf
+( button \055 whichever appears\056) Tj
+T*
+ET
+Q
+Q
+0.043137 0.478431 0.458824 rg
+q
+1 0 0 1 0 17.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3.8 Tm
+/F1 9.3 Tf
+13.1 TL
+(\055) Tj
+T*
+ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 10 17.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3.8 Tm
+/F1 9.3 Tf
+13.1 TL
+(If the plugin is already installed and working\054 do not uninstall it merely to make its button match this guide\056) Tj
+T*
+ET
+Q
+Q
+0.043137 0.478431 0.458824 rg
+q
+1 0 0 1 0 2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3.8 Tm
+/F1 9.3 Tf
+13.1 TL
+(\055) Tj
+T*
+ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 10 2 cm
+q
+BT
+1 0 0 1 0 3.8 Tm
+13.1 TL
+/F1 9.3 Tf
+0.129412 0.192157 0.247059 rg
+(After the first installation\054 start a ) Tj
+/F2 9.3 Tf
+(new Codex task) Tj
+/F1 9.3 Tf
+( so the bundled skill is available\056) Tj
+T*
+ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 44.64 355.94 cm
+q
+0.890196 0.956863 0.92549 rg
+n
+0 38.2 522.72 -38.2 re
+f*
+0 0 0 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 11 8 cm
+q
+BT
+1 0 0 1 0 14.1 Tm
+11.1 TL
+/F2 8.1 Tf
+0.129412 0.192157 0.247059 rg
+(Before starting EES) Tj
+/F1 8.1 Tf
+T*
+(Use this read\055only check to confirm that the skill loaded and whether launcher setup is still needed\056) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.121569 0.545098 0.356863 RG
+4 w
+n
+0 0 m
+0 38.2 l
+S
+0.5 w
+n
+0 38.2 m
+522.72 38.2 l
+S
+n
+0 0 m
+522.72 0 l
+S
+n
+0 0 m
+0 38.2 l
+S
+n
+522.72 0 m
+522.72 38.2 l
+S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 349.94 cm
+Q
+q
+1 0 0 1 50.64 291.94 cm
+q
+0.956863 0.968627 0.980392 rg
+n
+0 58 504.72 -58 re
+f*
+0 0 0 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 9 40.2 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.4 Tf
+10.8 TL
+(Verification prompt) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 9 7 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 36 12 Tm
+/F3 7.2 Tf
+9.6 TL
+(Use the \044ees skill to explain what the skill and launcher provide and tell me whether launcher setup is) Tj
+T*
+(still required\056 Do not start EES yet\056) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.839216 0.870588 0.898039 RG
+0.8 w
+n
+0 58 m
+504.72 58 l
+S
+n
+0 0 m
+504.72 0 l
+S
+n
+0 0 m
+0 58 l
+S
+n
+504.72 0 m
+504.72 58 l
+S
+Q
+Q
+Q
+
+endstream
 endobj
 18 0 obj
 <<
-/Annots [ 14 0 R 15 0 R 16 0 R 17 0 R ] /Contents 29 0 R /MediaBox [ 0 0 612 792 ] /Parent 21 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 
-  /Trans <<
-
->> /Type /Page
+/Contents 19 0 R
+/MediaBox [ 0 0 612 792 ]
+/Resources <<
+/Font 6 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>>
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
+/Parent 2 0 R
 >>
 endobj
 19 0 obj
 <<
-/PageMode /UseNone /Pages 21 0 R /Type /Catalog
+/Length 7379
 >>
+stream
+1 0 0 1 0 0 cm
+BT
+/F1 12 Tf
+14.4 TL
+ET
+q
+0.839216 0.870588 0.898039 RG
+0.5 w
+n
+44.64 758 m
+567.36 758 l
+S
+0.380392 0.443137 0.505882 rg
+BT
+/F1 7.5 Tf
+9 TL
+ET
+BT
+1 0 0 1 44.64 765 Tm
+(EES for Codex \055 Installation Guide) Tj
+T*
+ET
+BT
+1 0 0 1 437.415 765 Tm
+(Plugin 0\0561\0562\055beta \174 Launcher 0\0564\0562\055beta) Tj
+T*
+ET
+n
+44.64 31 m
+567.36 31 l
+S
+BT
+1 0 0 1 44.64 20 Tm
+(github\056com\057EES\055Community\057ees\055codex) Tj
+T*
+ET
+BT
+1 0 0 1 528.9975 20 Tm
+(Page 5 of 8) Tj
+T*
+ET
+Q
+q
+1 0 0 1 50.64 713.04 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 3.5 Tm
+/F2 20.5 Tf
+24 TL
+(3\056 Ask Codex to install the launcher) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 678.84 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 16.9 Tm
+/F1 9.3 Tf
+13.1 TL
+(There is no separate launcher\055choice screen in the normal agent\055driven flow\056 The complete EES executable path tells the) Tj
+T*
+(skill which package to use\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 605.24 cm
+q
+0.956863 0.968627 0.980392 rg
+n
+0 67.6 504.72 -67.6 re
+f*
+0 0 0 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 9 49.8 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.4 Tf
+10.8 TL
+(Recommended setup prompt) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 9 7 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 36 21.6 Tm
+/F3 7.2 Tf
+9.6 TL
+(Use the \044ees skill to install the launcher for my EES Professional at \133full path to ees\056exe or) Tj
+T*
+(ees64\056exe\135\056 Use the recommended launcher and workspace locations\054 run the complete installation test) Tj
+T*
+(with normal Windows filesystem access\054 and report the exact workspace path\056) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.839216 0.870588 0.898039 RG
+0.8 w
+n
+0 67.6 m
+504.72 67.6 l
+S
+n
+0 0 m
+504.72 0 l
+S
+n
+0 0 m
+0 67.6 l
+S
+n
+504.72 0 m
+504.72 67.6 l
+S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 596.24 cm
+Q
+q
+1 0 0 1 50.64 524.24 cm
+0.866667 0.94902 0.941176 rg
+0.043137 0.478431 0.458824 RG
+n
+7 17 m
+86.344 17 l
+90.2136 17 93.344 20.1304 93.344 24 c
+93.344 48 l
+93.344 51.8696 90.2136 55 86.344 55 c
+7 55 l
+3.1304 55 0 51.8696 0 48 c
+0 24 l
+0 20.1304 3.1304 17 7 17 c
+h
+B*
+0.090196 0.196078 0.301961 rg
+BT
+/F2 7.1 Tf
+8.52 TL
+ET
+BT
+1 0 0 1 21.42085 41 Tm
+(Read EES path) Tj
+T*
+ET
+0.380392 0.443137 0.505882 RG
+1.2 w
+n
+95.344 36 m
+104.344 36 l
+S
+n
+101.344 39 m
+104.344 36 l
+S
+n
+101.344 33 m
+104.344 36 l
+S
+0.909804 0.941176 1 rg
+0.184314 0.435294 0.921569 RG
+n
+114.344 17 m
+193.688 17 l
+197.5576 17 200.688 20.1304 200.688 24 c
+200.688 48 l
+200.688 51.8696 197.5576 55 193.688 55 c
+114.344 55 l
+110.4744 55 107.344 51.8696 107.344 48 c
+107.344 24 l
+107.344 20.1304 110.4744 17 114.344 17 c
+h
+B*
+0.090196 0.196078 0.301961 rg
+BT
+/F2 7.1 Tf
+8.52 TL
+ET
+BT
+1 0 0 1 124.2315 45 Tm
+(Choose matching) Tj
+T*
+ET
+BT
+1 0 0 1 139.8089 36 Tm
+(package) Tj
+T*
+ET
+0.380392 0.443137 0.505882 RG
+1.2 w
+n
+202.688 36 m
+211.688 36 l
+S
+n
+208.688 39 m
+211.688 36 l
+S
+n
+208.688 33 m
+211.688 36 l
+S
+0.866667 0.94902 0.941176 rg
+0.043137 0.478431 0.458824 RG
+n
+221.688 17 m
+301.032 17 l
+304.9016 17 308.032 20.1304 308.032 24 c
+308.032 48 l
+308.032 51.8696 304.9016 55 301.032 55 c
+221.688 55 l
+217.8184 55 214.688 51.8696 214.688 48 c
+214.688 24 l
+214.688 20.1304 217.8184 17 221.688 17 c
+h
+B*
+0.090196 0.196078 0.301961 rg
+BT
+/F2 7.1 Tf
+8.52 TL
+ET
+BT
+1 0 0 1 235.3172 41 Tm
+(Install launcher) Tj
+T*
+ET
+0.380392 0.443137 0.505882 RG
+1.2 w
+n
+310.032 36 m
+319.032 36 l
+S
+n
+316.032 39 m
+319.032 36 l
+S
+n
+316.032 33 m
+319.032 36 l
+S
+0.909804 0.941176 1 rg
+0.184314 0.435294 0.921569 RG
+n
+329.032 17 m
+408.376 17 l
+412.2456 17 415.376 20.1304 415.376 24 c
+415.376 48 l
+415.376 51.8696 412.2456 55 408.376 55 c
+329.032 55 l
+325.1624 55 322.032 51.8696 322.032 48 c
+322.032 24 l
+322.032 20.1304 325.1624 17 329.032 17 c
+h
+B*
+0.090196 0.196078 0.301961 rg
+BT
+/F2 7.1 Tf
+8.52 TL
+ET
+BT
+1 0 0 1 337.9326 41 Tm
+(Run complete test) Tj
+T*
+ET
+0.380392 0.443137 0.505882 RG
+1.2 w
+n
+417.376 36 m
+426.376 36 l
+S
+n
+423.376 39 m
+426.376 36 l
+S
+n
+423.376 33 m
+426.376 36 l
+S
+0.866667 0.94902 0.941176 rg
+0.043137 0.478431 0.458824 RG
+n
+436.376 17 m
+515.72 17 l
+519.5896 17 522.72 20.1304 522.72 24 c
+522.72 48 l
+522.72 51.8696 519.5896 55 515.72 55 c
+436.376 55 l
+432.5064 55 429.376 51.8696 429.376 48 c
+429.376 24 l
+429.376 20.1304 432.5064 17 436.376 17 c
+h
+B*
+0.090196 0.196078 0.301961 rg
+BT
+/F2 7.1 Tf
+8.52 TL
+ET
+BT
+1 0 0 1 444.0909 41 Tm
+(Report exact paths) Tj
+T*
+ET
+Q
+q
+1 0 0 1 50.64 455.34 cm
+q
+0.090196 0.196078 0.301961 rg
+n
+0 68.9 522.72 -22.7 re
+f*
+0.956863 0.968627 0.980392 rg
+n
+0 23.1 522.72 -23.1 re
+f*
+1 1 1 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 7 52.2 cm
+q
+1 1 1 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.3 Tf
+10.7 TL
+(EES executable) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 111.544 52.2 cm
+q
+1 1 1 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.3 Tf
+10.7 TL
+(Launcher) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 320.632 52.2 cm
+q
+1 1 1 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.3 Tf
+10.7 TL
+(Recommended workspace) Tj
+T*
+ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 7 29.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(\056\056\056\134ees\056exe) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 111.544 29.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(\045LOCALAPPDATA\045\134EES\055Codex\055Launcher\05532bit) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 320.632 29.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(\045USERPROFILE\045\134EES\055Codex\055Workspace\05532bit) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 7 6 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(\056\056\056\134ees64\056exe) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 111.544 6 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(\045LOCALAPPDATA\045\134EES\055Codex\055Launcher\05564bit) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 320.632 6 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(\045USERPROFILE\045\134EES\055Codex\055Workspace\05564bit) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.839216 0.870588 0.898039 RG
+0.6 w
+n
+0 68.9 m
+522.72 68.9 l
+S
+n
+0 0 m
+522.72 0 l
+S
+n
+0 0 m
+0 68.9 l
+S
+n
+522.72 0 m
+522.72 68.9 l
+S
+0.35 w
+n
+0 46.2 m
+522.72 46.2 l
+S
+n
+0 23.1 m
+522.72 23.1 l
+S
+n
+104.544 0 m
+104.544 68.9 l
+S
+n
+313.632 0 m
+313.632 68.9 l
+S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 447.34 cm
+Q
+q
+1 0 0 1 44.64 398.04 cm
+q
+0.909804 0.941176 1 rg
+n
+0 49.3 522.72 -49.3 re
+f*
+0 0 0 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 11 8 cm
+q
+BT
+1 0 0 1 0 25.2 Tm
+11.1 TL
+/F2 8.1 Tf
+0.129412 0.192157 0.247059 rg
+(Approval is conditional) Tj
+/F1 8.1 Tf
+T*
+(You may see an approval request when Codex starts the installer or EES\056 If shown\054 review the EES executable\054 launcher folder\054 and) Tj
+T*
+(workspace before approving\056 If no approval panel appears and the complete test succeeds\054 that is not an error\056) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.184314 0.435294 0.921569 RG
+4 w
+n
+0 0 m
+0 49.3 l
+S
+0.5 w
+n
+0 49.3 m
+522.72 49.3 l
+S
+n
+0 0 m
+522.72 0 l
+S
+n
+0 0 m
+0 49.3 l
+S
+n
+522.72 0 m
+522.72 49.3 l
+S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 392.04 cm
+Q
+q
+1 0 0 1 44.64 342.74 cm
+q
+0.956863 0.968627 0.980392 rg
+n
+0 49.3 522.72 -49.3 re
+f*
+0 0 0 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 11 8 cm
+q
+BT
+1 0 0 1 0 25.2 Tm
+11.1 TL
+/F2 8.1 Tf
+0.129412 0.192157 0.247059 rg
+(Recommended access policy) Tj
+/F1 8.1 Tf
+T*
+(Keep the project sandbox enabled and use Ask for approval\056 Commands that start native EES need targeted normal Windows filesystem) Tj
+T*
+(access\073 catalog\055only searches can remain sandboxed\056) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.090196 0.196078 0.301961 RG
+4 w
+n
+0 0 m
+0 49.3 l
+S
+0.5 w
+n
+0 49.3 m
+522.72 49.3 l
+S
+n
+0 0 m
+522.72 0 l
+S
+n
+0 0 m
+0 49.3 l
+S
+n
+522.72 0 m
+522.72 49.3 l
+S
+Q
+Q
+Q
+
+endstream
 endobj
 20 0 obj
 <<
-/Author (EES-Community) /CreationDate (D:20261005205437-05'00') /Creator (Codex) /Keywords () /ModDate (D:20261005205437-05'00') /Producer (ReportLab PDF Library - \(opensource\)) 
-  /Subject (Installing EES for Codex plugin 0.1.1-beta and EES Codex Launcher 0.4.1-beta) /Title (EES for Codex - Installation and First Run Guide for Windows) /Trapped /False
+/Contents 21 0 R
+/MediaBox [ 0 0 612 792 ]
+/Resources <<
+/Font 6 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>>
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
+/Parent 2 0 R
 >>
 endobj
 21 0 obj
 <<
-/Count 8 /Kids [ 5 0 R 7 0 R 9 0 R 10 0 R 11 0 R 12 0 R 13 0 R 18 0 R ] /Type /Pages
+/Length 6196
 >>
+stream
+1 0 0 1 0 0 cm
+BT
+/F1 12 Tf
+14.4 TL
+ET
+q
+0.839216 0.870588 0.898039 RG
+0.5 w
+n
+44.64 758 m
+567.36 758 l
+S
+0.380392 0.443137 0.505882 rg
+BT
+/F1 7.5 Tf
+9 TL
+ET
+BT
+1 0 0 1 44.64 765 Tm
+(EES for Codex \055 Installation Guide) Tj
+T*
+ET
+BT
+1 0 0 1 437.415 765 Tm
+(Plugin 0\0561\0562\055beta \174 Launcher 0\0564\0562\055beta) Tj
+T*
+ET
+n
+44.64 31 m
+567.36 31 l
+S
+BT
+1 0 0 1 44.64 20 Tm
+(github\056com\057EES\055Community\057ees\055codex) Tj
+T*
+ET
+BT
+1 0 0 1 528.9975 20 Tm
+(Page 6 of 8) Tj
+T*
+ET
+Q
+q
+1 0 0 1 50.64 713.04 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 3.5 Tm
+/F2 20.5 Tf
+24 TL
+(4\056 Recognize a successful installation) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 691.94 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3.8 Tm
+/F1 9.3 Tf
+13.1 TL
+(Success is usually a text response in the Codex task\054 not a separate installer screen\056 Wording and layout can differ\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 550.14 cm
+q
+0.956863 0.968627 0.980392 rg
+n
+0 135.8 504.72 -135.8 re
+f*
+0 0 0 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 9 118 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.4 Tf
+10.8 TL
+(Example successful report \055 your response will contain actual full paths) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 9 7 cm
+q
+BT
+1 0 0 1 36 89.7 Tm
+9.7 TL
+/F3 7.3 Tf
+0.129412 0.192157 0.247059 rg
+(Installed launcher 0\0564\0562\055beta for C\072\134EES32\134ees\056exe\056) Tj
+T*
+T*
+(Launcher\072 \045LOCALAPPDATA\045\134EES\055Codex\055Launcher\05532bit) Tj
+T*
+(Exact workspace\072 \045USERPROFILE\045\134EES\055Codex\055Workspace\05532bit) Tj
+T*
+T*
+(The complete installation test passed\072) Tj
+T*
+(\055 200 kW heat\055exchanger result) Tj
+T*
+(\055 canonical metadata lookup) Tj
+T*
+(\055 five application\055library calculations) Tj
+T*
+(\055 persistent autoload setting unchanged) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.839216 0.870588 0.898039 RG
+0.8 w
+n
+0 135.8 m
+504.72 135.8 l
+S
+n
+0 0 m
+504.72 0 l
+S
+n
+0 0 m
+0 135.8 l
+S
+n
+504.72 0 m
+504.72 135.8 l
+S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 541.14 cm
+Q
+q
+1 0 0 1 50.64 379.84 cm
+q
+0.090196 0.196078 0.301961 rg
+n
+0 161.3 522.72 -22.7 re
+f*
+0.956863 0.968627 0.980392 rg
+n
+0 115.5 522.72 -23.1 re
+f*
+0.956863 0.968627 0.980392 rg
+n
+0 69.3 522.72 -23.1 re
+f*
+0.956863 0.968627 0.980392 rg
+n
+0 23.1 522.72 -23.1 re
+f*
+1 1 1 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 7 144.6 cm
+q
+1 1 1 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.3 Tf
+10.7 TL
+(Required evidence) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 174.2704 144.6 cm
+q
+1 1 1 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.3 Tf
+10.7 TL
+(What to confirm) Tj
+T*
+ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 7 121.5 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Selected executable) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 174.2704 121.5 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Correct EES path and matching 32\055bit or 64\055bit launcher) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 7 98.4 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Exact paths) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 174.2704 98.4 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Launcher folder and generated workspace are both reported) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 7 75.3 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Real EES solve) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 174.2704 75.3 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Heat\055exchanger result is 200 kW) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 7 52.2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Library checks) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 174.2704 52.2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Metadata plus Component\054 Mechanical\054 NASA\054 Incompressible\054 and Heat Transfer checks pass) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 7 29.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Persistent setting) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 174.2704 29.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Application\055library autoload setting is unchanged) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 7 6 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Overall status) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 174.2704 6 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Complete test passed\073 \047files installed\047 alone is incomplete) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.839216 0.870588 0.898039 RG
+0.6 w
+n
+0 161.3 m
+522.72 161.3 l
+S
+n
+0 0 m
+522.72 0 l
+S
+n
+0 0 m
+0 161.3 l
+S
+n
+522.72 0 m
+522.72 161.3 l
+S
+0.35 w
+n
+0 138.6 m
+522.72 138.6 l
+S
+n
+0 115.5 m
+522.72 115.5 l
+S
+n
+0 92.4 m
+522.72 92.4 l
+S
+n
+0 69.3 m
+522.72 69.3 l
+S
+n
+0 46.2 m
+522.72 46.2 l
+S
+n
+0 23.1 m
+522.72 23.1 l
+S
+n
+167.2704 0 m
+167.2704 161.3 l
+S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 371.84 cm
+Q
+q
+1 0 0 1 44.64 322.54 cm
+q
+0.890196 0.956863 0.92549 rg
+n
+0 49.3 522.72 -49.3 re
+f*
+0 0 0 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 11 8 cm
+q
+BT
+1 0 0 1 0 25.2 Tm
+11.1 TL
+/F2 8.1 Tf
+0.129412 0.192157 0.247059 rg
+(Open the exact workspace) Tj
+/F1 8.1 Tf
+T*
+(Use the path reported by Codex\056 It should contain ) Tj
+/F3 8.1 Tf
+(AGENTS\056md) Tj
+/F1 8.1 Tf
+(\054 ) Tj
+/F3 8.1 Tf
+(launcher\055config\056json) Tj
+/F1 8.1 Tf
+(\054 ) Tj
+/F3 8.1 Tf
+(examples\134) Tj
+/F1 8.1 Tf
+(\054 ) Tj
+/F3 8.1 Tf
+(models\134) Tj
+/F1 8.1 Tf
+(\054 ) Tj
+/F3 8.1 Tf
+(results\134) Tj
+/F1 8.1 Tf
+(\054 and) Tj
+T*
+/F3 8.1 Tf
+(tests\134) Tj
+/F1 8.1 Tf
+(\056) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.121569 0.545098 0.356863 RG
+4 w
+n
+0 0 m
+0 49.3 l
+S
+0.5 w
+n
+0 49.3 m
+522.72 49.3 l
+S
+n
+0 0 m
+522.72 0 l
+S
+n
+0 0 m
+0 49.3 l
+S
+n
+522.72 0 m
+522.72 49.3 l
+S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 316.54 cm
+Q
+q
+1 0 0 1 50.64 258.54 cm
+q
+0.956863 0.968627 0.980392 rg
+n
+0 58 504.72 -58 re
+f*
+0 0 0 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 9 40.2 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.4 Tf
+10.8 TL
+(First prompt after opening that workspace) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 9 7 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 36 12 Tm
+/F3 7.2 Tf
+9.6 TL
+(Read AGENTS\056md and launcher\055config\056json\056 Run the installed installation test\054 then explain how you will) Tj
+T*
+(safely create\054 solve\054 and inspect EES models in this workspace\056 Do not modify the installed launcher\056) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.839216 0.870588 0.898039 RG
+0.8 w
+n
+0 58 m
+504.72 58 l
+S
+n
+0 0 m
+504.72 0 l
+S
+n
+0 0 m
+0 58 l
+S
+n
+504.72 0 m
+504.72 58 l
+S
+Q
+Q
+Q
+
+endstream
 endobj
 22 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 2261
+/Contents 23 0 R
+/MediaBox [ 0 0 612 792 ]
+/Resources <<
+/Font 6 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
 >>
-stream
-Gb!#\fl#S''RcUWi'SUA^dF$U-q[8=OsWJPUtMUNngJ;;)9#dVP/`N5IXDYBd2IAm`.3Cs7P(]tjLs_oAgG5(ZbMEeOQS-7p50I%am+J^R)W\0QFpHSra*r"Mcc8VMI2K<#o0>\8@M_YfUSn-,hU+=8if[!Smau;Qr&IU.Ra_PRAN)i)^KW3Z@a0#Pbh5NBHe_JnE!oodN,TS=[\JcUirk"Tj5SdOXbD],o)P6@_]lK8kuXX]A],Q2OFtnYf=%Pk18@+Lbaa<0@g8N1MdO2)uP,AKmd`GXpX.+N2^?6F":,#;HepS?Ci!F?M%,b1s<BSMIX(A-SJhUrfsS!Oju7o'$;=qTZlC`oE\>7dj2r0Z4U^Eir-K5J,T1TolU?"<LattN$bkbd#`hS^$LNW4PpZ\gQ9[o>XMM.8%t54]"RMZ\24p<B6\d',%qm%-kgh#oG[RLQs`2hi@6;ie#pdT"VkV]#<P%PUtNu0K,IP9MCtC1W5%Mm*4G`c>.!sjI<f&Kqkb?NcF!#+7D%..%qQ;;dYOo&aV!]a0sp,T6^K1]+7`!1Q+_H(T5=N5HO/npbU!m51fDiDVIDd_TFFV5'G4bk@[,-&H+JgUgPnP%k[3+jbf:r`9#Vm#kj_U/2#WM;<GqK%2f%uam.u9\g,J*caG04?-hgb`oPu.-@r[i^;#Rkij.(.64l`'2F&0r+EQ'TcHm$=-PQ%kh.[%!er@-F.f48Pdl)mh)!DU2)fQWm("t)mGX7dK+Pg,l5MnIDc,M#lj^+$Ku65eX$dd'LAK3k0R8R.a+F40N86MLGt^*6$8K8+WN[_;$!<F0E$.uZkoGa=T4)5Q92OXBi.0k;-^k%!5(pT[shVhVCBMojCjS`bq_jK6\2a9m_.miB\!O(8DQ+i)JL29f@_F7R/(/u"<1jgcH'fpB!H;'t;t#nMMIC'R`7dIG)"=SV6\45LVk")!Q53VX-_s#(eti=`+6f=+ASDq/V"`\TOH*g<#U?oXUXS?+^T7>8+H+Z_VHQt;sI_*Q[Eat*ghYi+P=F,lN-r&le]=g7PoFPtLTNJ<I\.BLaWWL;YNH]j$RhQG%6o)iVM3-SGk\#fnbe1=K2)!V9g1$(=G<+r0d8R.<&gl;al(!srQR'uL$Gdf00',kq>!s4A\iLioO^iAL@/OmCo]Ofk6)6a1n%fFIsr$q`_FmNt'`HLeLfj)D`F6nYe;(dq)"Td+uf)&$lEb:H^1nZX8DK%^'k7"m;?A<PE]8rPnE,3<`[kCEsJ^a$jj;ACH\^%frHV/&JkW:gh7$.r_StNSU84I4N$<5/5-Yj.[^Q</=D*]J^mHf?P@JaM_%WAs@(\1X'/LscB%&YcrqkVfa-#mYHJu,GZ<P8qFl#u>/-:I,n(^:Rn4$Mr`G7DH;gG3S]H`@2O_]TKW)!9.d1h3MX.J#r;E#_f>qC]7H,1#R)Zq$"6&B5X*H_,nCR6=)pI+H@)dJ#jK+5KM[P:tX%kh<&blS6X1qR\@r$@GGu3o+^e#jG_Z.J<F@gC:&k?07WRm>%ul,XY!ONS5pNKhQmKHYP!G?d-i!L*"XFi;HO[Y$-;"'O@#s,"XpF;0JWQ<8@"BU'bA7e$Od\2<18<A(U5![k0hb[O5-A0Z<S0Nh?;EmfnuC7agm,,gcY3I@&\_Ogg2tZq#`d+cJ",pH/UDKsCqXq"^V!09?Nm-i"F%97Mt7kNB:bdbQA*FmVqJ6`GF!NV\G:dT5ITQZnh,HNfVRE*)e1EHpcp`FWTk?\L&cQ@_7GX(eU#beso/BbYhmlqod9s'Y@BQujKt3ou:3,b`F0&BDGaabJf6MNN'TgNd=-bh/:#*i=G8V'6=nP1emV`sg&%hMh3]=)79(qQesX2l&gGKIBG9T&6UpC]WssCgHQG+a/]?U1ti-1?AB[K\$b`Zu_KAPeH>Pg54QOL_7LYke">PPA1BES_iUYaNlC(K'Eu5=i-BiX+:u)hrVgr5Q4uuh.=>g=bJ/%+Bg1Hen'V'W4YGWAOEYFMbE7)_P#j6>j3<Mp=m"Zp;Tr3h@Ol5Io/A[E3E[A:#HE'k?-9qF6`RG)Z,cQV8nl.2CqKcDF`uS.Ude]ilCMbfopPe`I3j.WA0a-U[Je,8(h"<+7[MR6XJO>gXKB%ep2=tDjD/nST[SiTBcisgDTj_$m2ohmqoq+g>I#HHU;Zmi7V\U5m?,PK@t=tTi1bX#@#'S0Io;>._pVg_AcjQ(Eku7R&0:CSNX"%=/EXFoh0(5$U%8OC>dl05eHhGq;9Y]/H,gpfFOY~>endstream
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
+/Parent 2 0 R
+>>
 endobj
 23 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 2126
+/Length 8466
 >>
 stream
-Gatm<D/\/e&H8h>E?EY=Ajkp4!sU#:g2?*]GO\]Ba;7ukCpeS/,q<VZrV52GPTn/O=bNNS.#Ra=muI,^O+WGl\GhuY!1,K$J&d*JR,%deR1$?^E':PA>:ak?_0o^"@!c=<^JSZ+&cDI]@NIX6"h62V>mS(SEq'!W3PHPFE+:VX^(nFgfATI)bTdu,Whj8<!u-?KOhnrEgo+i'qDb+bg%G"Igm&UZPmdBi-Lb5:X#S:3Q'MTdDpj>e"1,0bHi%'*'/5c"]prff/COZ:`YkDmV2F5=p_YqYZB>s:Fj8ZlY\o('J(bu.e+U5W't+<LVJ=Z*=]4DFW;#AQbk%]&e`43)od$4OlrM[N+cE)1lf:b"V$$h\*JB%KT@#1f$<nI+43VlqOlS/WZ?_-&_EW3orc2\nNQHJ7GDBmbSA,_neiH*1YFf)m1phqVZ@TPS@r4JLKDRsU_@E)oaMf8gE5=^0[r=':U+L?PZ`$=U&2?Z[S\qslrt+'\:b)k5Eqr'LNJcneKQX@s&DtNBVMB/rJ0ZZ2p=h]1aXSm.O;:GhEMCnY<^=<(B5,eKah6G33Xd#;WOUjE=koqg7EG__ATf`[Of`t:^k1Ti05([d(cb^&5er&%!*-RVCU(tP6f.n[iK$6f7I?3ll[1H`^PluNdPCd_Nb*IRJIdb_\$bTlJ)%XF"qZL4Ci-]GabPJ26lSCbEM8B(+rC62Ti4LmfP<\0LNJJ]$*bnP.+Kpq>Dkad_[Qbjb'6dN3aI]!'Usp(9oONmMadG<PPHn_3'Xk!&YZ+`C=U>k-VPfPCV:NG^]7bO,Zm*#e#L'EFcFEgcLgp*<=O.HQ9@I0a3694?5JM^/^dg&YsOXRl#NU1=[YZfDB.`<<NP%QB<[Kj2c[$>!L(6k-aHH>1c<3CJi5]&OV.8tJEb&>"!jqW5k[I<bi@d=Z76emWg;1`R`GR8njbkee+,e*2_0_N64*/T/1m$d=^[!7p+i8r^,]euZ1PUm)m!P.(-,?2K+bCN+A-A5#/e*>W`edemW\U/ojDe#lf+kdr-=WggEBQ-L"<])YW#nB)^"dGlk%&ScQGZ@0DdEpW"Z.EUn?)1DT_YB0_SFke4jZ:kbn'OSJ"+6ViX+)nO]A!];a5<$ru__'-?ak)E!eS)he!>^Jlnu43AAe;$1a)JJ?]Bo#\$.ZD)0Cs7E_o/s]f"Bf(hYqf31u2LQS`57ttpRI]gt#^^F(4U3"KrRYH4W)tn^OrW%EOmTghiX;Vf=CF3;\,<e#m766)h7;m^5t=o5VHL+G8f]C\3ZF-9qH&Z%>*XW[Yu4Ormk9JeV:L3kKB$Pb&blNA*YGfpIj/GWC9mG!>Fb+;G_aN9>BBsY=E?jG.nu<m*cf;'KK8OUJ(tiMTmjki?HN$h:Q1-5amVr-ai,phj[)r[o1l;.`_m<3/j9:6Z]o3k"&?$.+u*Wo;egp`X6kMS9KcAX,?$eHca8T:ZQJfH$)CJd%:'Wh"#IX&,]EoG[(AKa6ih?u.gc3JmXQqTZL4[MEM=u.4B9@oo%[ngqaR%W9Rjk<KbY00kEaJ<UZ]iF,7+tHOjN8]pHT_Qm=t]fQ?i0+]gP'i2@Fq<fLs#sb"/BB$c2<[Z]$Sc[eh@/#tg:63Q\US7.Z&2BMB.UAR3#elOrr;O7'@b'2$(@TJ"gGcaUAsCId1:8m*s_.rKOF>.3%Ra+ucJ*Qfg;7hd?#.#s[f1UU.ingj@(Si?f/5=_NhUIG[6^BX49ZZ:REFI\bt6GT48VD)#e0I?YSBG!NH-Fr5H@86DYKoF%sk(RZnFS>dq\Saspm>a<>fK=BWmj2@@(s+gL%&/b$&RZIl[?2[^D[[hm*U4IscT70!k:V3F$"U,d0-^Ub#W0h=@/6r8/DhI,Zj`6,0AkS!?G8L9GT#"p6Yr-k9Fi%eZ#9gg\X3epMgE`V9_sA;fYrLgMmc0GA\?Wlif72H2e]YUcdM%'11+O*1Jb>V4jo'hD[s9\2edKCl`kK1@3*s!Y>S:+X/:"dnW$C&7,)Dmj9I:Sk##*?qD8;plM#n`$t`$Fnjf2uT^G_7jB<blQKbhuh_6rI9T;ghRS-c`@`J!jX]KO_TKq-Cn<a2\_r*-0],bt!NnN4tAp9$SI\:j$I(*BEoTLk,KCp>(%eF$~>endstream
+1 0 0 1 0 0 cm
+BT
+/F1 12 Tf
+14.4 TL
+ET
+q
+0.839216 0.870588 0.898039 RG
+0.5 w
+n
+44.64 758 m
+567.36 758 l
+S
+0.380392 0.443137 0.505882 rg
+BT
+/F1 7.5 Tf
+9 TL
+ET
+BT
+1 0 0 1 44.64 765 Tm
+(EES for Codex \055 Installation Guide) Tj
+T*
+ET
+BT
+1 0 0 1 437.415 765 Tm
+(Plugin 0\0561\0562\055beta \174 Launcher 0\0564\0562\055beta) Tj
+T*
+ET
+n
+44.64 31 m
+567.36 31 l
+S
+BT
+1 0 0 1 44.64 20 Tm
+(github\056com\057EES\055Community\057ees\055codex) Tj
+T*
+ET
+BT
+1 0 0 1 528.9975 20 Tm
+(Page 7 of 8) Tj
+T*
+ET
+Q
+q
+1 0 0 1 50.64 713.04 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 3.5 Tm
+/F2 20.5 Tf
+24 TL
+(5\056 Run a first audited model) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 691.94 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3.8 Tm
+/F1 9.3 Tf
+13.1 TL
+(Start a new task in the generated workspace and use a small calculation that is easy to check independently\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 481.94 cm
+q
+1 1 1 rg
+0.839216 0.870588 0.898039 RG
+0.8 w
+n
+9 0 m
+513.72 0 l
+518.6952 0 522.72 4.0248 522.72 9 c
+522.72 195 l
+522.72 199.9752 518.6952 204 513.72 204 c
+9 204 l
+4.0248 204 0 199.9752 0 195 c
+0 9 l
+0 4.0248 4.0248 0 9 0 c
+h
+B*
+0.062745 0.141176 0.227451 rg
+n
+9 180 m
+513.72 180 l
+518.6952 180 522.72 184.0248 522.72 189 c
+522.72 195 l
+522.72 199.9752 518.6952 204 513.72 204 c
+9 204 l
+4.0248 204 0 199.9752 0 195 c
+0 189 l
+0 184.0248 4.0248 180 9 180 c
+h
+f*
+n
+0 180 522.72 12 re
+f*
+1 0.419608 0.4 rg
+n
+15.2 192 m
+15.2 193.7673 13.76731 195.2 12 195.2 c
+10.23269 195.2 8.8 193.7673 8.8 192 c
+8.8 190.2327 10.23269 188.8 12 188.8 c
+13.76731 188.8 15.2 190.2327 15.2 192 c
+f*
+0.964706 0.760784 0.290196 rg
+n
+27.2 192 m
+27.2 193.7673 25.76731 195.2 24 195.2 c
+22.23269 195.2 20.8 193.7673 20.8 192 c
+20.8 190.2327 22.23269 188.8 24 188.8 c
+25.76731 188.8 27.2 190.2327 27.2 192 c
+f*
+0.309804 0.796078 0.443137 rg
+n
+39.2 192 m
+39.2 193.7673 37.76731 195.2 36 195.2 c
+34.23269 195.2 32.8 193.7673 32.8 192 c
+32.8 190.2327 34.23269 188.8 36 188.8 c
+37.76731 188.8 39.2 190.2327 39.2 192 c
+f*
+BT
+/F2 8 Tf
+9.6 TL
+ET
+1 1 1 rg
+BT
+1 0 0 1 52 189 Tm
+(Codex) Tj
+T*
+ET
+0.956863 0.968627 0.980392 rg
+n
+0 0 522.72 180 re
+f*
+BT
+/F2 12 Tf
+14.4 TL
+ET
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 18 155 Tm
+(New Codex task) Tj
+T*
+ET
+1 1 1 rg
+0.839216 0.870588 0.898039 RG
+n
+26 44 m
+496.72 44 l
+501.1424 44 504.72 47.5776 504.72 52 c
+504.72 138 l
+504.72 142.4224 501.1424 146 496.72 146 c
+26 146 l
+21.5776 146 18 142.4224 18 138 c
+18 52 l
+18 47.5776 21.5776 44 26 44 c
+h
+B*
+BT
+/F1 8 Tf
+9.6 TL
+ET
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 31 127 Tm
+(Use the \044ees skill to calculate the rate of heat transfer required to increase the temperature of water flowing at 1 kg\057s and 200) Tj
+T*
+ET
+BT
+1 0 0 1 31 116.2 Tm
+(kPa from 20 C to 60 C\056 Save the model and exported result\054 check units and the energy balance\054 and explain the assumptions\056) Tj
+T*
+ET
+0.043137 0.478431 0.458824 rg
+n
+414.72 57 m
+482.72 57 l
+485.484 57 487.72 59.236 487.72 62 c
+487.72 79 l
+487.72 81.764 485.484 84 482.72 84 c
+414.72 84 l
+411.956 84 409.72 81.764 409.72 79 c
+409.72 62 l
+409.72 59.236 411.956 57 414.72 57 c
+h
+f*
+BT
+/F2 8.5 Tf
+10.2 TL
+ET
+1 1 1 rg
+BT
+1 0 0 1 430.72 67 Tm
+(Send) Tj
+T*
+ET
+0.866667 0.94902 0.941176 rg
+n
+24 11 m
+498.72 11 l
+502.0368 11 504.72 13.6832 504.72 17 c
+504.72 28 l
+504.72 31.3168 502.0368 34 498.72 34 c
+24 34 l
+20.6832 34 18 31.3168 18 28 c
+18 17 l
+18 13.6832 20.6832 11 24 11 c
+h
+f*
+BT
+/F2 7.5 Tf
+9 TL
+ET
+0.043137 0.478431 0.458824 rg
+BT
+1 0 0 1 31 19 Tm
+(Expected\072 model \053 fresh export \053 engineering checks) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 469.44 cm
+q
+0.380392 0.443137 0.505882 rg
+BT
+1 0 0 1 0 2.3 Tm
+/F5 7.2 Tf
+9.5 TL
+69.6756 0 Td
+(Illustration \055 the final response should identify the model\054 fresh result\054 units\054 assumptions\054 and energy\055balance check\056) Tj
+T*
+-69.6756 0 Td
+ET
+Q
+Q
+q
+1 0 0 1 50.64 396.44 cm
+q
+0.956863 0.968627 0.980392 rg
+n
+0 67 504.72 -67 re
+f*
+0 0 0 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 9 49.2 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.4 Tf
+10.8 TL
+(Copyable first\055model prompt) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 9 7 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 36 21.2 Tm
+/F3 7 Tf
+9.4 TL
+(Use the \044ees skill to calculate the rate of heat transfer required to increase the temperature of water) Tj
+T*
+(flowing at 1 kg\057s and 200 kPa from 20 C to 60 C\056 Save the model and exported result\054 check units and the) Tj
+T*
+(energy balance\054 and explain the assumptions\056) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.839216 0.870588 0.898039 RG
+0.8 w
+n
+0 67 m
+504.72 67 l
+S
+n
+0 0 m
+504.72 0 l
+S
+n
+0 0 m
+0 67 l
+S
+n
+504.72 0 m
+504.72 67 l
+S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 387.44 cm
+Q
+q
+1 0 0 1 50.64 363.24 cm
+q
+0.043137 0.478431 0.458824 rg
+BT
+1 0 0 1 0 3.2 Tm
+/F2 13 Tf
+16.2 TL
+(How the workflow should proceed) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 286.24 cm
+0.866667 0.94902 0.941176 rg
+0.043137 0.478431 0.458824 RG
+n
+7 17 m
+86.344 17 l
+90.2136 17 93.344 20.1304 93.344 24 c
+93.344 48 l
+93.344 51.8696 90.2136 55 86.344 55 c
+7 55 l
+3.1304 55 0 51.8696 0 48 c
+0 24 l
+0 20.1304 3.1304 17 7 17 c
+h
+B*
+0.090196 0.196078 0.301961 rg
+BT
+/F2 7.1 Tf
+8.52 TL
+ET
+BT
+1 0 0 1 19.4435 45 Tm
+(Search catalog) Tj
+T*
+ET
+BT
+1 0 0 1 32.66725 36 Tm
+(compactly) Tj
+T*
+ET
+0.380392 0.443137 0.505882 RG
+1.2 w
+n
+95.344 36 m
+104.344 36 l
+S
+n
+101.344 39 m
+104.344 36 l
+S
+n
+101.344 33 m
+104.344 36 l
+S
+0.909804 0.941176 1 rg
+0.184314 0.435294 0.921569 RG
+n
+114.344 17 m
+193.688 17 l
+197.5576 17 200.688 20.1304 200.688 24 c
+200.688 48 l
+200.688 51.8696 197.5576 55 193.688 55 c
+114.344 55 l
+110.4744 55 107.344 51.8696 107.344 48 c
+107.344 24 l
+107.344 20.1304 110.4744 17 114.344 17 c
+h
+B*
+0.090196 0.196078 0.301961 rg
+BT
+/F2 7.1 Tf
+8.52 TL
+ET
+BT
+1 0 0 1 127.3875 41 Tm
+(Write \056txt model) Tj
+T*
+ET
+0.380392 0.443137 0.505882 RG
+1.2 w
+n
+202.688 36 m
+211.688 36 l
+S
+n
+208.688 39 m
+211.688 36 l
+S
+n
+208.688 33 m
+211.688 36 l
+S
+0.866667 0.94902 0.941176 rg
+0.043137 0.478431 0.458824 RG
+n
+221.688 17 m
+301.032 17 l
+304.9016 17 308.032 20.1304 308.032 24 c
+308.032 48 l
+308.032 51.8696 304.9016 55 301.032 55 c
+221.688 55 l
+217.8184 55 214.688 51.8696 214.688 48 c
+214.688 24 l
+214.688 20.1304 217.8184 17 221.688 17 c
+h
+B*
+0.090196 0.196078 0.301961 rg
+BT
+/F2 7.1 Tf
+8.52 TL
+ET
+BT
+1 0 0 1 223.2863 41 Tm
+(Run installed launcher) Tj
+T*
+ET
+0.380392 0.443137 0.505882 RG
+1.2 w
+n
+310.032 36 m
+319.032 36 l
+S
+n
+316.032 39 m
+319.032 36 l
+S
+n
+316.032 33 m
+319.032 36 l
+S
+0.909804 0.941176 1 rg
+0.184314 0.435294 0.921569 RG
+n
+329.032 17 m
+408.376 17 l
+412.2456 17 415.376 20.1304 415.376 24 c
+415.376 48 l
+415.376 51.8696 412.2456 55 408.376 55 c
+329.032 55 l
+325.1624 55 322.032 51.8696 322.032 48 c
+322.032 24 l
+322.032 20.1304 325.1624 17 329.032 17 c
+h
+B*
+0.090196 0.196078 0.301961 rg
+BT
+/F2 7.1 Tf
+8.52 TL
+ET
+BT
+1 0 0 1 338.5219 41 Tm
+(Read fresh export) Tj
+T*
+ET
+0.380392 0.443137 0.505882 RG
+1.2 w
+n
+417.376 36 m
+426.376 36 l
+S
+n
+423.376 39 m
+426.376 36 l
+S
+n
+423.376 33 m
+426.376 36 l
+S
+0.866667 0.94902 0.941176 rg
+0.043137 0.478431 0.458824 RG
+n
+436.376 17 m
+515.72 17 l
+519.5896 17 522.72 20.1304 522.72 24 c
+522.72 48 l
+522.72 51.8696 519.5896 55 515.72 55 c
+436.376 55 l
+432.5064 55 429.376 51.8696 429.376 48 c
+429.376 24 l
+429.376 20.1304 432.5064 17 436.376 17 c
+h
+B*
+0.090196 0.196078 0.301961 rg
+BT
+/F2 7.1 Tf
+8.52 TL
+ET
+BT
+1 0 0 1 444.2862 45 Tm
+(Check engineering) Tj
+T*
+ET
+BT
+1 0 0 1 466.3814 36 Tm
+(result) Tj
+T*
+ET
+Q
+q
+1 0 0 1 50.64 246.94 cm
+q
+0.043137 0.478431 0.458824 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 0 28.2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(\055) Tj
+T*
+ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 10 28.2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Models and exported results remain inside the selected workspace\056) Tj
+T*
+ET
+Q
+Q
+0.043137 0.478431 0.458824 rg
+q
+1 0 0 1 0 15.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(\055) Tj
+T*
+ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 10 15.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Catalog lookup starts compact\073 request full detail for one routine\054 then compile\055test against installed EES\056) Tj
+T*
+ET
+Q
+Q
+0.043137 0.478431 0.458824 rg
+q
+1 0 0 1 0 2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(\055) Tj
+T*
+ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 10 2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(A successful solve is not proof that a model is correct\056 Review units\054 balances\054 feasibility\054 constraints\054 and assumptions\056) Tj
+T*
+ET
+Q
+Q
+q
+Q
+Q
+Q
+
+endstream
 endobj
 24 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 3467
+/Annots [ 25 0 R 26 0 R 27 0 R 28 0 R ]
+/Contents 29 0 R
+/MediaBox [ 0 0 612 792 ]
+/Resources <<
+/Font 6 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
 >>
-stream
-Gau0Fh/h>\&V&D>JOa&oL5@Pr809m:Bl^nIDjkH(II[ate$]l]F<rD<GP]@(GHh.I&'ON4]pi-9,kpm8//B@n.,]SDJ#@?2I_$..+-fZ+>ho]tV%m'uiks=-?PDZud&If.=,$5eIY0:I&HDNN,+\LWZ4PU0dYc1m0c.!oUa_.7`TN(7poG7Z>,+b;UdH/+/FOs&YlZ4Z19`pOWn910>Jg?L3;`4(Zaf=eidH%*r*,\L?P]]VDVMapFURa2H?S'@+KiG7X#Jd:9I6f]=jO!hI6Uql67St[DjnBUrtUmnH80h]Q>kCFeWI-OTM\((5\#%#hWf]Ogs>hPoo5Jbo*b'br-^MrY8=PEl(Vlmk>R=I^U$[^)+*GJSko$-,E1jSKHCNu#,l'hJs)pg/1^dXGSQoK!Ut\*70RoRA/2"IA_`9@KNroS?nHu'$2$)#`K.L;U46hZApmu=^Gc%#>>L^t-[+;oK9CfAfWsVd(3lh*!ob8s6'G42?t%Q9[otd/+PO[d$fJ-Hqtjm0&7cEEA,umR`RhGj1BFGO_6I=K@;J&_]4Eq!383Mt(Fp=J2t^(+cV<.fqd%_`oo@b8.)3e3bg<OtRFrfd_dg)V2NQ[/ep#:bq,.QB8tkl'r!+)G2A@'ZPc@?/&YP/Ja]9H2pr,7)ECMQ-Pu*a5:DDsF,M`E,JHuYji"TQ.fC?%q&X->$3+:Ne'T'1qhusH7%F,:2%+GuM_,!-I;&R_L(+E)-FAee"(4Xs\57=WUVpic*jJOpi$sLl%KgQ+-JTQ4I<+mdL<<ahPU3Uf?K);)UO-l=1kK4EJ:e=AM9kfSq_Hb-$X-gmuO7td,iP7U_F&.Ml.]:N^;KQk">_%a`31("k';e&5,*pA$#&uhXH%C[)!7d0AXWsLm=hL?SRoffXB`aO`KML(uR'C6)PV!NJO;M\2`)R\e0chN3#W#1/-T[6iU]C^,No`*Z/!"#SHGkoC\U-0Kg6GXZ&R\m*VB^o.eAR+EpWUpr5<*.qjVZ\H`-<T!N@5b7Ub*e5`d>@i-P<\@1=Ln3dg;nQ!>&edKJHaWP]`fJ\4_$fkr/f<A-lhE$0=RQ+dY%DB[!`O#%^^IO?4IP..:-kUCfGY^_@@>-3U1jW[<tKLBI:pcFqh*Bn1g:SkkksZI0>$Vr5.I?ooc"Q-T2"/:u,'J^&:'.r,,-=YkWR(("e]3*B8oCg6,n=CIN2At$M11cpmYJ=f1[VZGO=l#]@*a'd@'4tN<2]-(%,gjUY&&VS/Tp=83-Qip6:?l2R?6!/@<M[;-fhm1Uj)<Sd9KXPJX!XgG6D[6Y"d);#T,c>#XIj(jiTdD!eXrr/&BEhWrq'l<ZX2U1c;HMF8WoM0QC(;d`N"KdkLR=/@7>5RKf]\=9[&O')Z(Vcp#a4^'!.IA_0ugga0_:1,Zd:!N)ZeQqIc:V80Pq48L-)u&3&7ID<E9;c:Ai'@_+7H9$!=VC#nFbXN#0/!K2cA8f0gL;O2;Nq78+$>;&KtU"su.r%f)4*P&jP18qms>>QCkB.0A$ca#QM,kUOWh,^Z?C7NC.E3$:0?3+/><!auR57l'ls8<LfgO$ad9`B2U0PjD`c`GkLNGe.t\V,0k,TeOSP5u00EKbfpj$8`:R:geO,6=C?u7l'ls8<LfgO$ad9`B.KJ9(n<4iUZ&D.k42p9t?'rCscnr@sr[<[?3OIrYA@7`Ru&_0lMT'Y_dd,LtgPU%s>Y@gcW;;8JrQK[-YNB#&'bVI\oKkl%Q5j+;lXQg'Oj4<G@:ed-<"]JDn(8F@jphW48*X$48URT>[63W6/O75ip;<Sg3M#7MT&/ak15AUq2NggLCh;,PoKXj*3[@/[-3'7fs]5$*NosJL):b1j4&IaWNt`9rQH9'ri9V0b&5fij/+7p>sHT*&_;V`*[+L5\kH64,=]EH!nJ\d*57#d#!>-*2"O0We6fNnL<+t@hLSUI0ML=LdI5$M@`??ZpHgV%Z5p5Po('aGmW/^:Dpj>JCu-.OA9EBJROmI#C/DL["WK^]>3ER!+tOje/\2K(63)ETVA[u>u4R%@U`@GfSgB2nd$PMoRLQ9b9='hdR.=Up<3l>#;m5Od6L-cN(mC'jMT3GKo)n9RlW;H$YhTU%Li4lVu`edZ#PDYZ`E++o(H)DfXPV>KbsUZHjlr`@p!>)#EKA(mFYmSAZYVbNQ33%"[Vqrb+:nZ*BJf4j+-9hQs"15,H\<r).lKYZEk$>A;!ZC*CM"WpWtP[SdR"Q=ZS<;1C[K&,GEQW8MHGejgVH&4B%Jl*L=i_.X&iXQqcOc95pn9rgl::gGTdUp]%d.0/n*"#E&%>6bW0&6s3;i+-3Ie`A7R3Z@K9QT^]12\#RY'eZDB_$H+dND<Gn#`#<$o@a+pXA2G+d-jHtK$A$[11*o5\kn"%):V13afQrhba4U!';)?)2JGH5k1qBfX%QL848bm_sqo@7!Mi62Y7=Qt<,ouZMrB0CSK\X6F5N`:LS0-eSHihNG%K&gUi)clY^IiG'LV(^-\[%0$A]ORG&[N`RZsrr*`V:bF=UH-Ycc>g[n%u8eX8fi(/P_4_N@j5Sa*P:2`+.Uf*8BdU^5O#h0l@C1E1D,c[)_YQ5JUe-!07Rnn2Q]kEJi^pC(-/%"A'4Og+tk21H`d*Q3,+Zo@(On/'VX(Iquts>;*_)E28OfPYEfDN\U^k?>8EB)4+An.c-Lg*5Q8Y!'"sKc@0K^or;B=QXK"@`*:S,4)YnJW#)q;X`'YO-)U?%I&iT0ioZ*TPC./3.hI(YlKPZ[0D`0MGdk>h(UO-0SW@&<Rgq)'c8Ws3'<``"?@3WuTFDJa=_WA8N^);e+)JSu6K248/;A).NY8*7pP=eJ7X>GGcoS/t44"[L-"'$r5%3.HcDJ'c5/%??r;jT4q`&BFgLnQaEmVmRkX</&_E[@0^&<to+@/gZNWQg]#3`#N!E1N&<*4FUM4dpq]?Bh&@@bd++'R>Uh82N[4EEK=5J'SE1H@Fgc)oN)4$"D?\J#"VJ%9eN`"O%QVSZB.4H[&!mR4,t]&+<u^?_8b=?S7508Fs*0/gRc\3>Os^?B3RZY'#.jAC@(_]FU4#62CW4RFcc,tKMso6dW3Cja]_roG*<`l2EI_>M@q2:=Im'X1X"-\tDFWIj;;`2-\HKNXIV&XRB4c(5HDe_)&+<!37cb08emDu3Tc*I+D!hhti^-smCT<#f4Fm!(B3-8$gZoY.]6-p5<"rG"[Z_(gBsU!dQe3XqHDT1rR6e%-:CLM$Cj>PEWm?RE!*Ngm@^]2^N8.qep%YclecAEZYm-t[s7hhW#4F]%%<h\mqm'^^WQ0jDHu&8P)Qs-i%<hlQ\-ia-_ffJ`Y!bjJ<dm9>\93n?F[(WE]GqD<rQVB'A:EV@p.?dE82%hi>nIJk#/_QL(4?_b[qX)>0_hUu,<kk\RZ=TM3k*LV=_AakA!VLa:)AU0N\fjW>@Q>-!GN?N2[6i=_N)a1Ylan!\9T#Kc?Ff$B(~>endstream
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
+/Parent 2 0 R
+>>
 endobj
 25 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 2617
+/A <<
+/S /URI
+/Type /Action
+/URI (https\072\057\057github\056com\057EES\055Community\057ees\055codex)
 >>
-stream
-GauHL968k/&\dj<oH=IZ/&I[ii,t!lhCYX1Pte'M.RsaaMHk]4%=jaEPolX%HY+BseAG$A]<2lqJEcee4l&pKj.DLLoq(C''tsQ7Oj\?Z+_;ib=.e]oe`-0E.[!]1N1qMWe"XWr=i<m's7g^KV0'1[ad=J4Pc"]P.F%E3a^ifGjW[<AYGTC.6mXi^.Eg)fh^lF[*($=(o_S&VH.0FY%.Eqtr:&[.2I0,I]=%T0/,Im.A(<Ed\Ed>pose5\5L\0OFS4e$PU)<K8gcX62921l96$aO[CWeV7K9&WeZl6c[`;>,T?`)n#8?dg+)#idbZZ$FP+1:;4^LX$[sndt=7<d"rn-YYqmY,dX-u1rg=T@@;-E$qORl\!A'%QVTjl%2G@Y:ELa>SAM.2**Ek^Ng<[I<j5B2^2-+m2@jD)ha&kP@Frh?+2,sb2TQTCkaZ0FhG\9BRL1i=lc,]kDgS=>\,.Or+\O7X0g&!e]r_RV=pK[iOaQNkN``EK)<M)Klf$&`Nn[tANh<3i3h@JQUN+kHA!p4bbY4us6[G0LiXqn83_-!V#I:B@i+qHH$&R]<eq[;.f5<d%KNaL^i#4]R7>X`jk*h%.m`DOWJTgr;&mM>'Y5Vr4>V-m<'78.h(kK5<dg;-'R,8@@TX-Ao2[_Q'DXiCU.DB(-2!6i`7E8V#B"Ee9^\To4DiKbqggpjk(6H1`@.Q5U"9reI,?:b9&5GAi#99]m`k^5PrMgs`nMO4b`e,YgPn@ceCYK>hhMigEihs5,b9_VS#0!s@n1QEuXA2`UI"gfU5U[tNoOV2Pp#P%gH(.ZN*;$pK"nO7Fht)!Ut!=Eu/9*)S@g*9fk(V12;A$knt3AD#ul_cq2NZ"Q69@8&r=K,T$qC^=jn\=/tGap]X*$-Tk7(aRCl$LpLHP96Cg(?tJ0%hslY#@]L`"(c$*LgRE%:O8LB>\pXcF0<_Dad[\Gb%.,c-&HW-i'Qk4SA/IMQ)'pTnYEWCa\Q/-+V1_$k/<NQcX$&k<p`Isdu93WM`g1F9U!+<kH7MPM(<TY!X3TR7[_!sV]p/%4U?T6ApF@>&rFaf/$ahiiW?"k^[C+CGR4%clAS6==0&,h![g;(\(r.9TN%N/DUa5dhY";u]Dd7kf!gl15S!nTRUJh+2C;Za9Ne+(!$#+;Z.P)(VE*q$?Q.4ZV\R?Mo<:b1UVT"5:q064E$fAOa@*@"M%H)f@\3_&cq:OcMAlI'q?%6ZF-]UEd5O&iLF_=U_7bj^'*_0nL6%.(cLM;Jd6]&rGm5=`$?cck8oYDq-tT12Y95KB5;gVp!l9bJT,5:N?kJRrJLFVJ2eGgKB4+?unl7>Nic,e0'GsP9^mAua:>;0aAUGH"<1JOtF)kWuj_+G"O#3pL7C*7,?gKpO'ZTq^4m&h7pp'*VfA'ZcWirn]GK1;5%Ms6=mm]rs-uZ?TO"L)W(YjT_E3O:tLLW-3F<W@^/ckf/`s&*:4S:PHP*]%9A-K/1U%ina*i;L#ZkRI>>/cGjBotlA!p_+!`Onat9.>6`.k^n4&o`aB[nOs*7)lU"qWeoN&[#Y^e0H;PT&A'H@S6_@?Sa>8ehmk"qH*VY[GBY$Qplc0\9+/P2W70;)gBE)QiW9F,S^AMVPlB-pm%)>.Cp+Up<8Y>j?R88$ko%F%4iC'`;EPli/HauK-C=(`e\7>dR_P(Jf@3>AUt"3Gl(6g_AB(W1j_37cf/Mr;2e/I3t_K&IIOt^QW_+)CDsY;?'rBO7]>Mu\iu-af=orb)jJr.VgQs=5o1:_DGEcU6R>MYT;V`(E_&P]f<kJ.1rj%k?'/6O:[^`Vo0U$9mdPk2<*(Zse,dV4[\LJRWkG7[IN?<CJC.f=gMC]P4#dY12;3g1\2pnR)5e-Q4DGe[?:o`Ai3>OM:\4<sK$rGSLmVg&VC-#Zff0\cYN>%HWa]CgJ-V'KY4;hAEppJCLGA+2R[YD<q;c^=^=?lfM64Q:VsoZ*Vt5JdkC5pEgE":_>UQ%G<9(;6mtGl.'8&JGrP=?dTdi9EB(J1Q#-++5#Q6h[s)oulkH=,hE>N!/\jO2$3k"#5^i#r2%S:_;@u!s%C[kp@ESabAY.8N[\MsGWk'mg1*tA/jL\ni&7dJF3g%E6"U+3#)JkJ^sic:(7f&$3tA?:O?Eu5FYaLj^FCX1:G]AlR-H!dRW;dD=pJc73Mk69"XfL"%+^0RBbG?roZ:[$;m@>m_aPQO-AXCU:%M(+%['euO=kFBR-D5*3/WXr:(MUcKnI:ps0=VjA<&q)"I-?s]WJ,)n9\:`-^W`NI6SDr>U[uAnLCQXlFhH0[hO>o.([19Fug6"T02W61F@)q;Y,<_!u'eLoD5'?Ps('"<ZLfGn,odD[HL/p.F0!lIDN-mkO.-s<Cjf<+\T?EFHM"pU+Yk[DOahrA;Dq]1`j=qGJAS"JpL%BM7p1`u\Gr%%f,P0InjEH3OjRGWfhq(QHrV54Oa3;03jhEK8Cj*5P$k@]p5E*ps.4+*5;eENGdnXiPd%/6'm6PCL:Y$!s<.LJ:MLbgtp?iW4N3`gtYji+dV!D,6hP)NG(50MhV#t4G59DV8Y9Wns'kp`UGd=lhisQuXm8KiSl9;#oJ)?l[kajt-ij<KIs&ae=+YE[$a)I6&~>endstream
+/Border [ 0 0 0 ]
+/Rect [ 60.64 275.9275 160.1161 287.0275 ]
+/Subtype /Link
+/Type /Annot
+>>
 endobj
 26 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 2617
+/A <<
+/S /URI
+/Type /Action
+/URI (https\072\057\057learn\056chatgpt\056com\057docs\057plugins)
 >>
-stream
-Gb!#]h/D%-&qAM?0b:`YY)$6N6Qa60AUEg=[fJCVB!F=#mm3*#=KOd"P2%=urUDfdP-Vd0j.sc6DR$U(P\,[Aqf+U5Ees5rVn^CZi5Zd]qgehcE3fPIR"Cf#G^gD*&[>SU_,F`e(+4Bf^H.FPL?kHUQG@puJl4."O<lnDOJEbX.1%kZMO:d>$=HIt/i-mleKLU#MnI";Q(U_9mGTJfY'IE(c8T_9rr"3HF?R;&k2l\Vn?F"RU99EZl<<ss?-UXOiT:O']_SlLR5)[E8^CDM^8kFn)/">?CW6GT#FEE@/XN?T;<:<WP_B95^0)OAgZ@gJ.q18S=,kDr/M"Hq/c%VWf/:gaXiADj`XK3%Y2HOjM9)+9=VC@3'mBipkSB7uIIJb]149a5OLSi+66IjdZ&Z@a]^W*a6bK30\IU]mE0lLbo(I]$CCUJ5W1QWc(W0;rl*5l`Kc7t-J_Gloa.7X6dO]$VE/4n(OBC_.i!FEh-tJLtF,6_f4-)@7-AdPAEH::J9cBr7BKI'TWp#@\j3+N/G#`6a.!oH-FI,+,]=o_/^^.C/Cu/7NE,&6opC'k9+>g.QTG#Euo3f`6=PVI3<lMS%dF@hsQ%W//%::Uo_#:PgQhX2Ke`)1C=V$7XMF<umJpendP3/_HVX[/a,dc;H(^X^u#*#JSQ"$/3)%!h8`LA8&Kps[3@u?85[V2nD6"uY"N!@.:F[q)>5,.$RFkE?o)iR[)g:<V]d)Yed<]u1S4M"u2fh3I.I3^eTP0?SC"I+;@*C9#+%>Jj")t"S_nNXlZapZH=6$_")$Sr3Y'J/r&r+E:S[iMIhTIP\(6T=Q0%#7_l#QMsiR-_9t4rGg'3S\iWf)bD3gKdCMB/kZqm0GXJWnL3BUD]qZS_[d^#fQYSC?OFO!/mj8_rEG>#)]]Shp9DDDcU..P%+#ZPiJ'H]:)*oq\T83jiMn@;nhs!CBE*YZK\G:@&EI=B/&1kDgGo#afbrY6)%;m%1^Sgjl]a;idZ,]-li]m_g.POg0f5J#DgNCI)96;N[VN>2TgP_cpW0%Uf-osNc`JJ7tRG-,n4@Iit@Pd&CFnHT2fdDE6eh\-ZIrG"\Ac%00YY7$@h>33aMM#:LD%@:Pl[u<S-rb)t`Tn-fenX/YaEFSCjHW4(^DF@HM3ZfKU?qj!YN&#q/Or`O./WZiM^<[^^>D!62Nggi&Jg3hbY,b6X,9HGKX,A*sQnPI#:ZQK]6CV^;shBoH9gE)=XZ;Zoj)IRpl!O`M6;Ca+maUe"iZPA;]_P)S<5ED.#h]T[.4%0@[kKE0Ap"^qf($.N@MT]MR@<9>GIB02mp1'&BuJpS-C=-FElG\^Tg"$X157Uf5i>YXg-fl`[nRURh7<I8r"[bqeEL,dd#+8_0b`a6Y"&ISpbO[X41"@i\BU`7ZVcH?+=n(d\)n3E-`_AKR\$HF"%!"$`'0bOrMM.o<]feOl[`0_YM]I,;PKqP"S'+>Oa"OC21`3tgoXLC2+A7A4DLbY))GT=(mNc3MA9'J\%-KgbnICepuo:^3m)(^k?DArplJ`Jit%VLWP*"D*ZBBB-Zb>X-03agf4$IP%i8^n?<+*a_0,[pXI'-YkhC^CXU,!Z\@I$5>!2Q.u)"N0Xa&..Br+9G(WFt)K`,!Z]q!0[t-)73MgDV"JA"H_7?BdqKp]YL7Q.Tj,pPijbd+^&Y5L]L,D6#[Yk+l.ZtE`VVSIV0]u1(D;`;1]Ws4q/c.YU%gWP@2&09t5gh3T-Nd!rb4<2ebNn]k/HR0M)CD;IGSa,(N#DFsuE_,!Z]q!0[t-)73MgDH?Bj"AmaDU'A:[(oY/j[A>GnL*o&VQ.RSFA8=KM-2+Pd\hj6DgR&Z1O0H=SoU-HLBAB(acfom0_FRICEVlLU]oM`u:.F'ZDB!i-_r5iV-+4rkIS6$*3bX@t88SS,IN.%4gXJ1[al(ZKDFY6Ua^<W,bL!QXNdV`ef<R3P5(E88f?&9OU>6nDIsH6XH#\!"c\n9N+$P0t(GKq%0FO#88T@rTmp\Z^?dkq15/"_F])Lg/a343=0)Zj,3T3m@kps[2Rbj7D]U%5`TTZ><T^lh-SVH3m6`9hJ2"]HZ'fI59OgNSM]CEQuHh6+d`kE'4'5p<JCV>"EUnEh?kVP_+khHm2)uIX7Yhn$OUR%Vp;j$46Vs2)>^/C@`+h$S3eZ$hQpQLAi4BdKQoEtm(#qrsjieXnHZ(!*SHa2'od(=s&CcK]a34i:pqX.QbgKV_(CZj5=QV,2O/OIjucG-tKG$g:a(^!277JO5KJ#oo`K);BYrI$0Hh>Km2MrC8Ko[*9>GA$Db!Q24TDpRssDj@l2f634PoBg=sH>\&?0&#)79t*O"B$k#eSM/V1P4l?=34CA@;d7W`rBPR%41A>#."l#7QH%.(F.=aMG6'eZ-(;R:qBmnhNYh**Zds,eE$dVACpkQ-2M_)AHY2TWrB2r2*bI%mA'`F&bZ1V#H.TNT1&c(B!:F;.<aB!rNs?R#ZS<uI+3F&l?qE=#+`=ms0WepBSG9?1%/nA"]l+?:@UT4Y"(qj/&`PaV`E7P0e8:=4J:i&:Wql2.c\]K`f7-%gi9'7kAmJWqNE,VlH/+7t^"tS7eHQQ/r!=8_WDrm11kb)m9[Hst~>endstream
+/Border [ 0 0 0 ]
+/Rect [ 60.64 262.8275 119.1706 273.9275 ]
+/Subtype /Link
+/Type /Annot
+>>
 endobj
 27 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 2174
+/A <<
+/S /URI
+/Type /Action
+/URI (https\072\057\057developers\056openai\056com\057plugins\057build\057plugins)
 >>
-stream
-Gatm<>>s99'RnB33%mA<G)3A=bI4uX=\?<^@1.d2Gi?V$9&ei'C<Kk*p;cWaA2t,++`0"D"@\YurQb3a$4d&3rAVh!rg^do#7At7aUG+DI$gG?l"':35U)9$1]S/B%Z;P/jH8JB\GS</$m#TVpc]"3#[%9jYTP2tTEc?>%>^q5\j1Z#UL"4ZWA@eXk(?]DLkhWohTE`SBrbEaCk2+;$r9[&?rg<I;GP1UN8RW3b;d[SR?e#(Cso<X*@BZOo(Ml.?:]Id\oTL0AtBdr&5)0M<lc-WK<r':P(fk(>JL-FGF187UFZ62Iq@Jk[]ZBZbYu&cDFmaga/JarUs/G-8EJ=*&G7GK(2R'<\Imd_AG2OOGV1+hEX#BZ_\\8(\&6TgU)n<%%&AcI_]?lS?MMPI0j^FidamNeMn;Kd6]OC@.*Vn2ePRFb">3,@cAV=%!AW(uP)-]@2&W2QVlqPVWD^M\iDq8iEZ\3f<H9P+/9$$]-,)gEaJ_LX'2N888#Y#'as[:)%8GZO%Ss$k'TWkV;(p+e(8r4oKkM,f`qA."'W"b5Lh0i1;HWTHcui4m;%U5iX(bb]+YKXR`D:%i+c-SoVR)\ha=ASmr1MV/c@RJ6J8kF*d6qjb+&+<9(6>/+bje9g_T7Zc!OK6;7j#:Y"*M!,DMLG,P67Z/O+l4d0K()7eA$72UKicW4FN1[AL@8iXi.NH,XMmp:p&OLOCf@UAKbQ*E1BI@52bu?QEa]E0=ls,BU%muKYWF($'e9^is\rZYQF#b^RQQ'Cr%`'O>`bHb/1c[)ha[ChV96nLj0U\H:g-h41#iS#JZh#T8_+9(DlP\POWR;gIN^:aK?D+mVOGcrQ89"KSQkEX-[fMn;+8LVjA3dk8umYSZ\N&D:^m366A#"m)5';DI;M"WF&QQ')btb@essgG(dYQi9hL!,*jJDQn76+/p(cq9_R(Ll"q/::RJb=AiYXJ/FT$=J&NtP7k?<[=dj#dUXbY]BoEsQJ&>/`F]qF8+G(M7An=(n+A&QZU:d:$R;Rl\ht[(cB@DZYe$,4\/Lnt@<RjF69/kh2IHdgbm$;HJk0%qpqQpFnk+!6.'"qU@[IO@;Zt6D@!NeOh4MOo&.)T6Cm8N+`YC-H?Mq`TJ?FaVdeet.X<1OTB!-U9\PQ%^$Wf5P1)3+(CV>/oC'uF#,@tQBHnRB&%ThjGTHe>NX]3`DgA>uTZ/?SJU_R`@OAt;RL*^A5PClaHQDaO!Dp*c&[6n2so7FK9P2VZ:/""J7f<Y]?LMCY[kXP6o"b@I;Cla\5k8V"c8nF_:>QG0;.#[I%^_^K/TkjG=qH0'Qs4*!81ZRL>OT?K_I'I0!JME8\3N8"u9B):H:ib%!Z1<dDKW-9\pT;mFlATkgY^)TuA?ea:l@T]Mpm'*+m`'%(EC`ci:jDL%&32#K![TbAjVFK:,,N$=\G6IpOjUuBofb&TQ?]C-9ZD%+Q3iGdce42QTPkSQ``C5bc;0VM5\*tDUF#ciVN:%L_p=siQf3NScn`)2p@Y6!UY.fN;=K_i4dcpZN0o`g[H'N4>aJ;2F4gC6Sa5[)K2mY=SFa)r7^&cHc67Ab-Kk5g"`Ld4TT/6_nD0n4Z2?%,52Y^3h@CKdj0uRQB;i=K;C5F"c6Ofen:$SFCjJlF.F*_Ap1o'<4oZ0f'!Fi^2dN^iM3D;B.7qRY<`E\0ug!U=1eneuO?:\;?f:QjIq^@*M/ek^0YbPDTo=8F8I\3.p_%5Di-t_#LD$c25BK9[q9f9h6k\IZ(o;+-B@Bk9"dFm*o@*S>YiY>7keU53A5.H"rpLjW#YeVg4-C]1&_"JVk*]"dc4T.CQ,5LlAJDno<@S8aOR\\3M\%6u[G\*L$(Y8HFAtRU6.\H+=f(?ZCMm:W5N:saEC;4>t[MOQ3d)bf\^]?6K3F#i;9HkXQr>&rKS\>7/Z0:f2JE$2!:u5Ec$1`!)"]WjAc2>gHQUNE(m(RkOeVa\0M<>B+krSdH^NY&r.oi)i/A-5$SOmYN-,N'X.B.1olQFmVTWqkAn,dH,hEGrCG?'Z7ZfQR5kYT_l5&J/g^h%#+gi\b(B7hG:TKoG/1Bl&mq4QS_oW*s/AQZu/OWh]DOKp!Ud7i#N(d)\MD[Zh+jr"W?<9Fhpmn<VBL'uG_dkc]Zi]C%fO1,,?HO+#+]`PF)T)`!nrXXY]!T>Joh#~>endstream
+/Border [ 0 0 0 ]
+/Rect [ 60.64 249.7275 165.9967 260.8275 ]
+/Subtype /Link
+/Type /Annot
+>>
 endobj
 28 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 3201
+/A <<
+/S /URI
+/Type /Action
+/URI (https\072\057\057learn\056chatgpt\056com\057docs\057developer\055commands)
 >>
-stream
-GauHM9691&&\cSp^``qoZNCdM^62Er>!#J>Y4YDiS1+q;U;`O_8^;'NPolX%)Z\"-@oh;]Xg]jU!M[u$rqaT2,/HL_J*W(*5?s#n+-fZ+>c`XbdY`ri`.s8iT*neh;QEL4,#?X]^p>R);i4@8/S$@!(0b4LbcJn76>T&YjjI[5[,QHV%DAfr[+6Xh$^hV</\7uO3&(XO**J$f0WTe=JSg/7NB$b'iEWI.SN,B+g_[405B$FmC>3K:G$FLc^0/"]MMj^;`Ogn19J3G>7m8$LrDg0=M,[A)0ATH]s+t*_rO0F`*G0/USM?$0)E$c70ran<>+P.+=3Y]t^QeD/EsfIEB=lE#^MS`&;s4!g9c?,GCoRkGQ?aDEI&sK@aMi$KMV3aA@$P_%_O%'W9IpTDp.EIqQ*;)(,WY4&LfE?UeS'.Oq*Ii+e2Y\l6*o*;;COfs\"XN$VX"Iam8qQj<al0AgB0/O$^-cIQ;J3i9++!N&?Sj_?<\PNHpWq3$_g$<%HGc*`KH`%<<iQCf%l1Vl>HeV2dAFajgM=m8>s.+GLPGM[1h)6-2'KnU>GqfU9<3r+7M!i=+b14iMul`$p+K"f>MLeDB8^mL\>&'75J.AR__c&?g'6%.*+=_-!4t!.5]1)L+S.6bfZ0+<,7r11=<Od<%7*$(of?f%?W%bOJ0Y75f;T40b%og7F-,h(_Vs)q\&$m0+o8Pibs&l4D5Lm?u`mTi>j&*l.i/?S5h%oHC@CUQo%^[9ID#r=qMVu/e0a;`HT[g%Vb`aW#s.C,ps_bn)2a<JZsr%:1.BO<fuR\R+<dh;Fr'IkT#>=/'AC<Pb*aBQd!;Wl@hj+2EEA+6if!#]0&Atq%:B1MePi#o/[;qCco_@GT#ML-sTJ=aYJL0_-f:6^4kNn/7:V_53``75pDj@k^b,not]D-og#%7.2"%X0:Ajrm:(X'?Vk;pafjcH<CZes.OK^"6%qFSZ&h7R'iU-mKOKrK_1&No,'?l(fE5-4SuWJPIS\9iR<GjN`%S&ES`Ekp\LOA%X9rT$TRcX(bX/0GK?-@VB)klo5C8J<A=7$uActe4^cV)YR?d2mGE6'r"=/b4+/SUr,mZq1o-s946slR0.0e+/H:](ZmP6%X=NZpILHBP:1dUuG5R+/DYrn(>+@iXBA4i1)`l]".`tMKHX#98P4I!ekSiI6q3fsX667^BG-rMI2V6OIdU?I7HnVlYO4cml\*eIk"<utK6AP%ni!h7SKrf.[].I8]9"[mjh+B)-($H^Go;/2l%J*i?+L9B8(CD8.eqfCY:aE`$Fg"%1,R=BX(Rp/L?qi5mV@<X*MmI%.1?3tRIio]O5k6.cJjQXg>,ZGXX9/>@O7.0Me)_+5#kdV$s.F,!?r]mUhR%O7r]B^jUGHTi4_u#NuWS$_Gdd*.!YO9A@eQ1GY]oO,e.V/.Nn+W;U9%<f%$_sHd25<Sg1DH1TF::Ig.Z]a_J5tee7Xca`BbC/+fHTKmp`fVo:`7)!N:W2kn/0hAk:H)2(Go[*"T]a9<cA7@ML:On8]pj8:Z[i&_DicVKlN>%CaT6R*C<MYJ\kJuPS&qo$>U8<_SbXYFj0dOM@BM^Pd"_nl+r53k5jLJYs0#j15^KQbJ[op;5;U^X>"rGo>r*IbT2\+7Ub>u_;HY&B1#aUdgTM$;?X<^m!WjiL-#+'b.Sn:F5mHqj<["&U^)=c&[4A_\IYkc^>-:<_#8T[oA9Omf3\bJK61>)$-m\S6O`8ZCB\0J8fLF\UM\=VqJ*$SWUrW/,.3I_.;8ok=Up[h%9SINTA+PH,7\ZE]4@O:2qt>YYIfM?372+%p?bI/<6I2cqoMLg#JHj]Z=gnD]3Ohqp<dI@;6TNRN6;<CT$cF<!g!1":K@I-5gL'1T</`<2YDbR@3<j+*u[p*!ADUZYN^0d-,3/n/fU=]i"k?hGC*\&[a$fn994g3"M`^M=bE()a^3BS(euR7944ujmHf2%n!"<V.OWQ>"nB#eIm!3>K7CQ'J)gPn^><LJ:i.DX0W+R!(ImG$E\NnTDiO&n)>s1bdZH:Id[sXb$pYBOq3%+5%BtlV<5/CWI,mNffC"YPM7Qrt>kE*qZZ^6ZQ&)5o/BIC03d=ChY2"%)b*rRe)!K-DROVQ2AT07u4OZ.HZna&Z,K\c1+'Zl$@@SeQ!EY6h:g4.<.<TMg4kbV[]J*+#*=;80hG.9mmG`]U>tC.UlkFct@j/[$%Rl_C/?9kBFA`gk9e'rtdV@=_fC1HmfQ;)mEsL;0\#WHuFP>:4p&gJu4C^L?&TH&1)@44D9B\FP@tX8],N0fG;!da@H$%S!?Bo)8Uk7!B_61l5R"VUJ@9>qqb!NqIP`5l;b?Ik.Np4)Bg.cWH5@OgM7!";DBDk(L![83c3c]e>,C9V\4IDh8&>F%0.@&s!+GquX,8(EGOU+jE>TiQ1Y;ZLj>#kb.TLH-As4]Dee8k=>4Si1R!rHb4:imE\!0&`g&Dk>d.JuSZFO`K[rC5u%>"-?(b6G`pUHJs'Y5jhs'Gqg[phJ&8AY]V9O^Jkk,2."s!rGI\N.Q:.UHkkb(91aVB\76`UI[0J,/GZEM29EtKlB-<oen5F)?HA.SU^e<Fufg9d=uS_YJYqmD!=8'$O/mG&Dl+hSc(s%FO`K[I=3e'\r;qFb5`J"n,CfBBr%)[.B??QL_i8'^3fDR_]TT>La*]Q33m06`.NJEd&C!4Af)Ae%tPF.L-[(%"sX_r)7^;t-b\@@#0,"Pg5?4==02t$MUs#e!jZnaMu]ob89c(X@#cVWUT<PIl8M07CU.W!qXg83QB8iYU1GcG?4!6sicRc>:7lqP!b!)92faFc"(qg'4H]_QO^lic@fTVumJoS)AcP5N!AG,uQB;P@G1,Sk!+;q*31sdKE5koJXH.bk#HA2Q'ZuHT!uKKXJ*t]BRsnp/>%A]AUejYu@jgrt+)Bk322/dPU`083c14.T3qdXDH0S*7r"!Akri(XJa)aWH"em\3@]lANf5eVjrF#9%gGj59o.'o.eT\^42a$T%BIo:3G#r-O%91pP@b(,Dm^)6IL&4PN%r1j"n?'/h$f&+,3Ok[7]'0DdFXsJmMUEJOn!*;)GM9L9m&I4.O#jighXPg0jI=tC^TVG)pZm5XqH]#n)&KsA%FhPS&a(5ZX3a@HV;?>8DH)Kh\9`?85L"jV)5B&mqW>(tS)GDO2B$,urloTl?Yk`\cG"95MuNn(3&\b~>endstream
+/Border [ 0 0 0 ]
+/Rect [ 60.64 236.6275 171.3832 247.7275 ]
+/Subtype /Link
+/Type /Annot
+>>
 endobj
 29 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 2672
+/Length 7602
 >>
 stream
-GauHM?#SLV(4Gq\\A/lY\+S+B^.)jDesk;XMPNr[(OaC58)fIBCEu?Cljg6aILf"AU[``bm@X`JOi4HHbB(umQf7#`%laM89;;ICdcCocmaCKm\BfQ6I8AJ(BA_!:jM`_^M+(>jLa)c:OlOFQl0T>rkjb_she/WYdibA2"lY\kTm=cEo,7.A?^I/KHeb)'$hPDkeVgbO`@3.MP&[rP^@KRVDV>Zh900i%r_2phVUoB/s.ft7.iK`)>c=_Tk\Zfco&"QdQ#;(r3f>q.4qEBn53D5V/').hn]=HS63!_SU+MNi=lZR?I2u&5Dp[P1rS^mtDp)>90oIS<Fk=o@;D'V2pZ-J->dd(u<gQ]BP=4kI\$:K'YrJ<ZrB)1@6;g55S>+D]hf('_#feo]Hd)#"OSZV[f\nR1$i`1bS<p-\H0933S@ch#6S<:^XC`!Z25bp&DGKIl;Gl"<O]*RU*MoTKn3PH3=l4.bZ>E8PEu+MiE&[Ik.N%4:!9`hI5Z,23R)g2`.;#0fTZ=RIk!RfMC)^<n!%ChrMgRscQ)kn`PCV'LNATcI1!:lfA6qIR5*'on(iNrf>8gLN+E4+q.Z9"^+d(ASUarH[fuQLb,?kS.Qq`Y=]?iq#OL[>QQVCbSkT?fNc$q]_E=bU57kDZ@$eN<T<4[&]YdbaOSaidiSj-E']\$WuD;q=pj,S,b4+qmo_'tg^^qoAS4DK:HY%@osS>\M##M[[^ouEV"Zmo9pUtk9'*lZccqtCn)-%Pf%)97]U9]I]n+aYX\HT4J5L00geE4i;S!7^$t:I#^79KsTSlNo0,!M<suQ&?AD66r!');X:f/eA*V+R0@I4'RiG.XFALBUTW(9%fRjnYkMtYYQ_?i:k]fh%=QIBpqS]UM`0PqJStn@(#>`^d'*<<[9p\O'n%2hY=!d/SW"5ffVp/T;oJ-<f6&71"6;9*cRS:+RDj5oES7N98-kN,V3;5NKQ./g__6>*M'R+ZE9>Nd<7jW!<#M:b4o[]<?[[VqQPXJB+jH4[kGp[XB;-(V=*jB$>DWS<,>&P,s8lH]R@l#I#>m=A,c?\5rr,N?/&1[L^0((3e\QojNGbtR,Z.Q=elS&8Dq@]-sG9Sgh1mBThqk)%]IZ@Ef\$'4B@_AVFpXMe+M7\&(durnst/BUhVEUZ[N;FNP[gQ>`!c&T`9tc?OpnactL'UOY-Ik@UHMK.a1qK#%utkZdEdVZ==g8"oV&RegB]8k-^i2jMdh;]_+u"UtN?$]_+uG'+Rb!br5+522A2+lCZZdrO+*N]3Y-fd09aj%*G4V^&Bk*'7R@_oll36[nh)#Ai[Q=`lBGG*f(gdo+V]MR(Ot.d<eQf3"GO@Mfo0.8)jlJqlpSR0'_3tV-<"Z!5O,ac8C\sWBo`7(?!JKCnda1A*E$6f<95On"sk;Q9T#(PLYbCfna=)ZC#9_<YLJTQ\Nm89eFeN4meqG;s$tLK&dss!+N*;]`Q=Enf46&H<qm/>]#$$+\L0X(,j3$T^VBX#X#32@MB%ajVq33?E>Uq`6'f7(8H>07"196hb[*tVk,)bX3Y6-Hft+>!.IHpr<=>]ddGClQNLX@(8+J=q5@WlP"*='2b+nR08BR>lChOBO&%,n@\Lp)/'cCA@LdLTpT>R7f>$NNK8MZEP>1-hSV*/(NH`bE,\fucA(6T0$aBQXT&j\p3#$B4);oV`^?%i\2M62_Hmp@3*Dm_#/ULln[gb[4hk(PPW8Gs3H]m47kJb7IlKd_F*u`c"ofPj^fYN,/JJ1P%*;CEiI<B"*?5Nne*3k.=gqZhOR`aFK:t_+b`u+.f&i-A1e)l2.[l./cfZ;'G7Lbm>^s^tu\!5%t*^un@g)%=$d?LM(;mf_X@Mj5+1mJ8b>C=L#GeSRi#jBHu6m/[OYp0PhX>DjE$0bG-iBK#&dag9p]R`4bF(7mYMsOZ+cqi$kneSjp11Kj4@Y9s?K/LXl4$Kpr$fGn^fq%s?f3n85XBOtY1H4"$:\NqoOI:mt,GJYsDd--KNI*AGo+%Z[g)r3-PGRa*WtYl:1!m0TI=K4Gf6<oCSJ*>c@tA4*iOWO/b@ur]JC5P_qr5hqFBpDk_DZ0)WiFn],oBp]9[\!!_<*i4D/KHT7`ajUI42_OkbV+4Xp%9F([6HX8;jVV92Kf":k9FD?HTdLX+-^\FpBH#i8Q+73[_sd-huhUg0=cBhZ]0L2giGna0-Gi)$eqQFp,2=WCk1n3F]YZhfQf?Pq9)prC$A5iG%(1dfDQj=jd%-#E0H]PljiFl>,Gq#cOMK^PIVo(()F4_]/Coo+L=]P7#J!FIS/[V@+nips`TIKYoQ0*8fG<Qda"p04`pHO>jq=.SI3Qfl4#n]-$?Z/t9jOrX4m=b+uG3kdiLpB!o0;][4'OrK>6rOVd`+?nP,RZee,kS#]&]W:aMg>-]?ogJk'D:3%V5.YC2brSqZ#P8bme'b&>jV/PJg9]^Y>/sk99m0[8Q3O'fTP9?rgS7X0=?$Cm<f`MF(plq*Q>"U*&kCfE<';8m61X(n$O.!SS9Jod5U14(MD%BIKb`$%>5;H":`O7=[^[s,#HF)14kk,::"84"F1,bG_&7C>Ei7\R@%^SS)Z.?T-.=g\VX^DQZAZb:&<+8X,P2Y._-?n=!F[Bk>mC+CK_Z""T&6e&4`CW&'3&r+g7fBcLf$J(TLX,l0DRgOh~>endstream
+1 0 0 1 0 0 cm
+BT
+/F1 12 Tf
+14.4 TL
+ET
+q
+0.839216 0.870588 0.898039 RG
+0.5 w
+n
+44.64 758 m
+567.36 758 l
+S
+0.380392 0.443137 0.505882 rg
+BT
+/F1 7.5 Tf
+9 TL
+ET
+BT
+1 0 0 1 44.64 765 Tm
+(EES for Codex \055 Installation Guide) Tj
+T*
+ET
+BT
+1 0 0 1 437.415 765 Tm
+(Plugin 0\0561\0562\055beta \174 Launcher 0\0564\0562\055beta) Tj
+T*
+ET
+n
+44.64 31 m
+567.36 31 l
+S
+BT
+1 0 0 1 44.64 20 Tm
+(github\056com\057EES\055Community\057ees\055codex) Tj
+T*
+ET
+BT
+1 0 0 1 528.9975 20 Tm
+(Page 8 of 8) Tj
+T*
+ET
+Q
+q
+1 0 0 1 50.64 713.04 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 3.5 Tm
+/F2 20.5 Tf
+24 TL
+(If the normal path does not work) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 691.94 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3.8 Tm
+/F1 9.3 Tf
+13.1 TL
+(Most users need only Steps 1\0555\056 Use the table below only when the normal flow stops or the plugin is already present\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 559.74 cm
+q
+0.090196 0.196078 0.301961 rg
+n
+0 126.2 522.72 -22.7 re
+f*
+0.956863 0.968627 0.980392 rg
+n
+0 80.4 522.72 -23.1 re
+f*
+0.956863 0.968627 0.980392 rg
+n
+0 34.2 522.72 -34.2 re
+f*
+1 1 1 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 7 109.5 cm
+q
+1 1 1 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.3 Tf
+10.7 TL
+(What you see) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 189.952 109.5 cm
+q
+1 1 1 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.3 Tf
+10.7 TL
+(What to do) Tj
+T*
+ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 7 86.4 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Try now\054 Install\054 or \053) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 189.952 86.4 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Use the displayed action\056 The label varies by app version and installation state\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 7 63.3 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Plugin already works) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 189.952 63.3 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Do not reinstall\056 Start a new task and run the verification prompt from Step 2\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 7 40.2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Marketplace registered from another source) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 189.952 40.2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Inspect the registered name and root before removing anything\073 follow the recovery below\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 7 17.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(Local marketplaces unavailable) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 189.952 6 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 14.1 Tm
+/F1 8.1 Tf
+11.1 TL
+(Use the advanced manual skill\055copy fallback in the repository README\073 launcher setup is) Tj
+T*
+(still separate\056) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.839216 0.870588 0.898039 RG
+0.6 w
+n
+0 126.2 m
+522.72 126.2 l
+S
+n
+0 0 m
+522.72 0 l
+S
+n
+0 0 m
+0 126.2 l
+S
+n
+522.72 0 m
+522.72 126.2 l
+S
+0.35 w
+n
+0 103.5 m
+522.72 103.5 l
+S
+n
+0 80.4 m
+522.72 80.4 l
+S
+n
+0 57.3 m
+522.72 57.3 l
+S
+n
+0 34.2 m
+522.72 34.2 l
+S
+n
+182.952 0 m
+182.952 126.2 l
+S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 552.74 cm
+Q
+q
+1 0 0 1 50.64 528.54 cm
+q
+0.043137 0.478431 0.458824 rg
+BT
+1 0 0 1 0 3.2 Tm
+/F2 13 Tf
+16.2 TL
+(Recover an older personal marketplace) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 500.34 cm
+q
+BT
+1 0 0 1 0 14.1 Tm
+11.1 TL
+/F1 8.1 Tf
+0.129412 0.192157 0.247059 rg
+(Early prerelease copies used the generic marketplace name ) Tj
+/F3 8.1 Tf
+(personal) Tj
+/F1 8.1 Tf
+(\056 First inspect the configured roots\056 Remove only an obsolete EES) Tj
+T*
+(entry\073 a personal marketplace may contain unrelated plugins\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 401.74 cm
+q
+0.956863 0.968627 0.980392 rg
+n
+0 94.6 504.72 -94.6 re
+f*
+0 0 0 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 9 76.8 cm
+q
+0.090196 0.196078 0.301961 rg
+BT
+1 0 0 1 0 2.4 Tm
+/F2 8.4 Tf
+10.8 TL
+(Safe inspection and conditional removal) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 9 7 cm
+q
+BT
+1 0 0 1 36 48.9 Tm
+9.3 TL
+/F3 6.9 Tf
+0.129412 0.192157 0.247059 rg
+(codex plugin marketplace list \055\055json) Tj
+T*
+(codex plugin list \055\055json) Tj
+T*
+T*
+(\043 Only after verifying that these are the obsolete EES entries\072) Tj
+T*
+(codex plugin remove ees\100personal \055\055json) Tj
+T*
+(codex plugin marketplace remove personal \055\055json) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.839216 0.870588 0.898039 RG
+0.8 w
+n
+0 94.6 m
+504.72 94.6 l
+S
+n
+0 0 m
+504.72 0 l
+S
+n
+0 0 m
+0 94.6 l
+S
+n
+504.72 0 m
+504.72 94.6 l
+S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 395.74 cm
+Q
+q
+1 0 0 1 44.64 346.44 cm
+q
+1 0.94902 0.85098 rg
+n
+0 49.3 522.72 -49.3 re
+f*
+0 0 0 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 11 8 cm
+q
+BT
+1 0 0 1 0 25.2 Tm
+11.1 TL
+/F2 8.1 Tf
+0.129412 0.192157 0.247059 rg
+(After removal) Tj
+/F1 8.1 Tf
+T*
+(Fully quit and restart the ChatGPT desktop app\054 then add the repository again\056 Do not delete ) Tj
+/F3 8.1 Tf
+(\056codex\134plugins\134cache) Tj
+/F1 8.1 Tf
+( as a first step\056 The) Tj
+T*
+(current marketplace uses the unique identifier ) Tj
+/F3 8.1 Tf
+(ees\055codex) Tj
+/F1 8.1 Tf
+(\056) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.909804 0.635294 0.227451 RG
+4 w
+n
+0 0 m
+0 49.3 l
+S
+0.5 w
+n
+0 49.3 m
+522.72 49.3 l
+S
+n
+0 0 m
+522.72 0 l
+S
+n
+0 0 m
+0 49.3 l
+S
+n
+522.72 0 m
+522.72 49.3 l
+S
+Q
+Q
+Q
+q
+1 0 0 1 50.64 341.44 cm
+Q
+q
+1 0 0 1 50.64 317.24 cm
+q
+0.043137 0.478431 0.458824 rg
+BT
+1 0 0 1 0 3.2 Tm
+/F2 13 Tf
+16.2 TL
+(Updates and sources) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 289.04 cm
+q
+BT
+1 0 0 1 0 14.1 Tm
+11.1 TL
+/F1 8.1 Tf
+0.129412 0.192157 0.247059 rg
+(Updating the plugin does not update a launcher already copied into LocalAppData\056 Ask the ) Tj
+/F3 8.1 Tf
+(\044ees) Tj
+/F1 8.1 Tf
+( skill to reinstall the matching launcher and) Tj
+T*
+(rerun the complete test\056) Tj
+T*
+ET
+Q
+Q
+q
+1 0 0 1 50.64 232.64 cm
+q
+0.043137 0.478431 0.458824 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 0 41.3 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(\055) Tj
+T*
+ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 10 41.3 cm
+q
+0.184314 0.435294 0.921569 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(EES\055Community\057ees\055codex) Tj
+T*
+ET
+Q
+Q
+0.043137 0.478431 0.458824 rg
+q
+1 0 0 1 0 28.2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(\055) Tj
+T*
+ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 10 28.2 cm
+q
+0.184314 0.435294 0.921569 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(OpenAI\072 Plugins) Tj
+T*
+ET
+Q
+Q
+0.043137 0.478431 0.458824 rg
+q
+1 0 0 1 0 15.1 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(\055) Tj
+T*
+ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 10 15.1 cm
+q
+0.184314 0.435294 0.921569 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(OpenAI\072 Package your plugin) Tj
+T*
+ET
+Q
+Q
+0.043137 0.478431 0.458824 rg
+q
+1 0 0 1 0 2 cm
+q
+0.129412 0.192157 0.247059 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(\055) Tj
+T*
+ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 10 2 cm
+q
+0.184314 0.435294 0.921569 rg
+BT
+1 0 0 1 0 3 Tm
+/F1 8.1 Tf
+11.1 TL
+(OpenAI\072 Developer commands) Tj
+T*
+ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 44.64 172.24 cm
+q
+0.956863 0.968627 0.980392 rg
+n
+0 60.4 522.72 -60.4 re
+f*
+0 0 0 rg
+BT
+/F1 10 Tf
+12 TL
+ET
+q
+1 0 0 1 11 8 cm
+q
+BT
+1 0 0 1 0 36.3 Tm
+11.1 TL
+/F2 8.1 Tf
+0.129412 0.192157 0.247059 rg
+(Notices) Tj
+/F1 8.1 Tf
+T*
+(EES Professional\054 executable EES libraries\054 an EES license\054 Codex\054 and OpenAI software are not included\056 The repository packaging is) Tj
+T*
+(source\055available but not open source\056 EES\137Tool\137Metadata\056json is generated from Database22 and redistributed with the) Tj
+T*
+(owner\047s permission\056 Tests demonstrate software execution\073 engineering correctness\054 design fitness\054 and safety require independent review\056) Tj
+T*
+ET
+Q
+Q
+q
+1 J
+1 j
+0.090196 0.196078 0.301961 RG
+4 w
+n
+0 0 m
+0 60.4 l
+S
+0.5 w
+n
+0 60.4 m
+522.72 60.4 l
+S
+n
+0 0 m
+522.72 0 l
+S
+n
+0 0 m
+0 60.4 l
+S
+n
+522.72 0 m
+522.72 60.4 l
+S
+Q
+Q
+Q
+
+endstream
 endobj
 xref
 0 30
 0000000000 65535 f 
-0000000061 00000 n 
-0000000132 00000 n 
-0000000239 00000 n 
-0000000351 00000 n 
-0000000456 00000 n 
-0000000651 00000 n 
-0000000761 00000 n 
-0000000956 00000 n 
-0000001071 00000 n 
-0000001266 00000 n 
-0000001462 00000 n 
-0000001658 00000 n 
-0000001854 00000 n 
-0000002050 00000 n 
-0000002242 00000 n 
-0000002430 00000 n 
-0000002631 00000 n 
-0000002830 00000 n 
-0000003066 00000 n 
-0000003136 00000 n 
-0000003515 00000 n 
-0000003622 00000 n 
-0000005975 00000 n 
-0000008193 00000 n 
-0000011752 00000 n 
-0000014461 00000 n 
-0000017170 00000 n 
-0000019436 00000 n 
-0000022729 00000 n 
+0000000015 00000 n 
+0000000428 00000 n 
+0000000536 00000 n 
+0000000585 00000 n 
+0000000774 00000 n 
+0000006643 00000 n 
+0000006716 00000 n 
+0000006823 00000 n 
+0000006935 00000 n 
+0000007040 00000 n 
+0000007151 00000 n 
+0000007267 00000 n 
+0000007458 00000 n 
+0000014499 00000 n 
+0000014690 00000 n 
+0000024753 00000 n 
+0000024944 00000 n 
+0000031521 00000 n 
+0000031712 00000 n 
+0000039144 00000 n 
+0000039335 00000 n 
+0000045584 00000 n 
+0000045775 00000 n 
+0000054294 00000 n 
+0000054525 00000 n 
+0000054741 00000 n 
+0000054950 00000 n 
+0000055175 00000 n 
+0000055398 00000 n 
 trailer
 <<
-/ID 
-[<ec5b7b53cbc2ef6acfcbbeb401b393ee><ec5b7b53cbc2ef6acfcbbeb401b393ee>]
-% ReportLab generated PDF document -- digest (opensource)
-
-/Info 20 0 R
-/Root 19 0 R
 /Size 30
+/Root 3 0 R
+/Info 1 0 R
 >>
 startxref
-25493
+63053
 %%EOF

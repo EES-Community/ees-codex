@@ -19,7 +19,7 @@ This edition is deliberately locked to 64-bit EES. Its installer and installed t
 3. Extract the complete ZIP. Do not run the installer while browsing inside the ZIP.
 4. Open the extracted folder and double-click **Install.cmd**.
 5. Choose the launcher and models-and-results workspace directories. Press **Enter** to accept each recommended path. The recommended workspace is `%USERPROFILE%\EES-Codex-Workspace-64bit`, directly inside your Windows user folder—not inside Documents, Music, or OneDrive.
-6. The installer selects `C:\EES64\ees64.exe`, runs real EES calculations, checks the Database22 catalog, and uses `/AI` to test routines from all five application libraries without `$Load`. It also verifies that the persistent library-autoload setting in `EES.PRF64` was not changed.
+6. The installer selects `C:\EES64\ees64.exe`, runs real EES calculations, validates the current packaged `EES_Tool_Metadata.json` and its compact/full helpers, and uses `/AI` to test routines from all five application libraries without `$Load`. It also verifies that the persistent library-autoload setting in `EES.PRF64` was not changed.
 
 For a custom EES location, run:
 
@@ -56,7 +56,7 @@ If you accepted the recommended launcher location, this command displays the exa
 
 - Enforced use of 64-bit `ees64.exe`.
 - Automatic access to all five EES application libraries during controlled solves through the EES `/AI` command-line option. The launcher does not edit, replace, back up, or restore `EES.PRF64`.
-- Safe staging, timeout handling, installed metadata search, and the Engineering Tool Dialog Database22 catalog.
+- Safe staging, timeout handling, and compact or full search of the current packaged `EES_Tool_Metadata.json` as the sole catalog source.
 - Heat exchanger, water-property, and open Brayton-cycle examples.
 - A repeatable installation test and non-destructive uninstaller.
 

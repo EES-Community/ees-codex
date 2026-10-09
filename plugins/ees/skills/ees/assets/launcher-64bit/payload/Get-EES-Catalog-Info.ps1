@@ -8,23 +8,29 @@ $ErrorActionPreference = 'Stop'
 
 $context = Get-EesCatalogContext -RequestedEesPath $EesPath
 $catalog = $context.Catalog
-$validationPath = Join-Path $PSScriptRoot 'catalog\catalog-validation.json'
-$validation = if (Test-Path -LiteralPath $validationPath -PathType Leaf) {
-    Get-Content -LiteralPath $validationPath -Raw | ConvertFrom-Json
-}
-else { $null }
 
 [ordered]@{
-    catalog_name = if ($context.HasPackagedCatalog) { $catalog.catalog_name } else { 'Installed EES metadata only' }
-    catalog_version = if ($context.HasPackagedCatalog) { $catalog.catalog_version } else { $null }
-    catalog_schema_version = if ($context.HasPackagedCatalog) { $catalog.catalog_schema_version } else { $catalog.version }
-    source_sha256 = if ($context.HasPackagedCatalog) { $catalog.source.sha256 } else { $null }
-    validation_status = if ($validation) { $validation.status } else { 'validation report not packaged' }
-    normalized_row_counts = if ($validation) { $validation.row_counts } else { $null }
-    documented_routines = if ($context.HasPackagedCatalog) { @($catalog.Routines | Where-Object { $context.PackagedRoutineIds.ContainsKey([string]$_.RoutineID) }).Count } else { 0 }
-    installed_metadata_routines = $context.InstalledRoutineCount
-    combined_searchable_routines = $context.CatalogRoutineCount
+    catalog_name = 'EES_Tool_Metadata.json'
+    catalog_path = $context.CatalogPath
+    catalog_schema_version = $catalog.version
+    catalog_sha256 = $context.CatalogSha256
+    catalog_last_write_utc = $context.CatalogLastWriteUtc
+    row_counts = [ordered]@{
+        routines = @($catalog.Routines).Count
+        categories = @($catalog.Categories).Count
+        routine_categories = @($catalog.RoutineCategories).Count
+        signatures = @($catalog.Signatures).Count
+        parameters = @($catalog.Parameters).Count
+        keywords = @($catalog.Keywords).Count
+    }
+    searchable_routines = $context.SearchableRoutineCount
+    signature_only_routines = $context.SignatureOnlyRoutineCount
     selected_ees = $context.EesPath
     installed_metadata_path = $context.InstalledMetadataPath
+    installed_metadata_present = $context.InstalledMetadataPresent
+    installed_metadata_readable = $context.InstalledMetadataReadable
+    installed_metadata_routines = $context.InstalledRoutineCount
+    installed_metadata_error = $context.InstalledMetadataError
     userlib_path = $context.UserlibPath
+    note = 'The packaged EES_Tool_Metadata.json is the sole catalog source. The selected installation metadata is compared only for installed_metadata_match and is never merged.'
 } | ConvertTo-Json -Depth 6

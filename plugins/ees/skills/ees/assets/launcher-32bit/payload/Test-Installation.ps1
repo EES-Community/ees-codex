@@ -45,13 +45,65 @@ try {
     if ($resultText -notmatch '(?m)^Q_dot\s+2\.00000000E\+02\s+\[kW\]') {
         throw "EES ran, but the expected Q_dot = 200 kW result was not found in $output"
     }
-    $catalogSearch = & (Join-Path $config.install_directory 'Search-EES-Library.ps1') -Query 'compressor constant efficiency' -Limit 10 -EesPath $config.ees_path | ConvertFrom-Json
-    if ($catalogSearch.packaged_catalog_version -ne 'Database22' -or $catalogSearch.combined_catalog_routine_count -lt 813) {
-        throw 'The Engineering Tool Dialog Database22 catalog was not loaded correctly.'
+    $catalogInfo = & (Join-Path $config.install_directory 'Get-EES-Catalog-Info.ps1') -EesPath $config.ees_path | ConvertFrom-Json
+    if ($catalogInfo.catalog_name -ne 'EES_Tool_Metadata.json' -or
+        $catalogInfo.catalog_schema_version -ne 1 -or
+        $catalogInfo.catalog_sha256 -ne 'A87F0FD43C68E514C824BA57BD69643D78BC10889137F3D21B086A8BCC8C40C4' -or
+        $catalogInfo.row_counts.routines -ne 813 -or
+        $catalogInfo.searchable_routines -ne 814 -or
+        $catalogInfo.signature_only_routines -ne 1 -or
+        $catalogInfo.row_counts.signatures -ne 1184 -or
+        $catalogInfo.row_counts.parameters -ne 7524) {
+        throw 'The current packaged EES_Tool_Metadata.json catalog was not loaded correctly.'
     }
+    $catalogSearch = & (Join-Path $config.install_directory 'Search-EES-Library.ps1') -Query 'compressor constant efficiency' -Limit 3 -Detail Compact -EesPath $config.ees_path | ConvertFrom-Json
     $compressor = @($catalogSearch.results | Where-Object { $_.routine_id -eq 'Compressor2_CL' }) | Select-Object -First 1
     if (-not $compressor -or $compressor.required_load_directive -ne '$Load Component Library') {
         throw 'The catalog did not return the expected Compressor2_CL library-load instruction.'
+    }
+    $expectedCompactFields = @('routine_id', 'routine_type', 'short_description', 'primary_syntax', 'required_load_directive', 'installed_metadata_match', 'deprecated', 'replacement_routine_id')
+    $actualCompactFields = @($compressor.PSObject.Properties.Name)
+    if (@(Compare-Object -ReferenceObject $expectedCompactFields -DifferenceObject $actualCompactFields).Count -ne 0) {
+        throw 'Compact catalog search returned an unexpected field set.'
+    }
+    $whitespaceQueryRejected = $false
+    try {
+        & (Join-Path $config.install_directory 'Search-EES-Library.ps1') -Query '   ' -Limit 3 -Detail Compact -EesPath $config.ees_path | Out-Null
+    }
+    catch { $whitespaceQueryRejected = $true }
+    if (-not $whitespaceQueryRejected) {
+        throw 'Catalog search accepted a whitespace-only query.'
+    }
+    $compactRoutineDetail = & (Join-Path $config.install_directory 'Get-EES-Routine.ps1') -RoutineID 'Compressor2_CL' -Detail Compact -EesPath $config.ees_path | ConvertFrom-Json
+    $actualCompactRoutineFields = @($compactRoutineDetail.routine.PSObject.Properties.Name)
+    if (@(Compare-Object -ReferenceObject $expectedCompactFields -DifferenceObject $actualCompactRoutineFields).Count -ne 0) {
+        throw 'Compact routine detail returned an unexpected field set.'
+    }
+    $routineDetail = & (Join-Path $config.install_directory 'Get-EES-Routine.ps1') -RoutineID 'Compressor2_CL' -Detail Full -EesPath $config.ees_path | ConvertFrom-Json
+    if ($routineDetail.catalog_sha256 -ne $catalogInfo.catalog_sha256 -or
+        @($routineDetail.routine.signatures).Count -ne 2 -or
+        @($routineDetail.routine.signatures[0].parameters).Count -ne 9) {
+        throw 'Full routine detail did not return the expected current Compressor2_CL signatures and parameters.'
+    }
+    $notchDetail = & (Join-Path $config.install_directory 'Get-EES-Routine.ps1') -RoutineID 'Notch_Sensitivity' -Detail Full -EesPath $config.ees_path | ConvertFrom-Json
+    if (@($notchDetail.routine.signatures).Count -ne 3 -or
+        @($notchDetail.routine.signatures | Where-Object { @($_.parameters).Count -ne 5 }).Count -ne 0) {
+        throw 'Shared Notch_Sensitivity parameters were not resolved for all three signatures.'
+    }
+    $gearDetail = & (Join-Path $config.install_directory 'Get-EES-Routine.ps1') -RoutineID 'gear_Lewis_factor' -Detail Full -EesPath $config.ees_path | ConvertFrom-Json
+    if (@($gearDetail.routine.signatures).Count -ne 2 -or
+        @($gearDetail.routine.signatures | Where-Object { @($_.parameters).Count -ne 3 }).Count -ne 0) {
+        throw 'Shared gear_Lewis_factor parameters were not resolved for both signatures.'
+    }
+    $impingingDetail = & (Join-Path $config.install_directory 'Get-EES-Routine.ps1') -RoutineID 'Impinging_Jet_SRN_ND' -Detail Full -EesPath $config.ees_path | ConvertFrom-Json
+    if (@($impingingDetail.routine.categories | Where-Object { $_.category_id -in @('Imp. Jets Nondimensional Char.', 'Impinging Jets') }).Count -ne 2) {
+        throw 'Canonical routine-ID normalization did not preserve both Impinging_Jet_SRN_ND categories.'
+    }
+    $ammoniaDetail = & (Join-Path $config.install_directory 'Get-EES-Routine.ps1') -RoutineID "FoulingFactor('Ammonia liquid oil bearing')" -Detail Full -EesPath $config.ees_path | ConvertFrom-Json
+    if ($ammoniaDetail.routine.metadata_record_type -ne 'signature_only' -or
+        @($ammoniaDetail.routine.signatures).Count -ne 1 -or
+        @($ammoniaDetail.routine.signatures[0].parameters).Count -ne 1) {
+        throw 'The signature-only ammonia fouling-factor entry was not preserved as a searchable routine view.'
     }
 
     $libraryAutoloadResult = $null
@@ -100,8 +152,11 @@ try {
         ees_path = $config.ees_path
         workspace_root = $config.workspace_root
         result_path = $output
-        catalog_version = $catalogSearch.packaged_catalog_version
-        combined_catalog_routines = $catalogSearch.combined_catalog_routine_count
+        catalog_name = $catalogInfo.catalog_name
+        catalog_schema_version = $catalogInfo.catalog_schema_version
+        catalog_sha256 = $catalogInfo.catalog_sha256
+        catalog_routines = $catalogInfo.row_counts.routines
+        searchable_routines = $catalogInfo.searchable_routines
         library_autoload_result = $libraryAutoloadResult
         profile_autoload_bits_unchanged = if ($config.ees_architecture -eq '32-bit') { $true } else { $null }
     } | ConvertTo-Json

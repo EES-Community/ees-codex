@@ -8,16 +8,18 @@ For write-only work or review of existing files, no launcher configuration or EE
 
 ## Find an installed routine
 
-Before recreating a heat-transfer correlation or component model, search the selected installation's catalog and then inspect one candidate:
+Before recreating a heat-transfer correlation or component model, search the packaged canonical catalog through the selected launcher and then inspect one candidate:
 
 ```powershell
 & (Join-Path $config.install_directory 'Search-EES-Library.ps1') `
-  -Query 'compressor constant efficiency' -EesPath $config.ees_path -Limit 5
+  -Query 'compressor constant efficiency' -EesPath $config.ees_path -Limit 3 -Detail Compact
 & (Join-Path $config.install_directory 'Get-EES-Routine.ps1') `
-  -RoutineID 'Compressor2_CL' -EesPath $config.ees_path
+  -RoutineID 'Compressor2_CL' -EesPath $config.ees_path -Detail Compact
 ```
 
-Keep search results concise and never load the full catalog JSON. The Database22 catalog contains calling metadata, not executable libraries. An `installed_metadata_match` is discovery evidence, not proof that the routine and its dependencies will compile. When executable EES is available, verify the selected signature, parameter meanings, and units with a small EES compile test before building around it.
+Start with `-Detail Compact`. It returns only the routine identifier and type, short description, primary syntax, required load directive, installed-metadata match, and deprecation or replacement information. Request `-Detail Full` for one selected routine only when alternate signatures, parameter descriptions, keywords, categories, paths, hashes, or help references are needed. Never load the complete catalog JSON.
+
+The packaged `EES_Tool_Metadata.json` is the sole catalog source and contains calling metadata, not executable libraries. `installed_metadata_match` only reports whether the selected EES installation's own metadata lists the routine; it is discovery evidence, not proof that the routine and its dependencies will compile. When executable EES is available, verify the selected signature, parameter meanings, and units with a small EES compile test before building around it.
 
 The launcher passes `/AI`, making all five EES application libraries available for a controlled run without changing persistent autoload preferences. A returned `required_load_directive` is therefore optional for a controlled run; include it exactly when portability to an ordinary EES session is useful. The only permitted `$Load` directives are `$Load Component Library`, `$Load Mechanical`, `$Load NASA`, and `$Load Incompressible`.
 

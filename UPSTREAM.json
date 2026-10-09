@@ -1,17 +1,33 @@
 {
-  "launcher_version": "0.4.1-beta",
+  "launcher_version": "0.4.2-beta",
+  "catalog_metadata": {
+    "canonical_source": "C:\\EES_Dev - Work\\Userlib\\EES_System\\EES_Tool_Metadata.json",
+    "packaged_filename": "EES_Tool_Metadata.json",
+    "source_last_write_utc": "2026-10-07T16:34:55.3479167Z",
+    "source_size_bytes": 3721190,
+    "source_sha256": "A87F0FD43C68E514C824BA57BD69643D78BC10889137F3D21B086A8BCC8C40C4",
+    "schema_version": 1,
+    "row_counts": {
+      "routines": 813,
+      "categories": 353,
+      "routine_categories": 1673,
+      "signatures": 1184,
+      "parameters": 7524,
+      "keywords": 1586
+    }
+  },
   "packages": [
     {
       "archive": "EES-Codex-Launcher-32bit-0.4.0-beta.zip",
       "sha256": "8d375c509f29c1c8d57d60868f8a2fb09ca92a0f14e1322be7565fdb3787b7ee",
       "destination": "plugins/ees/skills/ees/assets/launcher-32bit",
-      "modifications": "Derived from the 0.4.0-beta archive. Run-EES.ps1 now hands PowerShell 7 calls to Windows PowerShell 5.1 and uses normal shell-based process startup for compatibility with EES 12.3.3.2; version metadata, troubleshooting and manual-use guidance, generated-workspace instructions, and integrity hashes were updated. Plugin 0.1.1-beta refreshes documentation only and retains launcher runtime version 0.4.1-beta because its executable scripts are unchanged."
+      "modifications": "Derived from the 0.4.0-beta archive. Run-EES.ps1 hands PowerShell 7 calls to Windows PowerShell 5.1 and uses normal shell-based process startup for EES compatibility. Version 0.4.2-beta replaces the normalized Database22 wrapper with the current canonical EES_Tool_Metadata.json snapshot, makes it the sole catalog source, adds Compact and Full helper modes, strengthens catalog self-tests, and updates documentation and integrity hashes."
     },
     {
       "archive": "EES-Codex-Launcher-64bit-0.4.0-beta.zip",
       "sha256": "f960980b20a296e56e9be3f9500eb485fd36dcce4c2715de1aef5fbea5c68930",
       "destination": "plugins/ees/skills/ees/assets/launcher-64bit",
-      "modifications": "Derived from the 0.4.0-beta archive. Run-EES.ps1 now hands PowerShell 7 calls to Windows PowerShell 5.1 and uses normal shell-based process startup for compatibility with EES 12.3.3.2; version metadata, troubleshooting and manual-use guidance, generated-workspace instructions, and integrity hashes were updated. Plugin 0.1.1-beta refreshes documentation only and retains launcher runtime version 0.4.1-beta because its executable scripts are unchanged."
+      "modifications": "Derived from the 0.4.0-beta archive. Run-EES.ps1 hands PowerShell 7 calls to Windows PowerShell 5.1 and uses normal shell-based process startup for EES compatibility. Version 0.4.2-beta replaces the normalized Database22 wrapper with the current canonical EES_Tool_Metadata.json snapshot, makes it the sole catalog source, adds Compact and Full helper modes, strengthens catalog self-tests, and updates documentation and integrity hashes."
     }
   ]
 }

@@ -1,20 +1,31 @@
-# Engineering Tool Dialog catalog — 32-bit edition
+# EES tool metadata — 32-bit edition
 
-The package includes a normalized machine-readable catalog derived from the authoritative `Database22.xlsm` Engineering Tool Dialog database. The catalog owner confirmed that Database22 is authoritative and that its derived metadata may be redistributed with this launcher.
+The package contains an exact release snapshot of the owner-maintained `EES_Tool_Metadata.json`, generated from the authoritative Engineering Tool Dialog database and redistributed with the owner's permission. The catalog helpers always search this packaged JSON. They never merge rows from another catalog or from the configured EES installation.
 
-## Coverage
+## Current snapshot
 
-The normalized catalog contains 813 routine records, 353 category rows, 1,670 routine-category relationships, 1,586 keywords, 1,178 signatures, 7,448 normalized parameter rows, and 50 UnitType definitions.
+The packaged schema-version 1 file contains 813 routine rows, 353 categories, 1,673 routine-category relationships, 1,586 keywords, 1,184 signatures, and 7,524 parameter rows. Its SHA-256 is `A87F0FD43C68E514C824BA57BD69643D78BC10889137F3D21B086A8BCC8C40C4`.
 
-At runtime, the catalog is combined only with metadata from the configured 32-bit EES installation. Local-only routines remain searchable. `installed_metadata_match` means that local metadata lists the routine; it is not proof that every supporting library dependency is available.
+The helper exposes 814 searchable routine views because the canonical file has one fouling-factor signature, category, and parameter set without a corresponding `Routines` row. It derives a clearly marked `signature_only` view from those same JSON rows at read time. It also resolves the file's two prefixed category links and shared parameter sets for `Notch_Sensitivity` and `gear_Lewis_factor`. These are in-memory relationship repairs only; they do not modify the source file or merge another catalog.
 
-## Recorded normalization
+`Get-EES-Catalog-Info.ps1` reports the packaged path, hash, timestamp, schema version, and row counts. The file beside the selected 32-bit EES executable is read only to calculate `installed_metadata_match`; it is never a fallback catalog and its contents are never added to search results. That flag is discovery evidence, not proof that every supporting library dependency will compile.
 
-The source hash, row counts, and every structural normalization are recorded in `payload\catalog\catalog-validation.json`. The record covers case-only foreign-key normalization, one stray `Call ` prefix, one duplicated heat-exchanger signature, reversed parameter identifiers, shared function parameters, and one explicitly documented reconstruction of a missing fouling-factor routine row.
+## Compact and full output
+
+Use compact output for initial discovery:
+
+```powershell
+& "$env:LOCALAPPDATA\EES-Codex-Launcher-32bit\Search-EES-Library.ps1" `
+  -Query 'compressor efficiency' -Limit 3 -Detail Compact
+& "$env:LOCALAPPDATA\EES-Codex-Launcher-32bit\Get-EES-Routine.ps1" `
+  -RoutineID 'Compressor2_CL' -Detail Compact
+```
+
+Compact mode returns only the routine identifier and type, short description, primary syntax, required load directive, installed-metadata match, and deprecation or replacement information. Use `-Detail Full` for one selected routine when alternate signatures, parameters, keywords, categories, paths, hashes, or help references are needed. `Full` remains the default so existing calls still receive detailed output.
 
 ## Availability and `$Load`
 
-Some EES libraries are installed but disabled by default. During a controlled 32-bit solve, this launcher passes `/AI` to EES so Component, Heat Transfer, Incompressible, Mechanical Design, and NASA are available for that run. Search and detail results still return `required_load_directive` when an exact symbolic directive makes a model portable to an ordinary EES session. The launcher permits four such directives: Component Library, Mechanical, NASA, and Incompressible.
+During a controlled 32-bit solve, this launcher passes `/AI` to EES so Component, Heat Transfer, Incompressible, Mechanical Design, and NASA are available for that run. Search and detail results still return `required_load_directive` when an exact symbolic directive makes a model portable to an ordinary EES session. The launcher permits four such directives: Component Library, Mechanical, NASA, and Incompressible.
 
 Always compile-test a candidate routine against the installed 32-bit libraries. The installation test uses `/AI` to exercise routines from all five application libraries without `$Load` directives and verifies that the persistent profile autoload setting is unchanged.
 

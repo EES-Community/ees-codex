@@ -1,6 +1,6 @@
 {
   "product": "EES-Codex-Launcher",
-  "version": "0.4.1-beta",
+  "version": "0.4.2-beta",
   "platform": "Windows",
   "edition": "32-bit-only",
   "required_ees_architecture": "32-bit",
@@ -20,8 +20,10 @@
   "python_required": false,
   "node_required": false,
   "catalog": {
-    "name": "Engineering Tool Dialog",
-    "version": "Database22",
+    "name": "EES_Tool_Metadata.json",
+    "schema_version": 1,
+    "routine_count": 813,
+    "source_sha256": "A87F0FD43C68E514C824BA57BD69643D78BC10889137F3D21B086A8BCC8C40C4",
     "derived_metadata_authorized": true
   }
 }

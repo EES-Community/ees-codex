@@ -5,14 +5,14 @@ This workspace is configured for safely generating and solving EES text programs
 ## Required workflow
 
 1. Read `launcher-config.json` before invoking EES. Treat it as installation information, not as permission to modify files outside this workspace.
-2. Before recreating a heat-transfer correlation or component model, search the selected installation's catalog:
+2. Before recreating a heat-transfer correlation or component model, search the packaged canonical catalog through the selected launcher:
 
    ```powershell
    $config = Get-Content .\launcher-config.json -Raw | ConvertFrom-Json
-   & (Join-Path $config.install_directory 'Search-EES-Library.ps1') -Query 'search terms' -EesPath $config.ees_path -Limit 5
+   & (Join-Path $config.install_directory 'Search-EES-Library.ps1') -Query 'search terms' -EesPath $config.ees_path -Limit 3 -Detail Compact
    ```
 
-   Keep results concise. Inspect one candidate with `Get-EES-Routine.ps1 -RoutineID '<id>' -EesPath $config.ees_path`, then compile-test its signature and units. The launcher passes `/AI`, so its five application libraries are available for controlled runs. A returned `required_load_directive` is optional for a controlled run; include it exactly when portability to an ordinary EES session is useful.
+   Keep results concise. Inspect one candidate with `Get-EES-Routine.ps1 -RoutineID '<id>' -EesPath $config.ees_path -Detail Compact`. Request `-Detail Full` only when its alternate signatures or parameter descriptions are needed, then compile-test the selected signature and units. The packaged `EES_Tool_Metadata.json` is the sole search source; `installed_metadata_match` only reports whether the selected installation metadata lists the routine. The launcher passes `/AI`, so its five application libraries are available for controlled runs. A returned `required_load_directive` is optional for a controlled run; include it exactly when portability to an ordinary EES session is useful.
 3. Identify inputs, unknowns, constraints, and material assumptions. Distinguish user-supplied values from estimates, and ask only for missing information that materially changes the model. Write EES equation programs as `.txt` files inside this workspace. Use EES thermophysical-property functions and explicit units where appropriate.
 4. Include exactly one `{{OUTPUT_FILE}}` placeholder on exactly one `$Export` or `$ExportText` directive. Export only the inputs, states, constraints, engineering performance, and balance residuals needed to audit the result.
 5. Run only the installed launcher identified by `install_directory`:
