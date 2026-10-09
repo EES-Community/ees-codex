@@ -24,7 +24,7 @@ Use a new output filename for an auditable design history. Use `-Force` only whe
 
 ## The library search returns no useful routine
 
-Confirm that `ees_path`, `metadata_path`, and `userlib_path` in `launcher-config.json` point to the 32-bit installation and its `Userlib` folder. Write the governing equations directly when no verified routine is available.
+Confirm that `ees_path`, `installed_metadata_path`, and `userlib_path` in `launcher-config.json` point to the 32-bit installation and its `Userlib` folder. `metadata_path` and `catalog_path` should point to the packaged canonical `EES_Tool_Metadata.json` inside the launcher directory. Write the governing equations directly when no verified routine is available.
 
 ## A Component Library routine reports a missing dependency
 
@@ -40,7 +40,7 @@ Close every interactive 32-bit EES window and try again. The launcher serializes
 
 ## An older launcher left EES profile recovery files
 
-Version 0.4.1-beta uses `/AI` and does not create profile backup or recovery files. If files from version 0.3.0-beta remain, do not guess which copy is current:
+Version 0.4.2-beta uses `/AI` and does not create profile backup or recovery files. If files from version 0.3.0-beta remain, do not guess which copy is current:
 
 Preserve these files and contact support before starting EES or renaming anything:
 

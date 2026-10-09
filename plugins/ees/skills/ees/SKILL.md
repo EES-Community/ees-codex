@@ -21,6 +21,7 @@ Use local EES Professional through the installed EES Codex Launcher. EES perform
 - Run EES only through installed helpers identified by configuration. Bundled launcher assets are installation sources.
 - Keep models and results inside the selected workspace. Use EES equation `.txt` files; never disguise a binary `.ees` file.
 - Use the catalog helpers rather than loading the complete catalog JSON.
+- For library discovery, start with `Search-EES-Library.ps1 -Limit 3 -Detail Compact` and `Get-EES-Routine.ps1 -Detail Compact`. Request `-Detail Full` for one selected routine only when alternate signatures, parameter descriptions, keywords, categories, paths, hashes, or help references are needed.
 - Do not manually edit EES, an installed launcher, preferences, or libraries, and never weaken or bypass launcher checks. For a user-requested install or update, use the supplied installer workflow in setup.
 - From the first attempt, run helpers that start EES outside the filesystem sandbox so they have normal Windows filesystem access. Catalog and metadata helpers may remain sandboxed.
 - If matching interactive EES is open, ask the user to save and close it; never terminate it.

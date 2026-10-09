@@ -6,4 +6,4 @@ EES is required separately and is subject to its publisher's license terms. Open
 
 The included engineering examples are demonstrations. Users are responsible for independent validation and professional review of calculations and designs.
 
-The machine-readable Engineering Tool Dialog catalog is derived from the owner-confirmed authoritative Database22 workbook and is redistributed with the owner's permission. It contains metadata and calling information, not EES executable library files.
+The included `EES_Tool_Metadata.json` is generated from the owner-confirmed authoritative Database22 Engineering Tool Dialog workbook and is redistributed with the owner's permission. It contains metadata and calling information, not EES executable library files.

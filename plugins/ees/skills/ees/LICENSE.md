@@ -6,6 +6,6 @@ To the extent copyright is held by EES-Community contributors, permission is gra
 
 You may make local modifications to the newly authored packaging files for personal or internal evaluation, but this license does not grant permission to redistribute modified versions, sell or sublicense the packaging, or use the EES-Community names or marks to imply endorsement. This is a limited source-available license, not an open-source license.
 
-These permissions do not apply to third-party material, including EES, executable EES libraries, OpenAI software, or the Database22-derived catalog metadata. Those materials remain governed by their own licenses, terms, and notices. Preserve all applicable notices.
+These permissions do not apply to third-party material, including EES, executable EES libraries, OpenAI software, or the `EES_Tool_Metadata.json` catalog metadata generated from Database22. Those materials remain governed by their own licenses, terms, and notices. Preserve all applicable notices.
 
 THE NEWLY AUTHORED PACKAGING FILES ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE COPYRIGHT HOLDERS ARE NOT LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THEIR USE.

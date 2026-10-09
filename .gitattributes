@@ -3,3 +3,6 @@
 *.pdf binary
 # Preserve supplied distributions byte-for-byte across Windows and Linux.
 plugins/ees/skills/ees/assets/** -text
+# The canonical metadata uses its owner-maintained byte representation, including
+# CRLF line endings; treat the exact packaged snapshots as binary for Git diffs.
+plugins/ees/skills/ees/assets/**/payload/catalog/EES_Tool_Metadata.json binary
