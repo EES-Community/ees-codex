@@ -25,7 +25,7 @@ The launcher passes `/AI`, making all five EES application libraries available f
 
 ## Write and solve
 
-1. Identify inputs, unknowns, constraints, and material assumptions. Distinguish user-supplied values from estimates, and ask only for missing information that materially changes the model. Use EES thermophysical-property functions and explicit units where appropriate.
+1. Identify inputs, unknowns, constraints, and material assumptions. Distinguish user-supplied values from estimates, and ask only for missing information that materially changes the model. Use EES thermophysical-property functions and explicit units where appropriate. Provide a complete, explicit `$UnitSystem` for reproducible models. The selected temperature, pressure, energy, mass/molar, and angle settings define the numerical inputs and outputs of built-in thermophysical and trigonometric functions; variable unit annotations enable checking and display but do not generally convert numerical values to that system. Convert property-function inputs explicitly when their numerical units differ, using `Convert` for multiplicative conversions and `ConvertTemp` for absolute temperatures.
 2. Write an EES equation `.txt` file under the selected workspace. Include exactly one `{{OUTPUT_FILE}}` placeholder on exactly one `$Export` or `$ExportText` directive. If export syntax is uncertain, consult the installed `examples\heat_exchanger.txt` or `examples\water_heater.txt`; do not load examples otherwise.
 3. Export only the inputs, states, constraints, performance quantities, and balance residuals needed to audit the answer. Use a new result filename for a material iteration; use `-Force` only for an intentional replacement.
 4. Run the installed launcher:
@@ -55,5 +55,27 @@ For another user-selected project, set `$workspaceRoot` to that project's absolu
 Use this helper only when the capability result has `use_compact_results` set to true; otherwise read the raw result and mention the available launcher update once. Compact extraction is read-only and returns exact raw numeric text and bracketed units. Treat a missing variable, unmatched pattern, duplicate name, malformed line, or unsupported value as an explicit parsing failure. Read `-Detail Full` or the raw export for a comprehensive audit or to diagnose such a failure.
 
 6. Check units, conservation balances, physical feasibility, requested constraints, and sensitivity to important assumptions. Revise and rerun when needed. A successful process or nonempty export alone does not establish correctness.
+
+### Angle-valued library arguments
+
+Some EES library routines interpret angular arguments from the active angle setting rather than converting from the argument variable's `[deg]` or `[rad]` annotation. Explicitly include `Degree` or `Radian` in `$UnitSystem` whenever a selected routine accepts an angle. Preserve a complete angle setting when transcribing a help example; treat a missing or malformed setting as a documentation issue rather than silently omitting it.
+
+Do not test degree/radian equivalence by calling both forms under one global angle setting. Use separate runs with physically equivalent inputs, then compare their exported results. For example:
+
+```ees
+{ Degree run }
+$UnitSystem SI C kPa kJ Mass Degree
+theta=6 [deg]
+K=K_Gradual_Expansion2(3,theta)
+```
+
+```ees
+{ Radian run }
+$UnitSystem SI C kPa kJ Mass Radian
+theta=6*pi/180 [rad]
+K=K_Gradual_Expansion2(3,theta)
+```
+
+Export the angle and the affected result in each run so the interpretation is auditable.
 
 Do not add `$Python`, `$Include`, macro-running, importing, arbitrary file-writing directives, or other actions rejected by the launcher. If the requested model requires an unsupported action, explain the limitation instead of weakening the launcher.
