@@ -23,6 +23,28 @@ The packaged `EES_Tool_Metadata.json` is the sole catalog source and contains ca
 
 The launcher passes `/AI`, making all five EES application libraries available for a controlled run without changing persistent autoload preferences. A returned `required_load_directive` is therefore optional for a controlled run; include it exactly when portability to an ordinary EES session is useful. The only permitted `$Load` directives are `$Load Component Library`, `$Load Mechanical`, `$Load NASA`, and `$Load Incompressible`.
 
+### Procedure output positions
+
+For a procedure invoked with `CALL`, reproduce every comma-delimited input and output position in the selected catalog signature. The colon separates inputs from outputs. An output marked `Required=false` may be left unused, but its position does not disappear: leave that position blank between commas. Do not shorten the output list. For example, given:
+
+```ees
+CALL OrificePlate(...:DELTAP,V_dot,Re)
+```
+
+request only `DELTAP` with:
+
+```ees
+CALL OrificePlate(...:DELTAP,,)
+```
+
+or request `DELTAP` and `Re` with:
+
+```ees
+CALL OrificePlate(...:DELTAP,,Re)
+```
+
+Do not use `CALL OrificePlate(...:DELTAP)`, because EES reads it as a procedure call with too few output positions. This positional-output rule applies to procedures; ordinary EES functions return one value on the left side of an equation and do not use colon-separated output positions.
+
 ## Write and solve
 
 1. Identify inputs, unknowns, constraints, and material assumptions. Distinguish user-supplied values from estimates, and ask only for missing information that materially changes the model. Use EES thermophysical-property functions and explicit units where appropriate. Provide a complete, explicit `$UnitSystem` for reproducible models. The selected temperature, pressure, energy, mass/molar, and angle settings define the numerical inputs and outputs of built-in thermophysical and trigonometric functions; variable unit annotations enable checking and display but do not generally convert numerical values to that system. Convert property-function inputs explicitly when their numerical units differ, using `Convert` for multiplicative conversions and `ConvertTemp` for absolute temperatures.
