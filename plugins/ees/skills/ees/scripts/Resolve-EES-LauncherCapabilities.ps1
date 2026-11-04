@@ -81,6 +81,31 @@ if ($resultModes.Count -eq 0) {
 
 $catalogCompact = $catalogModes -contains 'Compact'
 $resultCompact = $resultModes -contains 'Compact'
+$eesMessageCaptureCapable = $false
+$eesMessageDetectionSource = 'legacy'
+if ($null -ne $capabilities -and
+    $capabilities.PSObject.Properties.Name -contains 'ees_message_capture' -and
+    $capabilities.ees_message_capture -eq $true) {
+    $eesMessageCaptureCapable = $true
+    $eesMessageDetectionSource = 'declared'
+}
+$eesMessageCaptureEnabled = $false
+$eesMessageMinimumFileVersion = [version]'12.3.5.8'
+if ($config.PSObject.Properties.Name -contains 'ees_message_capture_minimum_file_version') {
+    try { $eesMessageMinimumFileVersion = [version][string]$config.ees_message_capture_minimum_file_version }
+    catch { $eesMessageMinimumFileVersion = [version]'12.3.5.8' }
+}
+if ($eesMessageCaptureCapable -and
+    $config.PSObject.Properties.Name -contains 'ees_path' -and
+    -not [string]::IsNullOrWhiteSpace([string]$config.ees_path) -and
+    (Test-Path -LiteralPath ([string]$config.ees_path) -PathType Leaf)) {
+    $selectedVersionInfo = (Get-Item -LiteralPath ([string]$config.ees_path)).VersionInfo
+    $selectedFileVersion = [version]('{0}.{1}.{2}.{3}' -f $selectedVersionInfo.FileMajorPart, $selectedVersionInfo.FileMinorPart, $selectedVersionInfo.FileBuildPart, $selectedVersionInfo.FilePrivatePart)
+    $eesMessageCaptureEnabled = $selectedFileVersion -ge $eesMessageMinimumFileVersion
+}
+elseif ($eesMessageCaptureCapable -and $config.PSObject.Properties.Name -contains 'ees_message_capture_enabled_at_install') {
+    $eesMessageCaptureEnabled = $config.ees_message_capture_enabled_at_install -eq $true
+}
 [ordered]@{
     launcher_version = if ($config.PSObject.Properties.Name -contains 'version') { [string]$config.version } else { $null }
     launcher_api_level = if ($config.PSObject.Properties.Name -contains 'launcher_api_level') { $config.launcher_api_level } else { $null }
@@ -88,9 +113,12 @@ $resultCompact = $resultModes -contains 'Compact'
     result_detail_modes = @($resultModes)
     catalog_detection_source = $catalogSource
     result_detection_source = $resultSource
+    ees_message_detection_source = $eesMessageDetectionSource
     use_compact_catalog = $catalogCompact
     use_compact_results = $resultCompact
+    ees_message_capture_capable = $eesMessageCaptureCapable
+    use_ees_message_capture = $eesMessageCaptureEnabled
     use_legacy_catalog_fallback = -not $catalogCompact
     use_raw_result_fallback = -not $resultCompact
-    update_recommended = -not ($catalogCompact -and $resultCompact)
+    update_recommended = -not ($catalogCompact -and $resultCompact -and $eesMessageCaptureCapable)
 } | ConvertTo-Json -Depth 5 -Compress

@@ -5,6 +5,18 @@ param([string]$ConfigPath = (Join-Path $PSScriptRoot 'config.json'))
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
+function Test-PathWithin {
+    param(
+        [string]$CandidatePath,
+        [string]$RootPath
+    )
+
+    $candidate = [System.IO.Path]::GetFullPath($CandidatePath).TrimEnd('\')
+    $root = [System.IO.Path]::GetFullPath($RootPath).TrimEnd('\')
+    return $candidate.Equals($root, [System.StringComparison]::OrdinalIgnoreCase) -or
+        $candidate.StartsWith($root + '\', [System.StringComparison]::OrdinalIgnoreCase)
+}
+
 try {
     if (-not (Test-Path -LiteralPath $ConfigPath -PathType Leaf)) {
         throw "Launcher configuration was not found: $ConfigPath"
@@ -31,6 +43,54 @@ try {
     }
     else { Join-Path $PSHOME 'pwsh.exe' }
 
+    $selectedVersionInfo = (Get-Item -LiteralPath $config.ees_path).VersionInfo
+    $selectedFileVersion = [version]('{0}.{1}.{2}.{3}' -f $selectedVersionInfo.FileMajorPart, $selectedVersionInfo.FileMinorPart, $selectedVersionInfo.FileBuildPart, $selectedVersionInfo.FilePrivatePart)
+    $eesMessageCaptureEnabled = $selectedFileVersion -ge [version]'12.3.5.8'
+    $invalidDiagnosticVerified = $false
+    $invalidProgram = $null
+    $invalidStatus = $null
+    $eesMessagePath = $null
+    if ($eesMessageCaptureEnabled) {
+        $diagnosticTestId = [Guid]::NewGuid().ToString('N')
+        $invalidProgram = Join-Path $config.workspace_root "tests\installation_invalid_syntax_$diagnosticTestId.txt"
+        $invalidOutput = Join-Path $resultDirectory "installation_invalid_syntax_$diagnosticTestId.txt"
+        $eesMessagePath = Join-Path (Split-Path -Parent $config.ees_path) 'EES_Msg.txt'
+        [System.IO.File]::WriteAllText(
+            $invalidProgram,
+            "`$UnitSystem SI K Pa J Mass Radian`r`nx=`r`n`$VarInfo x Units=-`r`n`$Export /H /V /U /N '{{OUTPUT_FILE}}' x`r`n",
+            (New-Object System.Text.UTF8Encoding($false))
+        )
+        $invalidLauncherOutput = & $hostExe -NoProfile -ExecutionPolicy Bypass -File $launcher `
+            -WorkspaceRoot $config.workspace_root `
+            -ProgramPath $invalidProgram `
+            -OutputPath $invalidOutput `
+            -EesPath $config.ees_path `
+            -TimeoutSeconds 60 `
+            -Force 2>&1
+        $invalidLauncherExitCode = $LASTEXITCODE
+        try {
+            $invalidStatus = ($invalidLauncherOutput -join [Environment]::NewLine) | ConvertFrom-Json
+        }
+        catch {
+            throw "The invalid-program launcher result was not valid JSON. $($invalidLauncherOutput -join [Environment]::NewLine)"
+        }
+        if ($invalidLauncherExitCode -eq 0 -or
+            $invalidStatus.status -ne 'error' -or
+            -not $invalidStatus.ees_message_supported -or
+            -not $invalidStatus.ees_message_present -or
+            [string]$invalidStatus.ees_message -notmatch '(?i)syntax error' -or
+            [string]::IsNullOrWhiteSpace([string]$invalidStatus.ees_message_snapshot) -or
+            -not (Test-Path -LiteralPath $invalidStatus.ees_message_snapshot -PathType Leaf) -or
+            (Test-Path -LiteralPath $invalidOutput -PathType Leaf)) {
+            throw 'The launcher did not reject the invalid model with a fresh, retained EES_Msg.txt diagnostic.'
+        }
+        $capturedInvalidMessage = Get-Content -LiteralPath $invalidStatus.ees_message_snapshot -Raw
+        if ($capturedInvalidMessage -notmatch '(?i)syntax error') {
+            throw 'The retained EES_Msg.txt snapshot does not contain the expected syntax error.'
+        }
+        $invalidDiagnosticVerified = $true
+    }
+
     $launcherOutput = & $hostExe -NoProfile -ExecutionPolicy Bypass -File $launcher `
         -WorkspaceRoot $config.workspace_root `
         -ProgramPath $program `
@@ -41,16 +101,40 @@ try {
     if ($LASTEXITCODE -ne 0) {
         throw "Launcher returned exit code $LASTEXITCODE. $($launcherOutput -join [Environment]::NewLine)"
     }
+    $launcherStatus = ($launcherOutput -join [Environment]::NewLine) | ConvertFrom-Json
+    if ($launcherStatus.status -ne 'success' -or
+        [bool]$launcherStatus.ees_message_supported -ne $eesMessageCaptureEnabled -or
+        $launcherStatus.ees_message_present -or
+        -not [string]::IsNullOrWhiteSpace([string]$launcherStatus.ees_message)) {
+        throw 'The successful solve reported inconsistent EES message status or inherited a previous diagnostic.'
+    }
+    if ($eesMessageCaptureEnabled -and (Test-Path -LiteralPath $eesMessagePath -PathType Leaf) -and
+        (Get-Item -LiteralPath $eesMessagePath).Length -gt 0) {
+        throw 'The fixed EES_Msg.txt file still contains the preceding invalid-program diagnostic after a successful solve.'
+    }
+
+    if ($eesMessageCaptureEnabled -and -not [string]::IsNullOrWhiteSpace([string]$invalidStatus.run_directory)) {
+        if (-not (Test-PathWithin -CandidatePath $invalidStatus.run_directory -RootPath $config.workspace_root)) {
+            throw "Refusing to clean an expected-failure run directory outside the workspace: $($invalidStatus.run_directory)"
+        }
+        Remove-Item -LiteralPath $invalidStatus.run_directory -Recurse -Force
+    }
+    if ($eesMessageCaptureEnabled -and $invalidProgram) {
+        Remove-Item -LiteralPath $invalidProgram -Force
+    }
     $resultText = Get-Content -LiteralPath $output -Raw
     if ($resultText -notmatch '(?m)^Q_dot\s+2\.00000000E\+02\s+\[kW\]') {
         throw "EES ran, but the expected Q_dot = 200 kW result was not found in $output"
     }
     if ([string]$config.version -ne [string]$config.coordinated_plugin_version -or
-        $config.launcher_api_level -ne 2 -or
+        $config.launcher_api_level -ne 3 -or
         @($config.capabilities.catalog_detail_modes) -notcontains 'Compact' -or
         @($config.capabilities.result_detail_modes) -notcontains 'Compact' -or
-        @($config.capabilities.result_selectors) -notcontains 'Pattern') {
-        throw 'The launcher configuration does not advertise the expected API level and compact catalog/result capabilities.'
+        @($config.capabilities.result_selectors) -notcontains 'Pattern' -or
+        $config.capabilities.ees_message_capture -ne $true -or
+        [string]$config.ees_message_capture_minimum_ees_version -ne '12.358' -or
+        [string]$config.ees_message_capture_minimum_file_version -ne '12.3.5.8') {
+        throw 'The launcher configuration does not advertise the expected API level, compact catalog/result modes, and EES message capture.'
     }
     $resultHelper = Join-Path $config.install_directory 'Get-EES-Result.ps1'
     $compactResult = & $resultHelper `
@@ -182,15 +266,18 @@ try {
         }
     }
 
-    [ordered]@{
+    $successJson = [ordered]@{
         status = 'success'
-        message = 'The launcher solved the EES smoke test and verified /AI autoload for Component, Mechanical Design, NASA, Incompressible, and Heat Transfer routines without changing the persistent autoload setting.'
+        message = if ($eesMessageCaptureEnabled) { 'The launcher captured a fresh EES_Msg.txt compile error, cleared it before the next successful solve, and verified /AI autoload without changing the persistent autoload setting.' } else { 'The launcher verified solving, catalog helpers, and /AI autoload. EES_Msg.txt capture was skipped because it requires EES 12.358 or newer.' }
         ees_path = $config.ees_path
         workspace_root = $config.workspace_root
         result_path = $output
         launcher_version = $config.version
         coordinated_plugin_version = $config.coordinated_plugin_version
         launcher_api_level = $config.launcher_api_level
+        ees_message_capture_capability = $true
+        ees_message_capture_enabled = $eesMessageCaptureEnabled
+        invalid_diagnostic_verified = $invalidDiagnosticVerified
         compact_result_extraction = $true
         catalog_name = $catalogInfo.catalog_name
         catalog_schema_version = $catalogInfo.catalog_schema_version
@@ -200,9 +287,11 @@ try {
         library_autoload_result = $libraryAutoloadResult
         profile_autoload_bits_unchanged = if ($config.ees_architecture -eq '32-bit') { $true } else { $null }
     } | ConvertTo-Json
-    exit 0
+    [Console]::Out.WriteLine($successJson)
+    [Console]::Out.Flush()
+    return
 }
 catch {
-    [ordered]@{ status = 'error'; message = $_.Exception.Message } | ConvertTo-Json
-    exit 1
+    $errorJson = [ordered]@{ status = 'error'; message = $_.Exception.Message } | ConvertTo-Json
+    throw $errorJson
 }

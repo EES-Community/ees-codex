@@ -64,7 +64,7 @@ $workspaceRoot = $config.workspace_root
 
 For another user-selected project, set `$workspaceRoot` to that project's absolute path before the command; the workspace, program, and output arguments must all use it. Keep the model and result beneath that root. Do not change the installed launcher's global configuration merely to work in another project.
 
-5. Read the launcher status. When `capabilities.result_detail_modes` declares Compact support, use `Get-EES-Result.ps1` to request the principal outputs, constraints, and residuals needed for the current decision:
+5. Read the launcher status before the result. The launcher capability means it implements message capture, while the per-run `ees_message_supported` field says whether the selected EES version can provide it. With EES 12.358 or newer, inspect `ees_message_present`; a true value requires review of `ees_message` and the retained `ees_message_snapshot` even when the export succeeded. The launcher resets the fixed EES-installation `EES_Msg.txt` under its run lock and snapshots only the fresh file. Older EES versions remain supported but use the existing export/window-text path. Do not use an independently read fixed file as run provenance. When `capabilities.result_detail_modes` declares Compact support, use `Get-EES-Result.ps1` to request the principal outputs, constraints, and residuals needed for the current decision:
 
 ```powershell
 & (Join-Path $config.install_directory 'Get-EES-Result.ps1') `

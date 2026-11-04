@@ -48,13 +48,15 @@ function Resolve-EesInstallation {
             continue
         }
         $userlibName = if ($architecture -eq '64-bit') { 'Userlib64' } else { 'Userlib' }
+        $versionInfo = (Get-Item -LiteralPath $resolved).VersionInfo
         return [pscustomobject]@{
             EesPath = $resolved
             Architecture = $architecture
             UserlibPath = Join-Path $root $userlibName
             MetadataPath = Join-Path $root 'EES_Tool_Metadata.json'
             ProfilePath = Join-Path $root $(if ($architecture -eq '64-bit') { 'EES.PRF64' } else { 'EES.PRF' })
-            Version = (Get-Item -LiteralPath $resolved).VersionInfo.FileVersion
+            Version = $versionInfo.FileVersion
+            CanonicalFileVersion = '{0}.{1}.{2}.{3}' -f $versionInfo.FileMajorPart, $versionInfo.FileMinorPart, $versionInfo.FileBuildPart, $versionInfo.FilePrivatePart
         }
     }
 
@@ -128,9 +130,12 @@ try {
     $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
     if ([string]$manifest.version -ne $version -or
         [string]$manifest.coordinated_plugin_version -ne [string]$manifest.version -or
-        [int]$manifest.launcher_api_level -lt 2 -or
+        [int]$manifest.launcher_api_level -lt 3 -or
         @($manifest.capabilities.catalog_detail_modes) -notcontains 'Compact' -or
-        @($manifest.capabilities.result_detail_modes) -notcontains 'Compact') {
+        @($manifest.capabilities.result_detail_modes) -notcontains 'Compact' -or
+        $manifest.capabilities.ees_message_capture -ne $true -or
+        [string]::IsNullOrWhiteSpace([string]$manifest.ees_message_capture_minimum_ees_version) -or
+        [string]::IsNullOrWhiteSpace([string]$manifest.ees_message_capture_minimum_file_version)) {
         throw 'The package manifest does not contain a valid coordinated release and launcher capability declaration.'
     }
     $requiredArchitecture = if ($manifest.PSObject.Properties.Name -contains 'required_ees_architecture') {
@@ -184,6 +189,7 @@ try {
     }
 
     $installation = Resolve-EesInstallation -RequestedPath $EesPath -RequiredArchitecture $requiredArchitecture
+    $eesMessageCaptureEnabled = ([version]$installation.CanonicalFileVersion) -ge ([version][string]$manifest.ees_message_capture_minimum_file_version)
     $resolvedInstall = [System.IO.Path]::GetFullPath($InstallDirectory)
     $resolvedWorkspace = [System.IO.Path]::GetFullPath($WorkspaceDirectory)
     if ($resolvedInstall.Equals($resolvedWorkspace, [System.StringComparison]::OrdinalIgnoreCase)) {
@@ -208,6 +214,7 @@ try {
             catalog_detail_modes = @($manifest.capabilities.catalog_detail_modes)
             result_detail_modes = @($manifest.capabilities.result_detail_modes)
             result_selectors = @($manifest.capabilities.result_selectors)
+            ees_message_capture = [bool]$manifest.capabilities.ees_message_capture
         }
         install_directory = $resolvedInstall
         workspace_root = $resolvedWorkspace
@@ -215,6 +222,10 @@ try {
         ees_architecture = $installation.Architecture
         required_architecture = $requiredArchitecture
         ees_version = $installation.Version
+        ees_file_version = $installation.CanonicalFileVersion
+        ees_message_capture_enabled_at_install = $eesMessageCaptureEnabled
+        ees_message_capture_minimum_ees_version = [string]$manifest.ees_message_capture_minimum_ees_version
+        ees_message_capture_minimum_file_version = [string]$manifest.ees_message_capture_minimum_file_version
         userlib_path = $installation.UserlibPath
         metadata_path = Join-Path $resolvedInstall 'catalog\EES_Tool_Metadata.json'
         installed_metadata_path = $installation.MetadataPath
@@ -234,6 +245,7 @@ try {
     Write-Host "Launcher:  $resolvedInstall"
     Write-Host "Workspace: $resolvedWorkspace"
     Write-Host "EES:       $($installation.EesPath) ($($installation.Architecture), version $($installation.Version))"
+    Write-Host $(if ($eesMessageCaptureEnabled) { 'Messages:  Fresh EES_Msg.txt capture enabled (EES 12.358 or newer)' } else { 'Messages:  EES_Msg.txt capture unavailable; solve/export and window-text fallback remain enabled' })
     Write-Host 'Catalog:   EES_Tool_Metadata.json (schema 1, 813 routines)'
 
     if (-not $SkipTest) {

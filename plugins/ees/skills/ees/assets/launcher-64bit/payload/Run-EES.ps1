@@ -53,6 +53,12 @@ $ErrorActionPreference = 'Stop'
 $runDirectory = $null
 $process = $null
 $runLock = $null
+$eesMessagePath = $null
+$eesMessageCapture = $null
+$eesMessageReset = $false
+$eesMessageSupported = $false
+$eesMessageMinimumVersion = '12.358'
+$eesMessageMinimumFileVersion = [version]'12.3.5.8'
 
 function Resolve-EesExecutable {
     param([string]$RequestedPath)
@@ -135,6 +141,99 @@ function Test-PathWithin {
     $root = [System.IO.Path]::GetFullPath($RootPath).TrimEnd('\')
     return $candidate.Equals($root, [System.StringComparison]::OrdinalIgnoreCase) -or
         $candidate.StartsWith($root + '\', [System.StringComparison]::OrdinalIgnoreCase)
+}
+
+function Reset-EesMessageFile {
+    param([string]$ResolvedEesPath)
+
+    $eesDirectory = Split-Path -Parent $ResolvedEesPath
+    $messagePath = [System.IO.Path]::GetFullPath((Join-Path $eesDirectory 'EES_Msg.txt'))
+    if (Test-Path -LiteralPath $messagePath) {
+        if (-not (Test-Path -LiteralPath $messagePath -PathType Leaf)) {
+            throw "The EES diagnostic path is not a file: $messagePath"
+        }
+        try {
+            Remove-Item -LiteralPath $messagePath -Force -ErrorAction Stop
+        }
+        catch {
+            throw "The previous EES diagnostic file could not be removed before launch: $messagePath. $($_.Exception.Message)"
+        }
+    }
+    if (Test-Path -LiteralPath $messagePath) {
+        throw "The previous EES diagnostic file still exists after deletion: $messagePath"
+    }
+    return $messagePath
+}
+
+function Get-EesFileVersion {
+    param([string]$ResolvedEesPath)
+
+    $versionInfo = (Get-Item -LiteralPath $ResolvedEesPath).VersionInfo
+    return [version]('{0}.{1}.{2}.{3}' -f $versionInfo.FileMajorPart, $versionInfo.FileMinorPart, $versionInfo.FileBuildPart, $versionInfo.FilePrivatePart)
+}
+
+function New-EmptyEesMessageCapture {
+    return [pscustomobject]@{
+        Present = $false
+        Bytes = 0
+        Text = $null
+        SnapshotPath = $null
+        CaptureError = $null
+    }
+}
+
+function Capture-EesMessageFile {
+    param(
+        [string]$SourcePath,
+        [string]$RunDirectory
+    )
+
+    $snapshotPath = Join-Path $RunDirectory 'EES_Msg.txt'
+    if (-not (Test-Path -LiteralPath $SourcePath)) {
+        return [pscustomobject]@{
+            Present = $false
+            Bytes = 0
+            Text = $null
+            SnapshotPath = $null
+            CaptureError = $null
+        }
+    }
+
+    try {
+        if (-not (Test-Path -LiteralPath $SourcePath -PathType Leaf)) {
+            throw "The EES diagnostic path is not a file: $SourcePath"
+        }
+        Copy-Item -LiteralPath $SourcePath -Destination $snapshotPath -Force -ErrorAction Stop
+        $bytes = (Get-Item -LiteralPath $snapshotPath).Length
+        $text = [System.IO.File]::ReadAllText($snapshotPath)
+        return [pscustomobject]@{
+            Present = ($bytes -gt 0 -and -not [string]::IsNullOrWhiteSpace($text))
+            Bytes = $bytes
+            Text = $text
+            SnapshotPath = $snapshotPath
+            CaptureError = $null
+        }
+    }
+    catch {
+        return [pscustomobject]@{
+            Present = $false
+            Bytes = 0
+            Text = $null
+            SnapshotPath = if (Test-Path -LiteralPath $snapshotPath -PathType Leaf) { $snapshotPath } else { $null }
+            CaptureError = $_.Exception.Message
+        }
+    }
+}
+
+function Get-EesMessageSummary {
+    param([object]$Capture)
+
+    if ($null -eq $Capture -or -not $Capture.Present) { return $null }
+    $summary = ([string]$Capture.Text).Trim()
+    if ($summary.Length -gt 4000) {
+        return $summary.Substring(0, 4000) + ' ... [see the retained EES_Msg.txt snapshot for the complete message]'
+    }
+    return $summary
 }
 
 function Assert-SafeProgram {
@@ -337,7 +436,12 @@ try {
     if (Test-PathWithin -CandidatePath $resolvedEes -RootPath $resolvedWorkspace) {
         throw "EesPath must be outside the writable workspace: $resolvedEes"
     }
+    $eesMessageSupported = (Get-EesFileVersion -ResolvedEesPath $resolvedEes) -ge $eesMessageMinimumFileVersion
     $runLock = Enter-EesRunLock -ResolvedEesPath $resolvedEes
+    if ($eesMessageSupported) {
+        $eesMessagePath = Reset-EesMessageFile -ResolvedEesPath $resolvedEes
+        $eesMessageReset = $true
+    }
     $startTime = [DateTimeOffset]::Now
     $startInfo = New-Object System.Diagnostics.ProcessStartInfo
     $startInfo.FileName = $resolvedEes
@@ -354,24 +458,67 @@ try {
         $windowText = @(Get-ProcessWindowText -ProcessId $process.Id)
         Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue
         $process.WaitForExit(5000) | Out-Null
-        $detail = if ($windowText.Count -gt 0) { $windowText -join ' | ' } else { 'No dialog text was available.' }
-        throw "EES did not finish within $TimeoutSeconds seconds. This usually indicates a modal compile/solve error. EES window text: $detail"
+        $eesMessageCapture = if ($eesMessageSupported) {
+            Capture-EesMessageFile -SourcePath $eesMessagePath -RunDirectory $runDirectory
+        }
+        else { New-EmptyEesMessageCapture }
+        if ($eesMessageSupported -and $eesMessageCapture.CaptureError) {
+            throw "EES did not finish within $TimeoutSeconds seconds, and EES_Msg.txt could not be captured: $($eesMessageCapture.CaptureError)"
+        }
+        $messageSummary = Get-EesMessageSummary -Capture $eesMessageCapture
+        $detail = if ($messageSummary) {
+            "EES_Msg.txt: $messageSummary"
+        }
+        elseif ($windowText.Count -gt 0) {
+            'EES window text: ' + ($windowText -join ' | ')
+        }
+        elseif (-not $eesMessageSupported) {
+            "EES_Msg.txt capture requires EES $eesMessageMinimumVersion or newer, and no accessible window text was available."
+        }
+        else {
+            'No fresh EES_Msg.txt message or accessible window text was available.'
+        }
+        throw "EES did not finish within $TimeoutSeconds seconds. $detail"
     }
 
+    $eesMessageCapture = if ($eesMessageSupported) {
+        Capture-EesMessageFile -SourcePath $eesMessagePath -RunDirectory $runDirectory
+    }
+    else { New-EmptyEesMessageCapture }
+    if ($eesMessageSupported -and $eesMessageCapture.CaptureError) {
+        throw "EES finished, but EES_Msg.txt could not be captured: $($eesMessageCapture.CaptureError)"
+    }
     Exit-EesRunLock -State $runLock
     $runLock = $null
 
     if (-not (Test-Path -LiteralPath $stagedOutput -PathType Leaf)) {
-        throw "EES exited with code $($process.ExitCode) but did not create the expected result file."
+        $messageSummary = Get-EesMessageSummary -Capture $eesMessageCapture
+        $detail = if ($messageSummary) {
+            " EES_Msg.txt: $messageSummary"
+        }
+        elseif (-not $eesMessageSupported) {
+            " EES_Msg.txt capture requires EES $eesMessageMinimumVersion or newer."
+        }
+        else { ' No fresh EES_Msg.txt message was written.' }
+        throw "EES exited with code $($process.ExitCode) but did not create the expected result file.$detail"
     }
     if ((Get-Item -LiteralPath $stagedOutput).Length -eq 0) {
-        throw 'EES created an empty result file.'
+        $messageSummary = Get-EesMessageSummary -Capture $eesMessageCapture
+        $detail = if ($messageSummary) {
+            " EES_Msg.txt: $messageSummary"
+        }
+        elseif (-not $eesMessageSupported) {
+            " EES_Msg.txt capture requires EES $eesMessageMinimumVersion or newer."
+        }
+        else { ' No fresh EES_Msg.txt message was written.' }
+        throw "EES created an empty result file.$detail"
     }
 
     Move-Item -LiteralPath $stagedOutput -Destination $resolvedOutput -Force:$Force
     $endTime = [DateTimeOffset]::Now
 
-    if (-not $KeepRunFiles) {
+    $retainRunDirectory = $KeepRunFiles -or $eesMessageCapture.Present
+    if (-not $retainRunDirectory) {
         Remove-Item -LiteralPath $stagedProgram -Force
         Remove-Item -LiteralPath $runDirectory -Force
         $remaining = @(Get-ChildItem -LiteralPath $runRoot -Force)
@@ -388,18 +535,37 @@ try {
         output_path = $resolvedOutput
         elapsed_seconds = [math]::Round(($endTime - $startTime).TotalSeconds, 3)
         output_bytes = (Get-Item -LiteralPath $resolvedOutput).Length
-        run_directory = if ($KeepRunFiles) { $runDirectory } else { $null }
+        run_directory = if ($retainRunDirectory) { $runDirectory } else { $null }
+        ees_message_supported = $eesMessageSupported
+        ees_message_minimum_ees_version = $eesMessageMinimumVersion
+        ees_message_path = $eesMessagePath
+        ees_message_present = [bool]$eesMessageCapture.Present
+        ees_message_bytes = [long]$eesMessageCapture.Bytes
+        ees_message = if ($eesMessageCapture.Present) { $eesMessageCapture.Text } else { $null }
+        ees_message_snapshot = if ($retainRunDirectory) { $eesMessageCapture.SnapshotPath } else { $null }
     } | ConvertTo-Json
     exit 0
 }
 catch {
     if ($process -and -not $process.HasExited) {
         Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue
+        $process.WaitForExit(5000) | Out-Null
+    }
+    if ($eesMessageReset -and $eesMessagePath -and $runDirectory -and $null -eq $eesMessageCapture) {
+        $eesMessageCapture = Capture-EesMessageFile -SourcePath $eesMessagePath -RunDirectory $runDirectory
     }
     [pscustomobject]@{
         status = 'error'
         message = $_.Exception.Message
         run_directory = $runDirectory
+        ees_message_supported = $eesMessageSupported
+        ees_message_minimum_ees_version = $eesMessageMinimumVersion
+        ees_message_path = $eesMessagePath
+        ees_message_present = if ($null -ne $eesMessageCapture) { [bool]$eesMessageCapture.Present } else { $false }
+        ees_message_bytes = if ($null -ne $eesMessageCapture) { [long]$eesMessageCapture.Bytes } else { 0 }
+        ees_message = if ($null -ne $eesMessageCapture -and $eesMessageCapture.Present) { $eesMessageCapture.Text } else { $null }
+        ees_message_snapshot = if ($null -ne $eesMessageCapture) { $eesMessageCapture.SnapshotPath } else { $null }
+        ees_message_capture_error = if ($null -ne $eesMessageCapture) { $eesMessageCapture.CaptureError } else { $null }
     } | ConvertTo-Json
     exit 1
 }

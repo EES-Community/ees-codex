@@ -27,7 +27,7 @@ This workspace is configured for safely generating and solving EES text programs
      -TimeoutSeconds 120
    ```
 
-6. Read the launcher status. When `capabilities.result_detail_modes` includes `Compact`, request only the principal outputs, constraints, and residuals first:
+6. Read the launcher status first. With EES 12.358 or newer, `ees_message_supported` is true; inspect `ees_message_present` and, if true, review `ees_message` and the retained `ees_message_snapshot` even when the export succeeded. Older EES versions remain usable and report message capture as unsupported. When `capabilities.result_detail_modes` includes `Compact`, request only the principal outputs, constraints, and residuals first:
 
    ```powershell
    & (Join-Path $config.install_directory 'Get-EES-Result.ps1') `
@@ -49,4 +49,4 @@ This workspace is configured for safely generating and solving EES text programs
 - From the first attempt, run commands that start EES outside the filesystem sandbox so they have normal Windows filesystem access; catalog and metadata searches may remain sandboxed.
 - Prefer a new result filename for each material iteration. Use `-Force` only for an intentional replacement.
 - Treat catalog metadata as discovery information. Verify a candidate routine by its signature, units, documentation, and a small compile test.
-- If EES times out, inspect the retained `.ees-runs` program and launcher diagnostic before changing the model.
+- If EES fails or times out, inspect the retained `.ees-runs` program. When `ees_message_supported` is true, also inspect the per-run `EES_Msg.txt` snapshot and do not substitute the independently read fixed file. Older EES versions use the launcher's export/window-text fallback.

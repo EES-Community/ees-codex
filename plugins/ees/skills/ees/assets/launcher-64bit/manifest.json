@@ -1,11 +1,13 @@
 {
   "product": "EES-Codex-Launcher",
-  "version": "0.5.0-beta",
-  "coordinated_plugin_version": "0.5.0-beta",
-  "launcher_api_level": 2,
+  "version": "0.5.1-beta",
+  "coordinated_plugin_version": "0.5.1-beta",
+  "launcher_api_level": 3,
   "platform": "Windows",
   "edition": "64-bit-only",
   "required_ees_architecture": "64-bit",
+  "ees_message_capture_minimum_ees_version": "12.358",
+  "ees_message_capture_minimum_file_version": "12.3.5.8",
   "install_folder_name": "EES-Codex-Launcher-64bit",
   "workspace_folder_name": "EES-Codex-Workspace-64bit",
   "workspace_parent": "UserProfile",
@@ -24,7 +26,8 @@
   "capabilities": {
     "catalog_detail_modes": ["Compact", "Full"],
     "result_detail_modes": ["Compact", "Full"],
-    "result_selectors": ["Variable", "Pattern"]
+    "result_selectors": ["Variable", "Pattern"],
+    "ees_message_capture": true
   },
   "catalog": {
     "name": "EES_Tool_Metadata.json",
