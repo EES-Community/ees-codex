@@ -29,6 +29,8 @@ Read only the principal result and related residuals:
 
 Use `-Detail Full` without selectors, or `Get-Content`, when you need the complete export.
 
+Read the JSON returned by `Run-EES.ps1` before parsing the export. With EES 12.358 or newer, `ees_message_supported` is true; if `ees_message_present` is also true, inspect `ees_message` and the retained `ees_message_snapshot` even when `status` is `success`. The launcher deletes the previous fixed `EES_Msg.txt` only after acquiring its run lock, then snapshots the fresh file before another run can replace it. Older EES versions report message capture as unsupported and retain the existing export/window-text behavior.
+
 ## Required EES source contract
 
 The input must be a `.txt` file below the configured workspace. It must contain exactly one output placeholder on exactly one `$Export` or `$ExportText` directive:

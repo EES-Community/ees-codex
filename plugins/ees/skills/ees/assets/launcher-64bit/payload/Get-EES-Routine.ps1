@@ -43,7 +43,7 @@ $compactRoutine = [ordered]@{
 
 if ($Detail -eq 'Compact') {
     [ordered]@{ routine = $compactRoutine } | ConvertTo-Json -Depth 6 -Compress
-    exit 0
+    return
 }
 
 $keywords = @($catalog.Keywords | Where-Object {

@@ -25,7 +25,7 @@ $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $pluginManifestPath = Join-Path $repositoryRoot 'plugins\ees\.codex-plugin\plugin.json'
 $pluginManifest = Get-Content -LiteralPath $pluginManifestPath -Raw | ConvertFrom-Json
 $expectedVersion = [string]$pluginManifest.version
-Assert-True ($expectedVersion -eq '0.5.0-beta') 'The plugin manifest does not have the expected coordinated release version.'
+Assert-True ($expectedVersion -eq '0.5.1-beta') 'The plugin manifest does not have the expected coordinated release version.'
 
 $editions = @('launcher-32bit', 'launcher-64bit')
 $helperHashes = New-Object System.Collections.Generic.List[string]
@@ -44,10 +44,13 @@ try {
         Assert-True ([string]$manifest.version -eq $expectedVersion) "$edition manifest version is not coordinated with the plugin."
         Assert-True ([string]$manifest.coordinated_plugin_version -eq $expectedVersion) "$edition does not declare the coordinated plugin version."
         Assert-True ($versionText -eq $expectedVersion) "$edition VERSION.txt is not coordinated with the plugin."
-        Assert-True ([int]$manifest.launcher_api_level -eq 2) "$edition does not declare launcher API level 2."
+        Assert-True ([int]$manifest.launcher_api_level -eq 3) "$edition does not declare launcher API level 3."
+        Assert-True ([string]$manifest.ees_message_capture_minimum_ees_version -eq '12.358') "$edition does not declare EES 12.358 as the EES_Msg.txt feature threshold."
+        Assert-True ([string]$manifest.ees_message_capture_minimum_file_version -eq '12.3.5.8') "$edition does not declare the corresponding EES_Msg.txt file-version threshold."
         Assert-True (@($manifest.capabilities.catalog_detail_modes) -contains 'Compact') "$edition lacks compact catalog capability."
         Assert-True (@($manifest.capabilities.result_detail_modes) -contains 'Compact') "$edition lacks compact result capability."
         Assert-True (@($manifest.capabilities.result_selectors) -contains 'Pattern') "$edition lacks pattern result selection."
+        Assert-True ($manifest.capabilities.ees_message_capture -eq $true) "$edition lacks EES_Msg.txt capture capability."
 
         $hashManifestPath = Join-Path $assetRoot 'SHA256SUMS.txt'
         $listedPackagePaths = New-Object System.Collections.Generic.List[string]
@@ -72,6 +75,16 @@ try {
 
         $helperSource = Join-Path $assetRoot 'payload\Get-EES-Result.ps1'
         $helperHashes.Add((Get-FileHash -LiteralPath $helperSource -Algorithm SHA256).Hash)
+        $routineHelperSource = Join-Path $assetRoot 'payload\Get-EES-Routine.ps1'
+        $routineTokens = $null
+        $routineParseErrors = $null
+        $routineAst = [System.Management.Automation.Language.Parser]::ParseFile($routineHelperSource, [ref]$routineTokens, [ref]$routineParseErrors)
+        Assert-True (@($routineParseErrors).Count -eq 0) "$edition routine helper did not parse."
+        $routineExitStatements = @($routineAst.FindAll({
+            param($node)
+            $node -is [System.Management.Automation.Language.ExitStatementAst]
+        }, $true))
+        Assert-True ($routineExitStatements.Count -eq 0) "$edition routine helper can terminate its calling PowerShell host."
         $runtimeRoot = Join-Path $scratchRoot $edition
         $workspaceRoot = Join-Path $runtimeRoot 'workspace'
         $resultRoot = Join-Path $workspaceRoot 'results'
@@ -84,13 +97,16 @@ try {
         Copy-Item -LiteralPath (Join-Path $fixtureRoot 'malformed-result.txt') -Destination $resultRoot
         $config = [ordered]@{
             version = $expectedVersion
-            launcher_api_level = 2
+            launcher_api_level = 3
             install_directory = $installRoot
             workspace_root = $workspaceRoot
+            ees_message_capture_enabled_at_install = $true
+            ees_message_capture_minimum_file_version = '12.3.5.8'
             capabilities = [ordered]@{
                 catalog_detail_modes = @('Compact', 'Full')
                 result_detail_modes = @('Compact', 'Full')
                 result_selectors = @('Variable', 'Pattern')
+                ees_message_capture = $true
             }
         }
         [System.IO.File]::WriteAllText(
@@ -103,7 +119,26 @@ try {
         $resolvedCapabilities = & $capabilityResolver -ConfigPath (Join-Path $installRoot 'config.json') | ConvertFrom-Json
         Assert-True ($resolvedCapabilities.use_compact_catalog) "$edition ignored its declared compact catalog capability."
         Assert-True ($resolvedCapabilities.use_compact_results) "$edition ignored its declared compact result capability."
+        Assert-True ($resolvedCapabilities.use_ees_message_capture) "$edition ignored its declared EES_Msg.txt capture capability."
+        Assert-True ($resolvedCapabilities.ees_message_capture_capable) "$edition did not report that its launcher implements EES_Msg.txt capture."
         Assert-True ($resolvedCapabilities.catalog_detection_source -eq 'declared') "$edition did not prefer declared capabilities."
+
+        $config.ees_message_capture_enabled_at_install = $false
+        [System.IO.File]::WriteAllText(
+            (Join-Path $installRoot 'config.json'),
+            ($config | ConvertTo-Json -Depth 5),
+            (New-Object System.Text.UTF8Encoding($false))
+        )
+        $olderEesCapabilities = & $capabilityResolver -ConfigPath (Join-Path $installRoot 'config.json') | ConvertFrom-Json
+        Assert-True ($olderEesCapabilities.ees_message_capture_capable) "$edition lost its launcher diagnostic capability when the selected EES version disabled it."
+        Assert-True (-not $olderEesCapabilities.use_ees_message_capture) "$edition enabled EES_Msg.txt capture for an unsupported EES version."
+        Assert-True (-not $olderEesCapabilities.update_recommended) "$edition recommended a launcher update when only the selected EES version disabled diagnostics."
+        $config.ees_message_capture_enabled_at_install = $true
+        [System.IO.File]::WriteAllText(
+            (Join-Path $installRoot 'config.json'),
+            ($config | ConvertTo-Json -Depth 5),
+            (New-Object System.Text.UTF8Encoding($false))
+        )
         $waterPath = Join-Path $resultRoot 'water-heating-result.txt'
         $water = & $helper -Path $waterPath -Variable 'q_DOT' -Pattern '*_resid' -Detail Compact | ConvertFrom-Json
         Assert-True ($water.status -eq 'success') "$edition compact water result did not succeed."
@@ -190,7 +225,7 @@ try {
     Assert-True ($inspected.use_compact_catalog) 'A pre-declaration launcher with compact parameters was not detected.'
     Assert-True ($inspected.use_compact_results) 'A pre-declaration launcher with the result helper was not detected.'
     Assert-True ($inspected.catalog_detection_source -eq 'inspected') 'Parameter detection did not report its source.'
-    Assert-True (-not $inspected.update_recommended) 'A fully capable inspected launcher incorrectly recommended an update.'
+    Assert-True ($inspected.update_recommended) 'A launcher without declared EES_Msg.txt capture did not recommend an update.'
 }
 finally {
     if (Test-Path -LiteralPath $resolvedScratchRoot -PathType Container) {
@@ -205,5 +240,5 @@ finally {
     status = 'success'
     release_version = $expectedVersion
     editions_tested = $editions.Count
-    launcher_api_level = 2
+    launcher_api_level = 3
 }
