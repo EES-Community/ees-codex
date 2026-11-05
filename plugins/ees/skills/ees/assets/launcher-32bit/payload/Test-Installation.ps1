@@ -113,6 +113,45 @@ try {
         throw 'The fixed EES_Msg.txt file still contains the preceding invalid-program diagnostic after a successful solve.'
     }
 
+    $plotProgram = Join-Path $config.workspace_root 'examples\property_plot.txt'
+    $plotManifest = Join-Path $config.workspace_root 'examples\property_plot-artifacts.json'
+    $plotResult = Join-Path $resultDirectory 'installation_property_plot.txt'
+    $plotOutput = & $hostExe -NoProfile -ExecutionPolicy Bypass -File $launcher `
+        -WorkspaceRoot $config.workspace_root `
+        -ProgramPath $plotProgram `
+        -OutputPath $plotResult `
+        -ArtifactManifestPath $plotManifest `
+        -EesPath $config.ees_path `
+        -TimeoutSeconds 120 `
+        -Force 2>&1
+    if ($LASTEXITCODE -ne 0) {
+        throw "The validated property-plot test returned exit code $LASTEXITCODE. $($plotOutput -join [Environment]::NewLine)"
+    }
+    try { $plotStatus = ($plotOutput -join [Environment]::NewLine) | ConvertFrom-Json }
+    catch { throw "The validated property-plot launcher result was not valid JSON. $($plotOutput -join [Environment]::NewLine)" }
+    $plotArtifacts = @($plotStatus.output_artifacts | Where-Object {
+        $_.name -eq 'PLOT_FILE' -and $_.directive -eq 'EXPORTPLOT'
+    })
+    $plotInputs = @($plotStatus.input_artifacts | Where-Object {
+        $_.name -eq 'INPUT_DATA' -and $_.directive -eq 'IMPORT'
+    })
+    $plotBytes = if ($plotArtifacts.Count -eq 1 -and (Test-Path -LiteralPath $plotArtifacts[0].path -PathType Leaf)) {
+        [System.IO.File]::ReadAllBytes([string]$plotArtifacts[0].path)
+    }
+    else { @() }
+    if ($plotStatus.status -ne 'success' -or
+        $plotStatus.mode -ne 'Solve' -or
+        $plotStatus.artifact_manifest_path -ne $plotManifest -or
+        $plotInputs.Count -ne 1 -or
+        -not (Test-Path -LiteralPath $plotInputs[0].path -PathType Leaf) -or
+        $plotArtifacts.Count -ne 1 -or
+        $plotBytes.Length -lt 1000 -or
+        $plotBytes[0] -ne 0xFF -or
+        $plotBytes[1] -ne 0xD8 -or
+        (Get-Content -LiteralPath $plotResult -Raw) -notmatch '(?m)^h\s+1\.04920120E\+02') {
+        throw 'The validated artifact test did not stage the expected input or produce the expected EES result and nonempty property-plot image.'
+    }
+
     if ($eesMessageCaptureEnabled -and -not [string]::IsNullOrWhiteSpace([string]$invalidStatus.run_directory)) {
         if (-not (Test-PathWithin -CandidatePath $invalidStatus.run_directory -RootPath $config.workspace_root)) {
             throw "Refusing to clean an expected-failure run directory outside the workspace: $($invalidStatus.run_directory)"
@@ -127,14 +166,20 @@ try {
         throw "EES ran, but the expected Q_dot = 200 kW result was not found in $output"
     }
     if ([string]$config.version -ne [string]$config.coordinated_plugin_version -or
-        $config.launcher_api_level -ne 3 -or
+        $config.launcher_api_level -ne 4 -or
         @($config.capabilities.catalog_detail_modes) -notcontains 'Compact' -or
         @($config.capabilities.result_detail_modes) -notcontains 'Compact' -or
         @($config.capabilities.result_selectors) -notcontains 'Pattern' -or
         $config.capabilities.ees_message_capture -ne $true -or
+        @($config.capabilities.run_modes).Count -ne 1 -or
+        @($config.capabilities.run_modes) -notcontains 'Solve' -or
+        $config.capabilities.validated_artifact_manifest -ne $true -or
+        @($config.capabilities.artifact_input_directives) -notcontains 'Import' -or
+        @($config.capabilities.artifact_output_directives) -notcontains 'ExportPlot' -or
+        $config.capabilities.thermodynamic_reference_directive -ne $true -or
         [string]$config.ees_message_capture_minimum_ees_version -ne '12.358' -or
         [string]$config.ees_message_capture_minimum_file_version -ne '12.3.5.8') {
-        throw 'The launcher configuration does not advertise the expected API level, compact catalog/result modes, and EES message capture.'
+        throw 'The launcher configuration does not advertise the expected API level, compact modes, diagnostics, run modes, and validated artifacts.'
     }
     $resultHelper = Join-Path $config.install_directory 'Get-EES-Result.ps1'
     $compactResult = & $resultHelper `
@@ -268,7 +313,7 @@ try {
 
     $successJson = [ordered]@{
         status = 'success'
-        message = if ($eesMessageCaptureEnabled) { 'The launcher captured a fresh EES_Msg.txt compile error, cleared it before the next successful solve, and verified /AI autoload without changing the persistent autoload setting.' } else { 'The launcher verified solving, catalog helpers, and /AI autoload. EES_Msg.txt capture was skipped because it requires EES 12.358 or newer.' }
+        message = if ($eesMessageCaptureEnabled) { 'The launcher verified solving, a validated native property-plot artifact, a fresh EES_Msg.txt compile error followed by a clean solve, and /AI autoload without changing the persistent autoload setting.' } else { 'The launcher verified solving, a validated native property-plot artifact, catalog helpers, and /AI autoload. EES_Msg.txt capture was skipped because it requires EES 12.358 or newer.' }
         ees_path = $config.ees_path
         workspace_root = $config.workspace_root
         result_path = $output
@@ -276,6 +321,8 @@ try {
         coordinated_plugin_version = $config.coordinated_plugin_version
         launcher_api_level = $config.launcher_api_level
         ees_message_capture_capability = $true
+        validated_artifact_manifest_capability = $true
+        validated_property_plot = $plotArtifacts[0].path
         ees_message_capture_enabled = $eesMessageCaptureEnabled
         invalid_diagnostic_verified = $invalidDiagnosticVerified
         compact_result_extraction = $true

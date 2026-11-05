@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "inputs": [
+    {
+      "name": "INPUT_DATA",
+      "path": "examples/property_plot-input.txt"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "PLOT_FILE",
+      "path": "results/installation_property_plot.jpg"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+$UnitSystem SI C kPa kJ Mass
+
+$Import '{{INPUT_DATA}}' T, P
+h=Enthalpy(Water,T=T,P=P)
+
+$VarInfo T Units=C
+$VarInfo P Units=kPa
+$PropertyPlot Water TS DEF DEF DoQLines
+$ExportPlot '{{PLOT_FILE}}' 1
+$Export /H /V /U /N '{{OUTPUT_FILE}}' T, P, h

@@ -1,8 +1,8 @@
 {
   "product": "EES-Codex-Launcher",
-  "version": "0.5.1-beta",
-  "coordinated_plugin_version": "0.5.1-beta",
-  "launcher_api_level": 3,
+  "version": "0.6.0-beta",
+  "coordinated_plugin_version": "0.6.0-beta",
+  "launcher_api_level": 4,
   "platform": "Windows",
   "edition": "64-bit-only",
   "required_ees_architecture": "64-bit",
@@ -27,7 +27,12 @@
     "catalog_detail_modes": ["Compact", "Full"],
     "result_detail_modes": ["Compact", "Full"],
     "result_selectors": ["Variable", "Pattern"],
-    "ees_message_capture": true
+    "ees_message_capture": true,
+    "run_modes": ["Solve"],
+    "validated_artifact_manifest": true,
+    "artifact_input_directives": ["Import", "ImportText", "OpenLookup"],
+    "artifact_output_directives": ["Export", "ExportText", "ExportPlot", "SaveLookup", "SaveTable", "SaveVarInfo"],
+    "thermodynamic_reference_directive": true
   },
   "catalog": {
     "name": "EES_Tool_Metadata.json",

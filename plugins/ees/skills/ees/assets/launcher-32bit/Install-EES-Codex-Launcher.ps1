@@ -115,7 +115,7 @@ try {
     $payload = Join-Path $packageRoot 'payload'
     $workspaceTemplate = Join-Path $packageRoot 'workspace-template'
     $versionFile = Join-Path $packageRoot 'VERSION.txt'
-    $requiredPayloadFiles = @('Run-EES.ps1', 'Search-EES-Library.ps1', 'Get-EES-Routine.ps1', 'Get-EES-Result.ps1', 'Test-Installation.ps1')
+    $requiredPayloadFiles = @('Run-EES.ps1', 'EES-ProgramPolicy.ps1', 'Search-EES-Library.ps1', 'Get-EES-Routine.ps1', 'Get-EES-Result.ps1', 'Test-Installation.ps1')
     foreach ($requiredPayloadFile in $requiredPayloadFiles) {
         if (-not (Test-Path -LiteralPath (Join-Path $payload $requiredPayloadFile) -PathType Leaf)) {
             throw "The package payload is incomplete ($requiredPayloadFile is missing). Extract the entire ZIP before running Install.cmd."
@@ -130,10 +130,15 @@ try {
     $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
     if ([string]$manifest.version -ne $version -or
         [string]$manifest.coordinated_plugin_version -ne [string]$manifest.version -or
-        [int]$manifest.launcher_api_level -lt 3 -or
+        [int]$manifest.launcher_api_level -lt 4 -or
         @($manifest.capabilities.catalog_detail_modes) -notcontains 'Compact' -or
         @($manifest.capabilities.result_detail_modes) -notcontains 'Compact' -or
         $manifest.capabilities.ees_message_capture -ne $true -or
+        @($manifest.capabilities.run_modes) -notcontains 'Solve' -or
+        $manifest.capabilities.validated_artifact_manifest -ne $true -or
+        @($manifest.capabilities.artifact_input_directives) -notcontains 'Import' -or
+        @($manifest.capabilities.artifact_output_directives) -notcontains 'ExportPlot' -or
+        $manifest.capabilities.thermodynamic_reference_directive -ne $true -or
         [string]::IsNullOrWhiteSpace([string]$manifest.ees_message_capture_minimum_ees_version) -or
         [string]::IsNullOrWhiteSpace([string]$manifest.ees_message_capture_minimum_file_version)) {
         throw 'The package manifest does not contain a valid coordinated release and launcher capability declaration.'
@@ -215,6 +220,11 @@ try {
             result_detail_modes = @($manifest.capabilities.result_detail_modes)
             result_selectors = @($manifest.capabilities.result_selectors)
             ees_message_capture = [bool]$manifest.capabilities.ees_message_capture
+            run_modes = @($manifest.capabilities.run_modes)
+            validated_artifact_manifest = [bool]$manifest.capabilities.validated_artifact_manifest
+            artifact_input_directives = @($manifest.capabilities.artifact_input_directives)
+            artifact_output_directives = @($manifest.capabilities.artifact_output_directives)
+            thermodynamic_reference_directive = [bool]$manifest.capabilities.thermodynamic_reference_directive
         }
         install_directory = $resolvedInstall
         workspace_root = $resolvedWorkspace
