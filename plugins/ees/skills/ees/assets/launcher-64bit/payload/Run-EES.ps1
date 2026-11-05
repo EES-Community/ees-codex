@@ -3,8 +3,9 @@ param(
     [Parameter(Mandatory = $true)]
     [string]$ProgramPath,
 
-    [Parameter(Mandatory = $true)]
     [string]$OutputPath,
+
+    [string]$ArtifactManifestPath,
 
     [string]$WorkspaceRoot = $PSScriptRoot,
 
@@ -33,10 +34,15 @@ if ($PSVersionTable.PSEdition -eq 'Core') {
         '-ExecutionPolicy', 'Bypass',
         '-File', $PSCommandPath,
         '-ProgramPath', $ProgramPath,
-        '-OutputPath', $OutputPath,
         '-WorkspaceRoot', $WorkspaceRoot,
         '-TimeoutSeconds', [string]$TimeoutSeconds
     )
+    if (-not [string]::IsNullOrWhiteSpace($OutputPath)) {
+        $handoffArguments += @('-OutputPath', $OutputPath)
+    }
+    if (-not [string]::IsNullOrWhiteSpace($ArtifactManifestPath)) {
+        $handoffArguments += @('-ArtifactManifestPath', $ArtifactManifestPath)
+    }
     if (-not [string]::IsNullOrWhiteSpace($EesPath)) {
         $handoffArguments += @('-EesPath', $EesPath)
     }
@@ -50,6 +56,12 @@ if ($PSVersionTable.PSEdition -eq 'Core') {
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
+$programPolicyPath = Join-Path $PSScriptRoot 'EES-ProgramPolicy.ps1'
+if (-not (Test-Path -LiteralPath $programPolicyPath -PathType Leaf)) {
+    throw "The launcher program-policy helper is missing: $programPolicyPath"
+}
+. $programPolicyPath
+
 $runDirectory = $null
 $process = $null
 $runLock = $null
@@ -59,6 +71,10 @@ $eesMessageReset = $false
 $eesMessageSupported = $false
 $eesMessageMinimumVersion = '12.358'
 $eesMessageMinimumFileVersion = [version]'12.3.5.8'
+$resolvedOutput = $null
+$artifactManifest = $null
+$preparedInputs = @()
+$preparedOutputs = @()
 
 function Resolve-EesExecutable {
     param([string]$RequestedPath)
@@ -236,38 +252,100 @@ function Get-EesMessageSummary {
     return $summary
 }
 
-function Assert-SafeProgram {
-    param([string]$Text)
-
-    $placeholder = '{{OUTPUT_FILE}}'
-    $placeholderCount = ([regex]::Matches($Text, [regex]::Escape($placeholder))).Count
-    if ($placeholderCount -ne 1) {
-        throw "The program must contain exactly one $placeholder placeholder; found $placeholderCount."
-    }
-
-    $exportLines = @($Text -split "`r?`n" | Where-Object { $_ -match '(?i)^\s*\$(Export|ExportText)\b' })
-    if ($exportLines.Count -ne 1 -or $exportLines[0] -notlike "*$placeholder*") {
-        throw 'The program must contain exactly one $Export or $ExportText directive, and that line must use {{OUTPUT_FILE}}.'
-    }
-
-    $loadLines = @($Text -split "`r?`n" | Where-Object { $_ -match '(?i)^\s*\$Load\b' })
-    $allowedLoads = @(
-        '$Load Component Library',
-        '$Load Mechanical',
-        '$Load NASA',
-        '$Load Incompressible'
+function Resolve-EesArtifactManifest {
+    param(
+        [string]$ManifestPath,
+        [string]$ResolvedWorkspace,
+        [bool]$AllowReplace
     )
-    foreach ($loadLine in $loadLines) {
-        $normalizedLoad = ([regex]::Replace($loadLine.Trim(), '\s+', ' '))
-        if (-not ($allowedLoads -contains $normalizedLoad)) {
-            throw "Blocked library directive $normalizedLoad. Allowed values are: $($allowedLoads -join ', ')."
-        }
+
+    $empty = [pscustomobject][ordered]@{
+        path = $null
+        inputs = @()
+        outputs = @()
+    }
+    if ([string]::IsNullOrWhiteSpace($ManifestPath)) { return $empty }
+
+    $resolvedManifest = Get-AbsolutePath $ManifestPath
+    if (-not (Test-PathWithin -CandidatePath $resolvedManifest -RootPath $ResolvedWorkspace)) {
+        throw "ArtifactManifestPath must be inside WorkspaceRoot ($ResolvedWorkspace): $resolvedManifest"
+    }
+    if (-not (Test-Path -LiteralPath $resolvedManifest -PathType Leaf)) {
+        throw "Artifact manifest was not found: $resolvedManifest"
+    }
+    if (-not [System.IO.Path]::GetExtension($resolvedManifest).Equals('.json', [System.StringComparison]::OrdinalIgnoreCase)) {
+        throw 'ArtifactManifestPath must have a .json extension.'
     }
 
-    $blocked = '(?im)^\s*\$(RunMacroAfter|RunMacroBefore|Python|Include|OpenLookup|SaveLookup|SaveTable|SaveVarInfo|ExportPlot|Reference|Import|ImportText)\b'
-    $match = [regex]::Match($Text, $blocked)
-    if ($match.Success) {
-        throw "Blocked external-action directive $($match.Value.Trim()). The safe launcher permits one generated program and one result file only."
+    try { $document = Get-Content -LiteralPath $resolvedManifest -Raw | ConvertFrom-Json }
+    catch { throw "Artifact manifest is not valid JSON: $($_.Exception.Message)" }
+    if ($null -eq $document -or
+        -not ($document.PSObject.Properties.Name -contains 'version') -or
+        [int]$document.version -ne 1) {
+        throw 'Artifact manifest must declare version 1.'
+    }
+    if (-not ($document.PSObject.Properties.Name -contains 'inputs') -or
+        -not ($document.PSObject.Properties.Name -contains 'outputs')) {
+        throw 'Artifact manifest must contain inputs and outputs arrays, which may be empty.'
+    }
+
+    $resolvedInputs = New-Object System.Collections.Generic.List[object]
+    $resolvedOutputs = New-Object System.Collections.Generic.List[object]
+    foreach ($item in @($document.inputs)) {
+        if ($null -eq $item -or
+            -not ($item.PSObject.Properties.Name -contains 'name') -or
+            -not ($item.PSObject.Properties.Name -contains 'path')) {
+            throw 'Every artifact-manifest input must contain name and path properties.'
+        }
+        $name = [string]$item.name
+        $pathText = [string]$item.path
+        if ([string]::IsNullOrWhiteSpace($pathText)) { throw "Input binding $name has an empty path." }
+        $candidate = if ([System.IO.Path]::IsPathRooted($pathText)) {
+            [System.IO.Path]::GetFullPath($pathText)
+        }
+        else { [System.IO.Path]::GetFullPath((Join-Path $ResolvedWorkspace $pathText)) }
+        if (-not (Test-PathWithin -CandidatePath $candidate -RootPath $ResolvedWorkspace)) {
+            throw "Input binding $name must remain inside WorkspaceRoot: $candidate"
+        }
+        if (-not (Test-Path -LiteralPath $candidate -PathType Leaf)) {
+            throw "Input binding $name was not found: $candidate"
+        }
+        $resolvedInputs.Add([pscustomobject][ordered]@{ name = $name; path = $candidate })
+    }
+    foreach ($item in @($document.outputs)) {
+        if ($null -eq $item -or
+            -not ($item.PSObject.Properties.Name -contains 'name') -or
+            -not ($item.PSObject.Properties.Name -contains 'path')) {
+            throw 'Every artifact-manifest output must contain name and path properties.'
+        }
+        $name = [string]$item.name
+        $pathText = [string]$item.path
+        if ([string]::IsNullOrWhiteSpace($pathText)) { throw "Output binding $name has an empty path." }
+        $candidate = if ([System.IO.Path]::IsPathRooted($pathText)) {
+            [System.IO.Path]::GetFullPath($pathText)
+        }
+        else { [System.IO.Path]::GetFullPath((Join-Path $ResolvedWorkspace $pathText)) }
+        if (-not (Test-PathWithin -CandidatePath $candidate -RootPath $ResolvedWorkspace)) {
+            throw "Output binding $name must remain inside WorkspaceRoot: $candidate"
+        }
+        if ($candidate.Contains("'")) {
+            throw "Output binding $name cannot contain a single quote because it is inserted into an EES string literal: $candidate"
+        }
+        if (Test-Path -LiteralPath $candidate) {
+            if (-not (Test-Path -LiteralPath $candidate -PathType Leaf)) {
+                throw "Artifact output must name a file, not an existing directory: $candidate"
+            }
+            if (-not $AllowReplace) {
+                throw "Artifact output already exists: $candidate. Choose a new path or use -Force."
+            }
+        }
+        $resolvedOutputs.Add([pscustomobject][ordered]@{ name = $name; path = $candidate })
+    }
+
+    return [pscustomobject][ordered]@{
+        path = $resolvedManifest
+        inputs = @($resolvedInputs | ForEach-Object { $_ })
+        outputs = @($resolvedOutputs | ForEach-Object { $_ })
     }
 }
 
@@ -381,27 +459,65 @@ try {
         throw 'The input program must have a .txt extension so EES treats it as equation text.'
     }
 
-    $resolvedOutput = Get-AbsolutePath $OutputPath
-    if (-not (Test-PathWithin -CandidatePath $resolvedOutput -RootPath $resolvedWorkspace)) {
-        throw "OutputPath must be inside WorkspaceRoot ($resolvedWorkspace): $resolvedOutput"
+    if ($resolvedWorkspace.Contains("'")) {
+        throw "WorkspaceRoot cannot contain a single quote because staged paths are inserted into EES string literals: $resolvedWorkspace"
     }
-    if ([System.IO.Path]::GetExtension($resolvedOutput) -eq '') {
-        throw 'OutputPath must have an extension supported by the EES export directive, such as .txt or .csv.'
-    }
-    if ($resolvedOutput.Contains("'")) {
-        throw "OutputPath cannot contain a single quote because it is inserted into an EES string literal: $resolvedOutput"
-    }
-    if ((Test-Path -LiteralPath $resolvedOutput) -and -not $Force) {
-        throw "Output already exists: $resolvedOutput. Choose a new path or use -Force."
+    $hasPrimaryOutput = -not [string]::IsNullOrWhiteSpace($OutputPath)
+    if ($hasPrimaryOutput) {
+        $resolvedOutput = Get-AbsolutePath $OutputPath
+        if (-not (Test-PathWithin -CandidatePath $resolvedOutput -RootPath $resolvedWorkspace)) {
+            throw "OutputPath must be inside WorkspaceRoot ($resolvedWorkspace): $resolvedOutput"
+        }
+        if ($resolvedOutput.Contains("'")) {
+            throw "OutputPath cannot contain a single quote because it is inserted into an EES string literal: $resolvedOutput"
+        }
+        if (Test-Path -LiteralPath $resolvedOutput) {
+            if (-not (Test-Path -LiteralPath $resolvedOutput -PathType Leaf)) {
+                throw "OutputPath must name a file, not an existing directory: $resolvedOutput"
+            }
+            if (-not $Force) {
+                throw "Output already exists: $resolvedOutput. Choose a new path or use -Force."
+            }
+        }
     }
 
-    $outputParent = Split-Path -Parent $resolvedOutput
-    if (-not (Test-Path -LiteralPath $outputParent -PathType Container)) {
-        New-Item -ItemType Directory -Path $outputParent -Force | Out-Null
-    }
-
+    $artifactManifest = Resolve-EesArtifactManifest `
+        -ManifestPath $ArtifactManifestPath `
+        -ResolvedWorkspace $resolvedWorkspace `
+        -AllowReplace ([bool]$Force)
     $programText = [System.IO.File]::ReadAllText($resolvedProgram)
-    Assert-SafeProgram -Text $programText
+    $programPolicy = Assert-EesProgramPolicy `
+        -Text $programText `
+        -PrimaryOutputDeclared $hasPrimaryOutput `
+        -InputBindingNames @($artifactManifest.inputs | ForEach-Object { $_.name }) `
+        -OutputBindingNames @($artifactManifest.outputs | ForEach-Object { $_.name })
+
+    if ($hasPrimaryOutput) {
+        Assert-EesArtifactExtension -Path $resolvedOutput -Directive $programPolicy.primary_output_use.directive
+    }
+    $protectedPaths = New-Object 'System.Collections.Generic.HashSet[string]' ([System.StringComparer]::OrdinalIgnoreCase)
+    [void]$protectedPaths.Add($resolvedProgram)
+    if ($artifactManifest.path) { [void]$protectedPaths.Add([string]$artifactManifest.path) }
+    foreach ($inputBinding in @($artifactManifest.inputs)) { [void]$protectedPaths.Add([string]$inputBinding.path) }
+    $outputDestinations = New-Object 'System.Collections.Generic.HashSet[string]' ([System.StringComparer]::OrdinalIgnoreCase)
+    if ($hasPrimaryOutput) {
+        if ($protectedPaths.Contains($resolvedOutput)) { throw "OutputPath cannot replace the program, manifest, or a declared input: $resolvedOutput" }
+        [void]$outputDestinations.Add($resolvedOutput)
+    }
+    foreach ($outputBinding in @($artifactManifest.outputs)) {
+        $use = @($programPolicy.output_uses | Where-Object { $_.name -eq $outputBinding.name })[0]
+        Assert-EesArtifactExtension -Path $outputBinding.path -Directive $use.directive
+        if ($protectedPaths.Contains([string]$outputBinding.path)) {
+            throw "Output binding $($outputBinding.name) cannot replace the program, manifest, or a declared input: $($outputBinding.path)"
+        }
+        if (-not $outputDestinations.Add([string]$outputBinding.path)) {
+            throw "Multiple outputs resolve to the same destination: $($outputBinding.path)"
+        }
+    }
+    foreach ($inputBinding in @($artifactManifest.inputs)) {
+        $use = @($programPolicy.input_uses | Where-Object { $_.name -eq $inputBinding.name })[0]
+        Assert-EesArtifactExtension -Path $inputBinding.path -Directive $use.directive
+    }
 
     $runId = [guid]::NewGuid().ToString('N')
     $runRoot = Join-Path $resolvedWorkspace '.ees-runs'
@@ -412,8 +528,47 @@ try {
     New-Item -ItemType Directory -Path $runDirectory | Out-Null
 
     $stagedProgram = Join-Path $runDirectory 'program.txt'
-    $stagedOutput = Join-Path $runDirectory ('result' + [System.IO.Path]::GetExtension($resolvedOutput))
-    $renderedProgram = $programText.Replace('{{OUTPUT_FILE}}', $stagedOutput)
+    $stagedOutput = $null
+    $renderedProgram = $programText
+    if ($null -ne $programPolicy.primary_output_use) {
+        $primaryExtension = if ($hasPrimaryOutput) { [System.IO.Path]::GetExtension($resolvedOutput) } else { '.txt' }
+        $stagedOutput = Join-Path $runDirectory ('result' + $primaryExtension)
+        $renderedProgram = $renderedProgram.Replace('{{OUTPUT_FILE}}', $stagedOutput)
+    }
+
+    $inputStageRoot = Join-Path $runDirectory 'inputs'
+    if (@($artifactManifest.inputs).Count -gt 0) { New-Item -ItemType Directory -Path $inputStageRoot | Out-Null }
+    $preparedInputs = @($artifactManifest.inputs | ForEach-Object {
+        $binding = $_
+        $use = @($programPolicy.input_uses | Where-Object { $_.name -eq $binding.name })[0]
+        $stagedPath = Join-Path $inputStageRoot ($binding.name + [System.IO.Path]::GetExtension($binding.path))
+        Copy-Item -LiteralPath $binding.path -Destination $stagedPath
+        $renderedProgram = $renderedProgram.Replace(('{{' + $binding.name + '}}'), $stagedPath)
+        [pscustomobject][ordered]@{
+            name = $binding.name
+            directive = $use.directive
+            source_path = $binding.path
+            staged_path = $stagedPath
+        }
+    })
+
+    $outputStageRoot = Join-Path $runDirectory 'outputs'
+    if (@($artifactManifest.outputs).Count -gt 0) { New-Item -ItemType Directory -Path $outputStageRoot | Out-Null }
+    $preparedOutputs = @($artifactManifest.outputs | ForEach-Object {
+        $binding = $_
+        $use = @($programPolicy.output_uses | Where-Object { $_.name -eq $binding.name })[0]
+        $stagedPath = Join-Path $outputStageRoot ($binding.name + [System.IO.Path]::GetExtension($binding.path))
+        $renderedProgram = $renderedProgram.Replace(('{{' + $binding.name + '}}'), $stagedPath)
+        [pscustomobject][ordered]@{
+            name = $binding.name
+            directive = $use.directive
+            output_path = $binding.path
+            staged_path = $stagedPath
+        }
+    })
+    if ([regex]::IsMatch($renderedProgram, '\{\{[^{}]+\}\}')) {
+        throw 'The rendered EES program still contains an unresolved artifact placeholder.'
+    }
     $utf8WithoutBom = New-Object System.Text.UTF8Encoding($false)
     [System.IO.File]::WriteAllText($stagedProgram, $renderedProgram, $utf8WithoutBom)
 
@@ -491,36 +646,68 @@ try {
     Exit-EesRunLock -State $runLock
     $runLock = $null
 
-    if (-not (Test-Path -LiteralPath $stagedOutput -PathType Leaf)) {
-        $messageSummary = Get-EesMessageSummary -Capture $eesMessageCapture
-        $detail = if ($messageSummary) {
+    $artifactResults = New-Object System.Collections.Generic.List[object]
+    $outputBytes = 0
+    $expectedFiles = @([pscustomobject][ordered]@{
+            name = 'OUTPUT_FILE'
+            directive = $programPolicy.primary_output_use.directive
+            staged_path = $stagedOutput
+            output_path = $resolvedOutput
+            primary = $true
+    }) + @($preparedOutputs | ForEach-Object {
+            [pscustomobject][ordered]@{
+                name = $_.name
+                directive = $_.directive
+                staged_path = $_.staged_path
+                output_path = $_.output_path
+                primary = $false
+            }
+    })
+    $messageSummary = Get-EesMessageSummary -Capture $eesMessageCapture
+    $missingDetail = if ($messageSummary) {
             " EES_Msg.txt: $messageSummary"
-        }
-        elseif (-not $eesMessageSupported) {
-            " EES_Msg.txt capture requires EES $eesMessageMinimumVersion or newer."
-        }
-        else { ' No fresh EES_Msg.txt message was written.' }
-        throw "EES exited with code $($process.ExitCode) but did not create the expected result file.$detail"
     }
-    if ((Get-Item -LiteralPath $stagedOutput).Length -eq 0) {
-        $messageSummary = Get-EesMessageSummary -Capture $eesMessageCapture
-        $detail = if ($messageSummary) {
-            " EES_Msg.txt: $messageSummary"
-        }
-        elseif (-not $eesMessageSupported) {
+    elseif (-not $eesMessageSupported) {
             " EES_Msg.txt capture requires EES $eesMessageMinimumVersion or newer."
-        }
-        else { ' No fresh EES_Msg.txt message was written.' }
-        throw "EES created an empty result file.$detail"
     }
+    else { ' No fresh EES_Msg.txt message was written.' }
 
-    Move-Item -LiteralPath $stagedOutput -Destination $resolvedOutput -Force:$Force
+    foreach ($expected in $expectedFiles) {
+            if (-not (Test-Path -LiteralPath $expected.staged_path -PathType Leaf)) {
+                throw "EES exited with code $($process.ExitCode) but did not create artifact $($expected.name).$missingDetail"
+            }
+            if ((Get-Item -LiteralPath $expected.staged_path).Length -eq 0) {
+                throw "EES created an empty artifact for $($expected.name).$missingDetail"
+            }
+    }
+    foreach ($expected in $expectedFiles) {
+            $parent = Split-Path -Parent $expected.output_path
+            if (-not (Test-Path -LiteralPath $parent -PathType Container)) {
+                New-Item -ItemType Directory -Path $parent -Force | Out-Null
+            }
+            Move-Item -LiteralPath $expected.staged_path -Destination $expected.output_path -Force:$Force
+            $bytes = (Get-Item -LiteralPath $expected.output_path).Length
+            if ($expected.primary) {
+                $outputBytes = $bytes
+            }
+            else {
+                $artifactResults.Add([pscustomobject][ordered]@{
+                    name = $expected.name
+                    directive = $expected.directive
+                    path = $expected.output_path
+                    bytes = $bytes
+                })
+            }
+    }
     $endTime = [DateTimeOffset]::Now
 
     $retainRunDirectory = $KeepRunFiles -or $eesMessageCapture.Present
     if (-not $retainRunDirectory) {
-        Remove-Item -LiteralPath $stagedProgram -Force
-        Remove-Item -LiteralPath $runDirectory -Force
+        $verifiedRunDirectory = [System.IO.Path]::GetFullPath($runDirectory)
+        if (-not (Test-PathWithin -CandidatePath $verifiedRunDirectory -RootPath $runRoot)) {
+            throw "Refusing to remove an unexpected run directory: $verifiedRunDirectory"
+        }
+        Remove-Item -LiteralPath $verifiedRunDirectory -Recurse -Force
         $remaining = @(Get-ChildItem -LiteralPath $runRoot -Force)
         if ($remaining.Count -eq 0) {
             Remove-Item -LiteralPath $runRoot -Force
@@ -532,9 +719,15 @@ try {
         ees_path = $resolvedEes
         workspace_root = $resolvedWorkspace
         program_path = $resolvedProgram
+        mode = 'Solve'
         output_path = $resolvedOutput
         elapsed_seconds = [math]::Round(($endTime - $startTime).TotalSeconds, 3)
-        output_bytes = (Get-Item -LiteralPath $resolvedOutput).Length
+        output_bytes = $outputBytes
+        artifact_manifest_path = $artifactManifest.path
+        input_artifacts = @($preparedInputs | ForEach-Object {
+            [pscustomobject][ordered]@{ name = $_.name; directive = $_.directive; path = $_.source_path }
+        })
+        output_artifacts = @($artifactResults | ForEach-Object { $_ })
         run_directory = if ($retainRunDirectory) { $runDirectory } else { $null }
         ees_message_supported = $eesMessageSupported
         ees_message_minimum_ees_version = $eesMessageMinimumVersion
@@ -543,7 +736,7 @@ try {
         ees_message_bytes = [long]$eesMessageCapture.Bytes
         ees_message = if ($eesMessageCapture.Present) { $eesMessageCapture.Text } else { $null }
         ees_message_snapshot = if ($retainRunDirectory) { $eesMessageCapture.SnapshotPath } else { $null }
-    } | ConvertTo-Json
+    } | ConvertTo-Json -Depth 6
     exit 0
 }
 catch {
@@ -557,6 +750,7 @@ catch {
     [pscustomobject]@{
         status = 'error'
         message = $_.Exception.Message
+        mode = 'Solve'
         run_directory = $runDirectory
         ees_message_supported = $eesMessageSupported
         ees_message_minimum_ees_version = $eesMessageMinimumVersion
@@ -566,7 +760,7 @@ catch {
         ees_message = if ($null -ne $eesMessageCapture -and $eesMessageCapture.Present) { $eesMessageCapture.Text } else { $null }
         ees_message_snapshot = if ($null -ne $eesMessageCapture) { $eesMessageCapture.SnapshotPath } else { $null }
         ees_message_capture_error = if ($null -ne $eesMessageCapture) { $eesMessageCapture.CaptureError } else { $null }
-    } | ConvertTo-Json
+    } | ConvertTo-Json -Depth 6
     exit 1
 }
 finally {

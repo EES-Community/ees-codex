@@ -41,6 +41,23 @@ $Export /H /V /U /N '{{OUTPUT_FILE}}' T_hot, T_cold, UA, Q_dot
 
 Use explicit units and export the inputs, constraints, primary results, and residuals needed to assess the model. The launcher replaces the placeholder with a unique staged result path.
 
+## Add a validated plot or data file
+
+The primary text export is always required. For an additional EES file, put an uppercase placeholder on a supported file directive and declare its workspace destination in a version 1 artifact manifest. The included `examples\property_plot.txt` and `examples\property_plot-artifacts.json` demonstrate `$ExportPlot`.
+
+```powershell
+& "$env:LOCALAPPDATA\EES-Codex-Launcher-32bit\Run-EES.ps1" `
+  -WorkspaceRoot $config.workspace_root `
+  -ProgramPath "$($config.workspace_root)\examples\property_plot.txt" `
+  -OutputPath "$($config.workspace_root)\results\manual_property_plot.txt" `
+  -ArtifactManifestPath "$($config.workspace_root)\examples\property_plot-artifacts.json" `
+  -EesPath $config.ees_path `
+  -TimeoutSeconds 120 `
+  -Force
+```
+
+The launcher validates and stages the file, then returns it in `output_artifacts`. Supported validated input directives are `$Import`, `$ImportText`, and `$OpenLookup`; supported outputs are `$Export`, `$ExportText`, `$ExportPlot`, `$SaveLookup`, `$SaveTable`, and `$SaveVarInfo`. Literal and undeclared file paths remain blocked.
+
 ## Search packaged EES metadata
 
 ```powershell

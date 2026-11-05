@@ -48,7 +48,7 @@ Do not use `CALL OrificePlate(...:DELTAP)`, because EES reads it as a procedure 
 ## Write and solve
 
 1. Identify inputs, unknowns, constraints, and material assumptions. Distinguish user-supplied values from estimates, and ask only for missing information that materially changes the model. Use EES thermophysical-property functions and explicit units where appropriate. Provide a complete, explicit `$UnitSystem` for reproducible models. The selected temperature, pressure, energy, mass/molar, and angle settings define the numerical inputs and outputs of built-in thermophysical and trigonometric functions; variable unit annotations enable checking and display but do not generally convert numerical values to that system. Convert property-function inputs explicitly when their numerical units differ, using `Convert` for multiplicative conversions and `ConvertTemp` for absolute temperatures.
-2. Write an EES equation `.txt` file under the selected workspace. Include exactly one `{{OUTPUT_FILE}}` placeholder on exactly one `$Export` or `$ExportText` directive. If export syntax is uncertain, consult the installed `examples\heat_exchanger.txt` or `examples\water_heater.txt`; do not load examples otherwise.
+2. Write an EES equation `.txt` file under the selected workspace. Include exactly one `{{OUTPUT_FILE}}` placeholder on exactly one `$Export` or `$ExportText` directive. If export syntax is uncertain, consult the installed `examples\heat_exchanger.txt` or `examples\water_heater.txt`; do not load examples otherwise. When the requested model needs an additional file, follow [validated artifacts](artifacts.md) rather than placing a literal path on a file directive.
 3. Export only the inputs, states, constraints, performance quantities, and balance residuals needed to audit the answer. Use a new result filename for a material iteration; use `-Force` only for an intentional replacement.
 4. Run the installed launcher:
 
@@ -100,4 +100,4 @@ K=K_Gradual_Expansion2(3,theta)
 
 Export the angle and the affected result in each run so the interpretation is auditable.
 
-Do not add `$Python`, `$Include`, macro-running, importing, arbitrary file-writing directives, or other actions rejected by the launcher. If the requested model requires an unsupported action, explain the limitation instead of weakening the launcher.
+Do not add `$Python`, `$Include`, macro-running, arbitrary paths, `$DefaultDirectory`, `$LaTeXPDF`, interactive `$Input`, or other actions rejected by the launcher. Validated imports and additional outputs are available only through the capability-gated artifact-manifest workflow. If the requested model requires another unsupported action, explain the limitation instead of weakening the launcher.

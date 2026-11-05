@@ -81,6 +81,27 @@ if ($resultModes.Count -eq 0) {
 
 $catalogCompact = $catalogModes -contains 'Compact'
 $resultCompact = $resultModes -contains 'Compact'
+$runModes = @()
+if ($null -ne $capabilities -and $capabilities.PSObject.Properties.Name -contains 'run_modes') {
+    $runModes = @($capabilities.run_modes | Where-Object { $_ -eq 'Solve' } | Select-Object -Unique)
+}
+$validatedArtifactsCapable = ($null -ne $capabilities -and
+    $capabilities.PSObject.Properties.Name -contains 'validated_artifact_manifest' -and
+    $capabilities.validated_artifact_manifest -eq $true)
+$thermodynamicReferenceCapable = ($null -ne $capabilities -and
+    $capabilities.PSObject.Properties.Name -contains 'thermodynamic_reference_directive' -and
+    $capabilities.thermodynamic_reference_directive -eq $true)
+$runCapabilitySource = 'declared'
+if ($runModes.Count -eq 0 -or -not $validatedArtifactsCapable) {
+    $runHelper = Join-Path $installDirectory 'Run-EES.ps1'
+    $policyHelper = Join-Path $installDirectory 'EES-ProgramPolicy.ps1'
+    if (Test-HelperParameters -HelperPath $runHelper -RequiredParameters @('ProgramPath', 'OutputPath', 'ArtifactManifestPath')) {
+        if ($runModes.Count -eq 0) { $runModes = @('Solve') }
+        if (Test-Path -LiteralPath $policyHelper -PathType Leaf) { $validatedArtifactsCapable = $true }
+        $runCapabilitySource = 'inspected'
+    }
+    else { $runCapabilitySource = 'legacy' }
+}
 $eesMessageCaptureCapable = $false
 $eesMessageDetectionSource = 'legacy'
 if ($null -ne $capabilities -and
@@ -113,12 +134,17 @@ elseif ($eesMessageCaptureCapable -and $config.PSObject.Properties.Name -contain
     result_detail_modes = @($resultModes)
     catalog_detection_source = $catalogSource
     result_detection_source = $resultSource
+    run_detection_source = $runCapabilitySource
     ees_message_detection_source = $eesMessageDetectionSource
     use_compact_catalog = $catalogCompact
     use_compact_results = $resultCompact
+    run_modes = @($runModes)
+    validated_artifact_manifest_capable = $validatedArtifactsCapable
+    thermodynamic_reference_directive_capable = $thermodynamicReferenceCapable
     ees_message_capture_capable = $eesMessageCaptureCapable
     use_ees_message_capture = $eesMessageCaptureEnabled
     use_legacy_catalog_fallback = -not $catalogCompact
     use_raw_result_fallback = -not $resultCompact
-    update_recommended = -not ($catalogCompact -and $resultCompact -and $eesMessageCaptureCapable)
+    update_recommended = -not ($catalogCompact -and $resultCompact -and $eesMessageCaptureCapable -and
+        ($runModes -contains 'Solve') -and $validatedArtifactsCapable -and $thermodynamicReferenceCapable)
 } | ConvertTo-Json -Depth 5 -Compress

@@ -1,6 +1,8 @@
 # Security model — 64-bit edition
 
-EES runs with the signed-in user's Windows permissions. The launcher therefore confines model and result paths to the configured workspace, permits one controlled export, blocks external-code and arbitrary-file directives, launches EES with `/NOSPLASH /SOLVE /AI` as a normal shell process, and enforces a timeout. Structured result extraction is read-only, accepts only `.txt` files inside the configured workspace, and fails explicitly on malformed, unsupported, or duplicate entries.
+EES runs with the signed-in user's Windows permissions. The launcher therefore confines model and result paths to the configured workspace, requires one controlled primary export, blocks external-code and arbitrary-file directives, launches EES with `/NOSPLASH /SOLVE /AI` as a normal shell process, and enforces a timeout. Structured result extraction is read-only, accepts only `.txt` files inside the configured workspace, and fails explicitly on malformed, unsupported, or duplicate entries.
+
+Optional workspace inputs and additional outputs require a version 1 artifact manifest. The launcher validates every binding and extension, stages inputs and outputs in the private run directory, requires every expected output to be nonempty, and only then moves outputs to their declared workspace paths. It supports validated `$Import`, `$ImportText`, `$OpenLookup`, `$Export`, `$ExportText`, `$ExportPlot`, `$SaveLookup`, `$SaveTable`, and `$SaveVarInfo` artifacts. `$Reference` is allowed because it changes a thermodynamic reference state rather than accessing a file. Literal or undeclared file paths remain blocked, as do `$Python`, `$Include`, macros, `$DefaultDirectory`, `$LaTeXPDF`, and interactive `$Input`. `$Load` remains limited to Component Library, Mechanical, NASA, and Incompressible.
 
 For every 64-bit solve, the launcher:
 

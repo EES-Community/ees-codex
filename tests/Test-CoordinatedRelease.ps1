@@ -25,10 +25,11 @@ $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $pluginManifestPath = Join-Path $repositoryRoot 'plugins\ees\.codex-plugin\plugin.json'
 $pluginManifest = Get-Content -LiteralPath $pluginManifestPath -Raw | ConvertFrom-Json
 $expectedVersion = [string]$pluginManifest.version
-Assert-True ($expectedVersion -eq '0.5.1-beta') 'The plugin manifest does not have the expected coordinated release version.'
+Assert-True ($expectedVersion -eq '0.6.0-beta') 'The plugin manifest does not have the expected coordinated release version.'
 
 $editions = @('launcher-32bit', 'launcher-64bit')
 $helperHashes = New-Object System.Collections.Generic.List[string]
+$policyHashes = New-Object System.Collections.Generic.List[string]
 $fixtureRoot = Join-Path $PSScriptRoot 'fixtures'
 $capabilityResolver = Join-Path $repositoryRoot 'plugins\ees\skills\ees\scripts\Resolve-EES-LauncherCapabilities.ps1'
 $scratchRoot = Join-Path ([System.IO.Path]::GetTempPath()) ('ees-codex-release-test-' + [Guid]::NewGuid().ToString('N'))
@@ -44,13 +45,18 @@ try {
         Assert-True ([string]$manifest.version -eq $expectedVersion) "$edition manifest version is not coordinated with the plugin."
         Assert-True ([string]$manifest.coordinated_plugin_version -eq $expectedVersion) "$edition does not declare the coordinated plugin version."
         Assert-True ($versionText -eq $expectedVersion) "$edition VERSION.txt is not coordinated with the plugin."
-        Assert-True ([int]$manifest.launcher_api_level -eq 3) "$edition does not declare launcher API level 3."
+        Assert-True ([int]$manifest.launcher_api_level -eq 4) "$edition does not declare launcher API level 4."
         Assert-True ([string]$manifest.ees_message_capture_minimum_ees_version -eq '12.358') "$edition does not declare EES 12.358 as the EES_Msg.txt feature threshold."
         Assert-True ([string]$manifest.ees_message_capture_minimum_file_version -eq '12.3.5.8') "$edition does not declare the corresponding EES_Msg.txt file-version threshold."
         Assert-True (@($manifest.capabilities.catalog_detail_modes) -contains 'Compact') "$edition lacks compact catalog capability."
         Assert-True (@($manifest.capabilities.result_detail_modes) -contains 'Compact') "$edition lacks compact result capability."
         Assert-True (@($manifest.capabilities.result_selectors) -contains 'Pattern') "$edition lacks pattern result selection."
         Assert-True ($manifest.capabilities.ees_message_capture -eq $true) "$edition lacks EES_Msg.txt capture capability."
+        Assert-True (@($manifest.capabilities.run_modes).Count -eq 1 -and @($manifest.capabilities.run_modes) -contains 'Solve') "$edition must advertise Solve as its only run mode."
+        Assert-True ($manifest.capabilities.validated_artifact_manifest -eq $true) "$edition lacks validated artifact-manifest capability."
+        Assert-True (@($manifest.capabilities.artifact_input_directives) -contains 'OpenLookup') "$edition lacks validated input-artifact capability."
+        Assert-True (@($manifest.capabilities.artifact_output_directives) -contains 'ExportPlot') "$edition lacks validated plot-export capability."
+        Assert-True ($manifest.capabilities.thermodynamic_reference_directive -eq $true) "$edition lacks the thermodynamic reference directive capability."
 
         $hashManifestPath = Join-Path $assetRoot 'SHA256SUMS.txt'
         $listedPackagePaths = New-Object System.Collections.Generic.List[string]
@@ -75,6 +81,71 @@ try {
 
         $helperSource = Join-Path $assetRoot 'payload\Get-EES-Result.ps1'
         $helperHashes.Add((Get-FileHash -LiteralPath $helperSource -Algorithm SHA256).Hash)
+        $policySource = Join-Path $assetRoot 'payload\EES-ProgramPolicy.ps1'
+        $policyHashes.Add((Get-FileHash -LiteralPath $policySource -Algorithm SHA256).Hash)
+        . $policySource
+        $acceptedPolicy = Assert-EesProgramPolicy `
+            -Text (@(
+                '$Reference Water NBP',
+                '$Import ''{{INPUT_DATA}}'' x',
+                '$ExportPlot ''{{PLOT_FILE}}'' 1',
+                '$Export /H /V /U /N ''{{OUTPUT_FILE}}'' x'
+            ) -join [Environment]::NewLine) `
+            -PrimaryOutputDeclared $true `
+            -InputBindingNames @('INPUT_DATA') `
+            -OutputBindingNames @('PLOT_FILE')
+        Assert-True ($acceptedPolicy.input_uses.Count -eq 1) "$edition did not accept one validated input artifact."
+        Assert-True ($acceptedPolicy.output_uses.Count -eq 1 -and $acceptedPolicy.output_uses[0].directive -eq 'EXPORTPLOT') "$edition did not accept the validated plot artifact."
+        Assert-EesArtifactExtension -Path 'plot.jpg' -Directive 'ExportPlot'
+        $unsafeExtensionRejected = $false
+        try { Assert-EesArtifactExtension -Path 'plot.ps1' -Directive 'ExportPlot' }
+        catch { $unsafeExtensionRejected = $true }
+        Assert-True $unsafeExtensionRejected "$edition accepted an unsafe plot extension."
+        foreach ($blockedDirective in @('Python', 'Include', 'DefaultDirectory', 'LaTexPDF', 'Input')) {
+            $blocked = $false
+            try {
+                Assert-EesProgramPolicy `
+                    -Text (('$' + $blockedDirective + ' unsafe') + [Environment]::NewLine + '$Export ''{{OUTPUT_FILE}}'' x') `
+                    -PrimaryOutputDeclared $true
+            }
+            catch { $blocked = $true }
+            Assert-True $blocked "$edition accepted blocked directive `$$blockedDirective."
+        }
+        $unboundPlotRejected = $false
+        try {
+            Assert-EesProgramPolicy `
+                -Text ('$ExportPlot ''outside.jpg'' 1' + [Environment]::NewLine + '$Export ''{{OUTPUT_FILE}}'' x') `
+                -PrimaryOutputDeclared $true
+        }
+        catch { $unboundPlotRejected = $true }
+        Assert-True $unboundPlotRejected "$edition accepted an unbound plot path."
+        $unquotedPlaceholderRejected = $false
+        try {
+            Assert-EesProgramPolicy `
+                -Text ('$ExportPlot {{PLOT_FILE}} 1' + [Environment]::NewLine + '$Export ''{{OUTPUT_FILE}}'' x') `
+                -PrimaryOutputDeclared $true `
+                -OutputBindingNames @('PLOT_FILE')
+        }
+        catch { $unquotedPlaceholderRejected = $true }
+        Assert-True $unquotedPlaceholderRejected "$edition accepted an unquoted artifact placeholder."
+        $secondLookupFileRejected = $false
+        try {
+            Assert-EesProgramPolicy `
+                -Text ('$OpenLookup ''{{LOOKUP_FILE}}'' /FORMAT=''outside.fmt''' + [Environment]::NewLine + '$Export ''{{OUTPUT_FILE}}'' x') `
+                -PrimaryOutputDeclared $true `
+                -InputBindingNames @('LOOKUP_FILE')
+        }
+        catch { $secondLookupFileRejected = $true }
+        Assert-True $secondLookupFileRejected "$edition accepted an unvalidated second lookup file."
+        $misplacedFilenameRejected = $false
+        try {
+            Assert-EesProgramPolicy `
+                -Text ('$SaveLookup ''{{LOOKUP_FILE}}'' ''outside.lkt''' + [Environment]::NewLine + '$Export ''{{OUTPUT_FILE}}'' x') `
+                -PrimaryOutputDeclared $true `
+                -OutputBindingNames @('LOOKUP_FILE')
+        }
+        catch { $misplacedFilenameRejected = $true }
+        Assert-True $misplacedFilenameRejected "$edition accepted a placeholder in the table-name position while writing to a literal path."
         $routineHelperSource = Join-Path $assetRoot 'payload\Get-EES-Routine.ps1'
         $routineTokens = $null
         $routineParseErrors = $null
@@ -97,7 +168,7 @@ try {
         Copy-Item -LiteralPath (Join-Path $fixtureRoot 'malformed-result.txt') -Destination $resultRoot
         $config = [ordered]@{
             version = $expectedVersion
-            launcher_api_level = 3
+            launcher_api_level = 4
             install_directory = $installRoot
             workspace_root = $workspaceRoot
             ees_message_capture_enabled_at_install = $true
@@ -107,6 +178,11 @@ try {
                 result_detail_modes = @('Compact', 'Full')
                 result_selectors = @('Variable', 'Pattern')
                 ees_message_capture = $true
+                run_modes = @('Solve')
+                validated_artifact_manifest = $true
+                artifact_input_directives = @('Import', 'ImportText', 'OpenLookup')
+                artifact_output_directives = @('Export', 'ExportText', 'ExportPlot', 'SaveLookup', 'SaveTable', 'SaveVarInfo')
+                thermodynamic_reference_directive = $true
             }
         }
         [System.IO.File]::WriteAllText(
@@ -122,6 +198,10 @@ try {
         Assert-True ($resolvedCapabilities.use_ees_message_capture) "$edition ignored its declared EES_Msg.txt capture capability."
         Assert-True ($resolvedCapabilities.ees_message_capture_capable) "$edition did not report that its launcher implements EES_Msg.txt capture."
         Assert-True ($resolvedCapabilities.catalog_detection_source -eq 'declared') "$edition did not prefer declared capabilities."
+        Assert-True (@($resolvedCapabilities.run_modes).Count -eq 1 -and @($resolvedCapabilities.run_modes) -contains 'Solve') "$edition did not preserve its Solve-only declaration."
+        Assert-True ($resolvedCapabilities.validated_artifact_manifest_capable) "$edition did not report validated artifact support."
+        Assert-True ($resolvedCapabilities.thermodynamic_reference_directive_capable) "$edition did not report thermodynamic reference support."
+        Assert-True (-not $resolvedCapabilities.update_recommended) "$edition recommended an update despite declaring the complete current capability set."
 
         $config.ees_message_capture_enabled_at_install = $false
         [System.IO.File]::WriteAllText(
@@ -182,6 +262,7 @@ try {
     }
 
     Assert-True (@($helperHashes | Select-Object -Unique).Count -eq 1) 'The 32-bit and 64-bit result helpers are not identical.'
+    Assert-True (@($policyHashes | Select-Object -Unique).Count -eq 1) 'The 32-bit and 64-bit program-policy helpers are not identical.'
 
     foreach ($legacyVersion in @('0.4.0-beta', '0.4.1-beta')) {
         $legacyRoot = Join-Path $scratchRoot ('legacy-' + $legacyVersion)
@@ -240,5 +321,5 @@ finally {
     status = 'success'
     release_version = $expectedVersion
     editions_tested = $editions.Count
-    launcher_api_level = 3
+    launcher_api_level = 4
 }

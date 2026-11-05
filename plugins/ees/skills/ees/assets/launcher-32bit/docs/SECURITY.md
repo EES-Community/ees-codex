@@ -6,10 +6,12 @@ The launcher therefore enforces a narrow contract:
 
 - Input, staging, and output paths must remain within one configured workspace.
 - Input must be an EES `.txt` equations file.
-- Exactly one `$Export` or `$ExportText` line must use `{{OUTPUT_FILE}}`.
+- Exactly one `$Export` or `$ExportText` line must use `{{OUTPUT_FILE}}` for the primary audit result.
+- Optional workspace inputs and additional outputs require a version 1 artifact manifest. The launcher validates every binding and extension, stages inputs and outputs in the private run directory, requires every expected output to be nonempty, and only then moves outputs to their declared workspace paths. Literal or undeclared file paths remain blocked.
 - Existing result files are not replaced unless `-Force` is explicit.
 - Structured result extraction is read-only, accepts only `.txt` files inside the configured workspace, and fails explicitly on malformed, unsupported, or duplicate entries.
-- EES directives that run macros or Python, load external files, import data, or create other files are blocked. `$Load` is limited to four exact symbolic names for installed EES libraries: Component Library, Mechanical, NASA, and Incompressible; paths and arbitrary library names remain blocked.
+- Validated `$Import`, `$ImportText`, `$OpenLookup`, `$Export`, `$ExportText`, `$ExportPlot`, `$SaveLookup`, `$SaveTable`, and `$SaveVarInfo` artifacts are supported. `$Reference` is allowed because it changes a thermodynamic reference state rather than accessing a file.
+- EES directives that run macros or Python, include arbitrary files, change the default directory, generate LaTeX/PDF files, or require interactive input are blocked. `$Load` is limited to four exact symbolic names for installed EES libraries: Component Library, Mechanical, NASA, and Incompressible; paths and arbitrary library names remain blocked.
 - EES is launched with `/NOSPLASH /SOLVE /AI` as a normal shell process and is killed if it exceeds the selected timeout.
 - For 32-bit EES, the launcher serializes runs with a named mutex, refuses to proceed while `ees.exe` is already open, and passes `/AI` so all five application libraries are available for the run. On EES 12.358 or newer, while holding that lock, it deletes only the fixed `EES_Msg.txt` beside the selected executable and snapshots any fresh replacement into the workspace before releasing the lock. Older versions skip that file operation. The launcher does not edit, replace, back up, or restore `EES.PRF`.
 - The production launcher is installed outside the writable model workspace.
