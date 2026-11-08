@@ -42,7 +42,7 @@ Close every interactive 32-bit EES window and try again. The launcher serializes
 
 ## An older launcher left EES profile recovery files
 
-Version 0.6.0-beta uses `/AI` and does not create profile backup or recovery files. If files from version 0.3.0-beta remain, do not guess which copy is current:
+Version 0.7.0-beta uses `/AI` and does not create profile backup or recovery files. If files from version 0.3.0-beta remain, do not guess which copy is current:
 
 Preserve these files and contact support before starting EES or renaming anything:
 

@@ -27,7 +27,7 @@ This workspace is configured for safely generating and solving EES text programs
      -TimeoutSeconds 120
    ```
 
-6. Read the launcher status first. With EES 12.358 or newer, `ees_message_supported` is true; inspect `ees_message_present` and, if true, review `ees_message` and the retained `ees_message_snapshot` even when the export succeeded. Older EES versions remain usable and report message capture as unsupported. When `capabilities.result_detail_modes` includes `Compact`, request only the principal outputs, constraints, and residuals first:
+6. Read the launcher status first. If `update_check.update_available` is true, mention its message once and continue; never update automatically. With EES 12.358 or newer, `ees_message_supported` is true; inspect `ees_message_present` and, if true, review `ees_message` and the retained `ees_message_snapshot` even when the export succeeded. Older EES versions remain usable and report message capture as unsupported. When `capabilities.result_detail_modes` includes `Compact`, request only the principal outputs, constraints, and residuals first:
 
    ```powershell
    & (Join-Path $config.install_directory 'Get-EES-Result.ps1') `

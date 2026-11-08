@@ -12,3 +12,5 @@ For every 64-bit solve, the launcher:
 - does not edit, replace, back up, or restore `EES.PRF64`.
 
 The package does not contain EES or proprietary EES libraries. On EES 12.358 or newer, its only managed file in the selected EES directory is the transient `EES_Msg.txt` diagnostic described above. Library discovery uses the packaged `EES_Tool_Metadata.json` as its sole catalog and compares selected-installation metadata only for an availability flag. EES itself may update ordinary session preferences when it starts or exits; the launcher does not patch the preference file. Distributors should publish the ZIP checksum over an authenticated channel and code-sign production releases.
+
+At most once per 24 hours, the launcher requests the fixed HTTPS manifest at `raw.githubusercontent.com/EES-Community/ees-codex/main/update/latest.json`. It accepts only semantic versions and an HTTPS update link within `github.com/EES-Community/ees-codex`, writes a small cache under `%LOCALAPPDATA%\EES-Codex-Launcher`, and never downloads or installs an update. Set `EES_CODEX_DISABLE_UPDATE_CHECK=1` to suppress the request for the current process and its children.
