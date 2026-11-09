@@ -115,7 +115,7 @@ try {
     $payload = Join-Path $packageRoot 'payload'
     $workspaceTemplate = Join-Path $packageRoot 'workspace-template'
     $versionFile = Join-Path $packageRoot 'VERSION.txt'
-    $requiredPayloadFiles = @('Run-EES.ps1', 'EES-ProgramPolicy.ps1', 'Search-EES-Library.ps1', 'Get-EES-Routine.ps1', 'Get-EES-Result.ps1', 'Test-Installation.ps1')
+    $requiredPayloadFiles = @('Run-EES.ps1', 'EES-ProgramPolicy.ps1', 'Search-EES-Library.ps1', 'Get-EES-Routine.ps1', 'Get-EES-Result.ps1', 'Get-EES-UpdateStatus.ps1', 'Test-Installation.ps1')
     foreach ($requiredPayloadFile in $requiredPayloadFiles) {
         if (-not (Test-Path -LiteralPath (Join-Path $payload $requiredPayloadFile) -PathType Leaf)) {
             throw "The package payload is incomplete ($requiredPayloadFile is missing). Extract the entire ZIP before running Install.cmd."
@@ -139,9 +139,24 @@ try {
         @($manifest.capabilities.artifact_input_directives) -notcontains 'Import' -or
         @($manifest.capabilities.artifact_output_directives) -notcontains 'ExportPlot' -or
         $manifest.capabilities.thermodynamic_reference_directive -ne $true -or
+        $manifest.capabilities.update_notifications -ne $true -or
         [string]::IsNullOrWhiteSpace([string]$manifest.ees_message_capture_minimum_ees_version) -or
         [string]::IsNullOrWhiteSpace([string]$manifest.ees_message_capture_minimum_file_version)) {
         throw 'The package manifest does not contain a valid coordinated release and launcher capability declaration.'
+    }
+    $updateManifestUri = [uri][string]$manifest.update.manifest_url
+    $updateUri = [uri][string]$manifest.update.update_url
+    $updateRepositoryPath = $updateUri.AbsolutePath.TrimEnd('/')
+    $updateIntervalHours = [int]$manifest.update.check_interval_hours
+    if ($updateManifestUri.Scheme -ne 'https' -or
+        $updateManifestUri.Host -ne 'raw.githubusercontent.com' -or
+        -not $updateManifestUri.AbsolutePath.StartsWith('/EES-Community/ees-codex/', [StringComparison]::OrdinalIgnoreCase) -or
+        $updateUri.Scheme -ne 'https' -or
+        $updateUri.Host -ne 'github.com' -or
+        ($updateRepositoryPath -ne '/EES-Community/ees-codex' -and
+            -not $updateRepositoryPath.StartsWith('/EES-Community/ees-codex/', [StringComparison]::OrdinalIgnoreCase)) -or
+        $updateIntervalHours -lt 1 -or $updateIntervalHours -gt 720) {
+        throw 'The package manifest does not contain a trusted update-notification configuration.'
     }
     $requiredArchitecture = if ($manifest.PSObject.Properties.Name -contains 'required_ees_architecture') {
         [string]$manifest.required_ees_architecture
@@ -225,6 +240,7 @@ try {
             artifact_input_directives = @($manifest.capabilities.artifact_input_directives)
             artifact_output_directives = @($manifest.capabilities.artifact_output_directives)
             thermodynamic_reference_directive = [bool]$manifest.capabilities.thermodynamic_reference_directive
+            update_notifications = [bool]$manifest.capabilities.update_notifications
         }
         install_directory = $resolvedInstall
         workspace_root = $resolvedWorkspace
@@ -243,6 +259,10 @@ try {
         catalog_path = Join-Path $resolvedInstall 'catalog\EES_Tool_Metadata.json'
         catalog_version = 1
         catalog_sha256 = 'A87F0FD43C68E514C824BA57BD69643D78BC10889137F3D21B086A8BCC8C40C4'
+        update_check_enabled = $true
+        update_manifest_url = $updateManifestUri.AbsoluteUri
+        update_url = $updateUri.AbsoluteUri
+        update_check_interval_hours = $updateIntervalHours
         installed_utc = [DateTime]::UtcNow.ToString('o')
     }
     $configJson = $config | ConvertTo-Json -Depth 5
@@ -257,6 +277,7 @@ try {
     Write-Host "EES:       $($installation.EesPath) ($($installation.Architecture), version $($installation.Version))"
     Write-Host $(if ($eesMessageCaptureEnabled) { 'Messages:  Fresh EES_Msg.txt capture enabled (EES 12.358 or newer)' } else { 'Messages:  EES_Msg.txt capture unavailable; solve/export and window-text fallback remain enabled' })
     Write-Host 'Catalog:   EES_Tool_Metadata.json (schema 1, 813 routines)'
+    Write-Host "Updates:   Version check enabled (at most once every $updateIntervalHours hours; notification only)"
 
     if (-not $SkipTest) {
         Write-Host ''

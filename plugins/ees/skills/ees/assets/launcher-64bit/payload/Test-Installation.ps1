@@ -103,6 +103,9 @@ try {
     }
     $launcherStatus = ($launcherOutput -join [Environment]::NewLine) | ConvertFrom-Json
     if ($launcherStatus.status -ne 'success' -or
+        -not ($launcherStatus.PSObject.Properties.Name -contains 'update_check') -or
+        $null -eq $launcherStatus.update_check -or
+        -not ($launcherStatus.update_check.PSObject.Properties.Name -contains 'update_available') -or
         [bool]$launcherStatus.ees_message_supported -ne $eesMessageCaptureEnabled -or
         $launcherStatus.ees_message_present -or
         -not [string]::IsNullOrWhiteSpace([string]$launcherStatus.ees_message)) {

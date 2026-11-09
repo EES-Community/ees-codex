@@ -69,6 +69,7 @@ The launcher is useful on its own. Follow [Manual PowerShell use](docs/MANUAL-US
 - Compact or full search of the current packaged `EES_Tool_Metadata.json`, used as the sole catalog source.
 - Compact exact-name or wildcard extraction from launcher-produced text results, with full-file metadata and diagnostics available on request.
 - Generated configuration declaring the coordinated plugin version, launcher API level, Solve-only run mode, supported catalog/result modes, diagnostics, validated artifact directives, and thermodynamic-reference capability.
+- A notification-only comparison with the current EES-Community release manifest. Successful checks are cached for 24 hours and returned as `update_check`; no update is downloaded or installed automatically.
 - A non-merging comparison with the selected installation's metadata for the `installed_metadata_match` discovery flag.
 - Heat exchanger, water-property, native property-plot, and open Brayton-cycle examples.
 - A repeatable installation test and a non-destructive uninstaller.
@@ -79,5 +80,6 @@ The launcher is useful on its own. Follow [Manual PowerShell use](docs/MANUAL-US
 - The safe workflow blocks external code, includes, macros, interactive input, and literal or undeclared file paths. Additional inputs and outputs are supported only through the validated artifact manifest and extension policy. The exact built-in EES library whitelist is unchanged.
 - A catalog match is not proof that a routine will execute in every library revision. Codex must perform a small compile test against the installed 32-bit libraries.
 - Close interactive 32-bit EES before a Codex-controlled run. The launcher serializes automated runs and refuses to start while another `ees.exe` process is open.
+- The update check makes a short HTTPS request to `raw.githubusercontent.com` at most once per 24 hours. Set `EES_CODEX_DISABLE_UPDATE_CHECK=1` before a run to disable it for that PowerShell session.
 
 For details, see [Catalog provenance](docs/CATALOG.md), [Troubleshooting](docs/TROUBLESHOOTING.md), and [Security model](docs/SECURITY.md).

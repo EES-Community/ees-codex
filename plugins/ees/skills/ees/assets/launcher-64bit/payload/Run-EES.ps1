@@ -75,6 +75,9 @@ $resolvedOutput = $null
 $artifactManifest = $null
 $preparedInputs = @()
 $preparedOutputs = @()
+$launcherConfig = $null
+$launcherConfigPath = Join-Path $PSScriptRoot 'config.json'
+$updateCheck = $null
 
 function Resolve-EesExecutable {
     param([string]$RequestedPath)
@@ -442,6 +445,15 @@ namespace EesHarness {
 }
 
 try {
+    if (Test-Path -LiteralPath $launcherConfigPath -PathType Leaf) {
+        $launcherConfig = Get-Content -LiteralPath $launcherConfigPath -Raw | ConvertFrom-Json
+    }
+    $updateHelperPath = Join-Path $PSScriptRoot 'Get-EES-UpdateStatus.ps1'
+    if (Test-Path -LiteralPath $updateHelperPath -PathType Leaf) {
+        try { $updateCheck = & $updateHelperPath -ConfigPath $launcherConfigPath }
+        catch { $updateCheck = $null }
+    }
+
     if (-not (Test-Path -LiteralPath $WorkspaceRoot -PathType Container)) {
         throw "WorkspaceRoot was not found: $WorkspaceRoot"
     }
@@ -577,9 +589,7 @@ try {
     if ($eesLeafName -notin @('ees64.exe', 'ees.exe')) {
         throw "EesPath must name ees64.exe or ees.exe: $resolvedEes"
     }
-    $launcherConfigPath = Join-Path $PSScriptRoot 'config.json'
-    if (Test-Path -LiteralPath $launcherConfigPath -PathType Leaf) {
-        $launcherConfig = Get-Content -LiteralPath $launcherConfigPath -Raw | ConvertFrom-Json
+    if ($null -ne $launcherConfig) {
         if ($launcherConfig.PSObject.Properties.Name -contains 'required_architecture') {
             $requiredArchitecture = [string]$launcherConfig.required_architecture
             $actualArchitecture = if ($eesLeafName -eq 'ees.exe') { '32-bit' } else { '64-bit' }
@@ -736,6 +746,7 @@ try {
         ees_message_bytes = [long]$eesMessageCapture.Bytes
         ees_message = if ($eesMessageCapture.Present) { $eesMessageCapture.Text } else { $null }
         ees_message_snapshot = if ($retainRunDirectory) { $eesMessageCapture.SnapshotPath } else { $null }
+        update_check = $updateCheck
     } | ConvertTo-Json -Depth 6
     exit 0
 }
@@ -760,6 +771,7 @@ catch {
         ees_message = if ($null -ne $eesMessageCapture -and $eesMessageCapture.Present) { $eesMessageCapture.Text } else { $null }
         ees_message_snapshot = if ($null -ne $eesMessageCapture) { $eesMessageCapture.SnapshotPath } else { $null }
         ees_message_capture_error = if ($null -ne $eesMessageCapture) { $eesMessageCapture.CaptureError } else { $null }
+        update_check = $updateCheck
     } | ConvertTo-Json -Depth 6
     exit 1
 }

@@ -60,6 +60,7 @@ If you accepted the recommended launcher location, this command displays the exa
 - Compact or full search of the current packaged `EES_Tool_Metadata.json` as the sole catalog source.
 - Compact exact-name or wildcard extraction from launcher-produced text results, with full-file metadata and diagnostics available on request.
 - Generated configuration declaring the coordinated plugin version, launcher API level, Solve-only run mode, supported catalog/result modes, diagnostics, validated artifact directives, and thermodynamic-reference capability.
+- A notification-only comparison with the current EES-Community release manifest. Successful checks are cached for 24 hours and returned as `update_check`; no update is downloaded or installed automatically.
 - Heat exchanger, water-property, native property-plot, and open Brayton-cycle examples.
 - A repeatable installation test and non-destructive uninstaller.
 
@@ -70,5 +71,6 @@ If you accepted the recommended launcher location, this command displays the exa
 - Catalog routines must be compile-tested against the user's installed library build.
 - The installation test compile-tests representative routines from all five application libraries; other catalog routines should still be compile-tested against the user's installed library build.
 - Close interactive 64-bit EES before a controlled run. The launcher serializes automated runs and refuses to start while another `ees64.exe` process is open.
+- The update check makes a short HTTPS request to `raw.githubusercontent.com` at most once per 24 hours. Set `EES_CODEX_DISABLE_UPDATE_CHECK=1` before a run to disable it for that PowerShell session.
 
 See [Catalog provenance](docs/CATALOG.md), [Troubleshooting](docs/TROUBLESHOOTING.md), and [Security model](docs/SECURITY.md).

@@ -91,6 +91,10 @@ $validatedArtifactsCapable = ($null -ne $capabilities -and
 $thermodynamicReferenceCapable = ($null -ne $capabilities -and
     $capabilities.PSObject.Properties.Name -contains 'thermodynamic_reference_directive' -and
     $capabilities.thermodynamic_reference_directive -eq $true)
+$updateNotificationsCapable = ($null -ne $capabilities -and
+    $capabilities.PSObject.Properties.Name -contains 'update_notifications' -and
+    $capabilities.update_notifications -eq $true -and
+    (Test-Path -LiteralPath (Join-Path $installDirectory 'Get-EES-UpdateStatus.ps1') -PathType Leaf))
 $runCapabilitySource = 'declared'
 if ($runModes.Count -eq 0 -or -not $validatedArtifactsCapable) {
     $runHelper = Join-Path $installDirectory 'Run-EES.ps1'
@@ -141,10 +145,12 @@ elseif ($eesMessageCaptureCapable -and $config.PSObject.Properties.Name -contain
     run_modes = @($runModes)
     validated_artifact_manifest_capable = $validatedArtifactsCapable
     thermodynamic_reference_directive_capable = $thermodynamicReferenceCapable
+    update_notifications_capable = $updateNotificationsCapable
     ees_message_capture_capable = $eesMessageCaptureCapable
     use_ees_message_capture = $eesMessageCaptureEnabled
     use_legacy_catalog_fallback = -not $catalogCompact
     use_raw_result_fallback = -not $resultCompact
     update_recommended = -not ($catalogCompact -and $resultCompact -and $eesMessageCaptureCapable -and
-        ($runModes -contains 'Solve') -and $validatedArtifactsCapable -and $thermodynamicReferenceCapable)
+        ($runModes -contains 'Solve') -and $validatedArtifactsCapable -and $thermodynamicReferenceCapable -and
+        $updateNotificationsCapable)
 } | ConvertTo-Json -Depth 5 -Compress

@@ -15,6 +15,7 @@ The launcher therefore enforces a narrow contract:
 - EES is launched with `/NOSPLASH /SOLVE /AI` as a normal shell process and is killed if it exceeds the selected timeout.
 - For 32-bit EES, the launcher serializes runs with a named mutex, refuses to proceed while `ees.exe` is already open, and passes `/AI` so all five application libraries are available for the run. On EES 12.358 or newer, while holding that lock, it deletes only the fixed `EES_Msg.txt` beside the selected executable and snapshots any fresh replacement into the workspace before releasing the lock. Older versions skip that file operation. The launcher does not edit, replace, back up, or restore `EES.PRF`.
 - The production launcher is installed outside the writable model workspace.
+- At most once per 24 hours, the launcher requests the fixed HTTPS manifest at `raw.githubusercontent.com/EES-Community/ees-codex/main/update/latest.json`. It accepts only semantic versions and an HTTPS update link within `github.com/EES-Community/ees-codex`, writes a small cache under `%LOCALAPPDATA%\EES-Codex-Launcher`, and never downloads or installs an update. Set `EES_CODEX_DISABLE_UPDATE_CHECK=1` to suppress the request for the current process and its children.
 
 Keep Codex's project sandbox enabled. Grant targeted approval only to the reviewed installed launcher with the configured workspace and EES executable. Do not grant blanket full-system access merely to avoid launcher approvals.
 

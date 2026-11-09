@@ -1,7 +1,7 @@
 {
   "product": "EES-Codex-Launcher",
-  "version": "0.6.0-beta",
-  "coordinated_plugin_version": "0.6.0-beta",
+  "version": "0.7.0-beta",
+  "coordinated_plugin_version": "0.7.0-beta",
   "launcher_api_level": 4,
   "platform": "Windows",
   "edition": "64-bit-only",
@@ -32,7 +32,13 @@
     "validated_artifact_manifest": true,
     "artifact_input_directives": ["Import", "ImportText", "OpenLookup"],
     "artifact_output_directives": ["Export", "ExportText", "ExportPlot", "SaveLookup", "SaveTable", "SaveVarInfo"],
-    "thermodynamic_reference_directive": true
+    "thermodynamic_reference_directive": true,
+    "update_notifications": true
+  },
+  "update": {
+    "manifest_url": "https://raw.githubusercontent.com/EES-Community/ees-codex/main/update/latest.json",
+    "update_url": "https://github.com/EES-Community/ees-codex",
+    "check_interval_hours": 24
   },
   "catalog": {
     "name": "EES_Tool_Metadata.json",

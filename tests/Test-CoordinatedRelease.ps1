@@ -25,11 +25,13 @@ $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $pluginManifestPath = Join-Path $repositoryRoot 'plugins\ees\.codex-plugin\plugin.json'
 $pluginManifest = Get-Content -LiteralPath $pluginManifestPath -Raw | ConvertFrom-Json
 $expectedVersion = [string]$pluginManifest.version
-Assert-True ($expectedVersion -eq '0.6.0-beta') 'The plugin manifest does not have the expected coordinated release version.'
+Assert-True ($expectedVersion -eq '0.7.0-beta') 'The plugin manifest does not have the expected coordinated release version.'
+& (Join-Path $PSScriptRoot 'Test-UpdateNotifications.ps1') | Out-Null
 
 $editions = @('launcher-32bit', 'launcher-64bit')
 $helperHashes = New-Object System.Collections.Generic.List[string]
 $policyHashes = New-Object System.Collections.Generic.List[string]
+$updateHelperHashes = New-Object System.Collections.Generic.List[string]
 $fixtureRoot = Join-Path $PSScriptRoot 'fixtures'
 $capabilityResolver = Join-Path $repositoryRoot 'plugins\ees\skills\ees\scripts\Resolve-EES-LauncherCapabilities.ps1'
 $scratchRoot = Join-Path ([System.IO.Path]::GetTempPath()) ('ees-codex-release-test-' + [Guid]::NewGuid().ToString('N'))
@@ -57,6 +59,10 @@ try {
         Assert-True (@($manifest.capabilities.artifact_input_directives) -contains 'OpenLookup') "$edition lacks validated input-artifact capability."
         Assert-True (@($manifest.capabilities.artifact_output_directives) -contains 'ExportPlot') "$edition lacks validated plot-export capability."
         Assert-True ($manifest.capabilities.thermodynamic_reference_directive -eq $true) "$edition lacks the thermodynamic reference directive capability."
+        Assert-True ($manifest.capabilities.update_notifications -eq $true) "$edition lacks update notifications."
+        Assert-True ([string]$manifest.update.manifest_url -eq 'https://raw.githubusercontent.com/EES-Community/ees-codex/main/update/latest.json') "$edition has an unexpected update manifest URL."
+        Assert-True ([string]$manifest.update.update_url -eq 'https://github.com/EES-Community/ees-codex') "$edition has an unexpected update URL."
+        Assert-True ([int]$manifest.update.check_interval_hours -eq 24) "$edition does not use the expected update-check interval."
 
         $hashManifestPath = Join-Path $assetRoot 'SHA256SUMS.txt'
         $listedPackagePaths = New-Object System.Collections.Generic.List[string]
@@ -83,6 +89,8 @@ try {
         $helperHashes.Add((Get-FileHash -LiteralPath $helperSource -Algorithm SHA256).Hash)
         $policySource = Join-Path $assetRoot 'payload\EES-ProgramPolicy.ps1'
         $policyHashes.Add((Get-FileHash -LiteralPath $policySource -Algorithm SHA256).Hash)
+        $updateHelperSource = Join-Path $assetRoot 'payload\Get-EES-UpdateStatus.ps1'
+        $updateHelperHashes.Add((Get-FileHash -LiteralPath $updateHelperSource -Algorithm SHA256).Hash)
         . $policySource
         $acceptedPolicy = Assert-EesProgramPolicy `
             -Text (@(
@@ -163,6 +171,7 @@ try {
         New-Item -ItemType Directory -Path $resultRoot -Force | Out-Null
         New-Item -ItemType Directory -Path $installRoot -Force | Out-Null
         Copy-Item -LiteralPath $helperSource -Destination (Join-Path $installRoot 'Get-EES-Result.ps1')
+        Copy-Item -LiteralPath $updateHelperSource -Destination (Join-Path $installRoot 'Get-EES-UpdateStatus.ps1')
         Copy-Item -LiteralPath (Join-Path $fixtureRoot 'water-heating-result.txt') -Destination $resultRoot
         Copy-Item -LiteralPath (Join-Path $fixtureRoot 'cycle-result.txt') -Destination $resultRoot
         Copy-Item -LiteralPath (Join-Path $fixtureRoot 'malformed-result.txt') -Destination $resultRoot
@@ -183,11 +192,16 @@ try {
                 artifact_input_directives = @('Import', 'ImportText', 'OpenLookup')
                 artifact_output_directives = @('Export', 'ExportText', 'ExportPlot', 'SaveLookup', 'SaveTable', 'SaveVarInfo')
                 thermodynamic_reference_directive = $true
+                update_notifications = $true
             }
+            update_check_enabled = $true
+            update_manifest_url = 'https://raw.githubusercontent.com/EES-Community/ees-codex/main/update/latest.json'
+            update_url = 'https://github.com/EES-Community/ees-codex'
+            update_check_interval_hours = 24
         }
         [System.IO.File]::WriteAllText(
             (Join-Path $installRoot 'config.json'),
-            ($config | ConvertTo-Json),
+            ($config | ConvertTo-Json -Depth 5),
             (New-Object System.Text.UTF8Encoding($false))
         )
 
@@ -201,6 +215,7 @@ try {
         Assert-True (@($resolvedCapabilities.run_modes).Count -eq 1 -and @($resolvedCapabilities.run_modes) -contains 'Solve') "$edition did not preserve its Solve-only declaration."
         Assert-True ($resolvedCapabilities.validated_artifact_manifest_capable) "$edition did not report validated artifact support."
         Assert-True ($resolvedCapabilities.thermodynamic_reference_directive_capable) "$edition did not report thermodynamic reference support."
+        Assert-True ($resolvedCapabilities.update_notifications_capable) "$edition did not report update-notification support."
         Assert-True (-not $resolvedCapabilities.update_recommended) "$edition recommended an update despite declaring the complete current capability set."
 
         $config.ees_message_capture_enabled_at_install = $false
@@ -263,6 +278,7 @@ try {
 
     Assert-True (@($helperHashes | Select-Object -Unique).Count -eq 1) 'The 32-bit and 64-bit result helpers are not identical.'
     Assert-True (@($policyHashes | Select-Object -Unique).Count -eq 1) 'The 32-bit and 64-bit program-policy helpers are not identical.'
+    Assert-True (@($updateHelperHashes | Select-Object -Unique).Count -eq 1) 'The 32-bit and 64-bit update helpers are not identical.'
 
     foreach ($legacyVersion in @('0.4.0-beta', '0.4.1-beta')) {
         $legacyRoot = Join-Path $scratchRoot ('legacy-' + $legacyVersion)
